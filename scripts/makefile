@@ -16,7 +16,7 @@ main.o: ./main.c
 	cc -Wall -O2 -c ../app/main.c
 	
 testTacheCombinaisonEstNombreArmstrong.o: ../tests/testTacheCombinaisonEstNombreArmstrong.c
-	cc -Wall -O2 -c ../app/tacheCombinaisonEstNombreArmstrong.c
+	cc -Wall -O2 -c ../tests/testTacheCombinaisonEstNombreArmstrong.c
 	
 tacheCombinaisonEstNombreArmstrong.o: ../app/tacheCombinaisonEstNombreArmstrong.c ../app/tacheCombinaisonEstNombreArmstrong.h
 	cc -Wall -O2 -c ../app/tacheCombinaisonEstNombreArmstrong.c
