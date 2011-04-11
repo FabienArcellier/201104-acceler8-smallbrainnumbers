@@ -23,7 +23,7 @@ void InitCachePuissanceDigit(CachePuissanceDigit *cache, unsigned char borne_inf
 
 /*! \brief Renvoie la puissance tirée du cache d'un chiffre entre 0 et 9
 */
-long GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, unsigned char exposant);
+long inline GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, unsigned char exposant);
 
 /*!  \brief Detruit l'objet cache
 */
