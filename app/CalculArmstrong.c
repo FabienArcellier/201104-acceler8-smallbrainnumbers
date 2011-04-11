@@ -2,11 +2,13 @@
 	\author Maxime RIVIERE
 */
 
-#include <CalculArmstrong.h>
+#include "CalculArmstrong.h"
+
+
 
 /*! \brief Calcule le nombre d'Armstrong d'une combinaison à l'aide du cache des puissance
 */
-long CalculNombreArmstrong(int *Combinaison, int size, CachePuissanceDigit *cache)
+long CalculNombreArmstrong(int *Combinaison, int size,CachePuissanceDigit *cache)
 {
   int i;
   long ResCalcul = 0;

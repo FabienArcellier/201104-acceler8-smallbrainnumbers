@@ -14,7 +14,7 @@ typedef enum {TRUE,FALSE} bool;
 
 /*! \brief Calcule le nombre (potentiellement d'Armstrong) à l'aide d'une combinaison fournie en paramètre et retourne le nombre calculé
 */
-long CalculNombreArmstrong(int *Combinaison, int size, CachePuissanceDigit *cache);
+long CalculNombreArmstrong(int *Combinaison,int size,CachePuissanceDigit *cache);
 
 /* \brief Retourne vrai ou faux selon que le nombre est d'Armstrong ou pas
 */
