@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
+#include "./puissanceDigit.h"
 
 /*! \brief Fonctions de calculs et de vérification des nombres d'Armstrong
 
@@ -14,11 +15,11 @@ typedef enum {TRUE,FALSE} bool;
 
 /*! \brief Calcule le nombre (potentiellement d'Armstrong) à l'aide d'une combinaison fournie en paramètre et retourne le nombre calculé
 */
-long CalculNombreArmstrong(int *Combinaison,int size,CachePuissanceDigit *cache);
+long long CalculNombreArmstrong(int *Combinaison,int size,CachePuissanceDigit *cache);
 
 /* \brief Retourne vrai ou faux selon que le nombre est d'Armstrong ou pas
 */
-bool EstUnNombreArmstrong(int *Combinaison,long NbTeste, int size);
+bool EstUnNombreArmstrong(int *Combinaison,long long NbTeste, int size);
 
 
 /* \brief Initialise le tableau de test pour la vérification d'Armstrong

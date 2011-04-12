@@ -8,10 +8,10 @@
 
 /*! \brief Calcule le nombre d'Armstrong d'une combinaison à l'aide du cache des puissance
 */
-long CalculNombreArmstrong(int *Combinaison, int size,CachePuissanceDigit *cache)
+long long CalculNombreArmstrong(int *Combinaison, int size,CachePuissanceDigit *cache)
 {
   int i;
-  long ResCalcul = 0;
+  long long ResCalcul = 0;
   for(i=0;i<size;i++)
   {
     ResCalcul += GetPuissanceDigit(cache,Combinaison[i],size);
@@ -21,7 +21,7 @@ long CalculNombreArmstrong(int *Combinaison, int size,CachePuissanceDigit *cache
 
 /*! \brief Vérifie si le nombre trouvé est un nombre d'Armstrong ou non. Mise en tableau du Nombre à tester puis recherche de l'intersection entre les deux.
 */
-bool EstUnNombreArmstrong(int *Combinaison,long NbTeste, int size)
+bool EstUnNombreArmstrong(int *Combinaison,long long NbTeste, int size)
 {
   long *Combinatoire;
   bool test = FALSE;
@@ -29,22 +29,23 @@ bool EstUnNombreArmstrong(int *Combinaison,long NbTeste, int size)
   Combinatoire = (long *)malloc (sizeof(long)*size);
   int *Test_variable;
   Test_variable = (int *)malloc (sizeof(int)*size);
-  init(Test_variable,size);
+  init_comparedigit(Test_variable,size);
   int i = 0;
+  int j;
   for(i=0;NbTeste!=0;NbTeste/=10,i++)
   {
     Combinatoire[i] = NbTeste % 10;
   }
   for(i=0;i<size;i++){
-    for(j=0;j<size && test=FALSE;j++)
+    for(j=0;(j<size)&&(test==FALSE);j++)
     {
-      if(Combinatoire[i] == Combinaison[j] && used(Test_variable,j,size) = FALSE)
+      if((Combinatoire[i] == Combinaison[j]) && (used_comparedigit(Test_variable,j,size) == FALSE))
       {
 	test = TRUE;
-	add(Test_variable,j);
+	add_comparedigit(Test_variable,j);
       }
     }
-    if test = FALSE
+    if (test == FALSE)
     {
       Armstrong = FALSE;
       break;
@@ -73,7 +74,7 @@ bool used_comparedigit(int *Test_variable,int j,int size)
   bool test = FALSE;
   for(i=0;i<size;i++)
   {
-    if(Test_variable[i] = j)
+    if(Test_variable[i] == j)
     {
       test = TRUE;
       break;
@@ -84,7 +85,7 @@ bool used_comparedigit(int *Test_variable,int j,int size)
 
 /*! \brief Ajout de la variable égale dans Combinatoire et Combinaison dans le tableau de test des variables.
 */
-void add_comparedigit(int *Test_variable,int j)
+void add_comparedigit(int *Test_Variable,int j)
 {
    int i=0;
    while(Test_Variable[i]!=-1)
