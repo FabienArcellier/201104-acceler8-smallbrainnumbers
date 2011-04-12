@@ -1,5 +1,9 @@
 /*!
 */
+
+#ifndef PUISSANCE_DIGIT_H
+#define PUISSANCE_DIGIT_H
+
 #include <assert.h>
 #include <math.h>
 #include <stdlib.h>
@@ -28,3 +32,5 @@ long inline GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, u
 /*!  \brief Detruit l'objet cache
 */
 void DetruireCachePuissanceDigit(CachePuissanceDigit *cache);
+
+#endif

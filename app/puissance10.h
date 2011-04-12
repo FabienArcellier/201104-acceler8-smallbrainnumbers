@@ -1,6 +1,10 @@
 /*! \file puissance10.h
 	\author Fabien Arcellier
 */
+
+#ifndef PUISSANCE10_H
+#define PUISSANCE10_H
+
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
@@ -27,3 +31,5 @@ long inline GetPuissance10(CachePuissance10 *cache, unsigned char exposant);
 /*\brief Destructeur du cache
 */
 void DetruireCachePuissance10(CachePuissance10 *cache);
+
+#endif
