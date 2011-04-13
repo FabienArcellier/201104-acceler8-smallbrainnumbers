@@ -1,5 +1,6 @@
 #include <assert.h>
-#include "combinatoire.h"
+#include "../app/combinatoire.h"
+#include "../app/timer.h"
 
 /* Liste des prototypes*/
 void TestConvertirNombreVersTableauDigit();

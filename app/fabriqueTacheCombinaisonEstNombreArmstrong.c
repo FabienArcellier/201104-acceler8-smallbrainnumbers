@@ -32,11 +32,11 @@ FabriqueTacheCombinaisonEstNombreArmstrong * InitialiserFabriqueTacheCombinaison
   fabrique -> combinaison_courante = (char *) malloc(sizeof(char) * fabrique -> ordre_initiale);
   fabrique -> combinaison_finale = (char *) malloc(sizeof(char) * fabrique -> ordre_finale);
   
-  //ConvertirNombreVersTableauDigit(fabrique -> combinaison_initiale, 0, fabrique -> ordre_initiale);
-  //ConvertirNombreVersTableauDigit(fabrique -> combinaison_finale, valeur_initiale,  fabrique -> ordre_finale);
-  //memcpy(fabrique -> combinaison_courante, fabrique -> combinaison_initiale, fabrique -> ordre_initiale);
+  ConvertirNombreVersTableauDigit(fabrique -> combinaison_initiale, 0, fabrique -> ordre_initiale);
+  ConvertirNombreVersTableauDigit(fabrique -> combinaison_finale, valeur_initiale,  fabrique -> ordre_finale);
+  memcpy(fabrique -> combinaison_courante, fabrique -> combinaison_initiale, fabrique -> ordre_initiale);
   
-  FabriqueTacheCombinaisonEstNombreArmstrong_ChoisirMeilleurFabricationMod(fabrique);
+  FabriqueTacheCombinaisonEstNombreArmstrong_ChoisirMeilleurFabricationMode(fabrique);
 }
 
 /* \brief Libere la mémoire d'un objet FabriqueTacheCombinaisonEstNombreArmstrong
