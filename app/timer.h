@@ -1,6 +1,10 @@
 /*! \file timer.h
 	\author Maxime RIVIERE
 */
+
+#ifndef GUARD_TIMER_H
+#define GUARD_TIMER_H
+
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
@@ -22,5 +26,4 @@ long long time_start(void);
 */
 long long time_end(long long time_depart);
 
-
-
+#endif
