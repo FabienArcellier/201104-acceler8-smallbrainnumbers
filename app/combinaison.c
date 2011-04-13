@@ -1,7 +1,7 @@
 /*! \file combinaison.c
     \author Fabien Arcellier
 */
-#include "combinatoire.h"
+#include "combinaison.h"
 
 /* \brief Convertir un nombre en tableau de digit de longueur n
 
@@ -19,7 +19,7 @@ void ConvertirNombreVersTableauDigit(char * TableauDigit, long long nombre, int 
   // Traitement
   int i = 0;
   
-  for(i = 0; nombre != 0 ; i++; nombre / 10;)
+  for(i = 0; nombre != 0 ; i++, nombre = nombre / 10)
   {
     TableauDigit[i] = nombre % 10;
   }
@@ -42,7 +42,7 @@ long long ConvertirTableauDigitVersNombre(char * TableauDigit, int borne_superie
 {
   // Traitement
   int i = 0;
-  long long result
+  long long result = 0;
   for(i = 0; i < borne_superieure; i++)
   {
     result = result + TableauDigit[i] * GetPuissance10(cache, i);
@@ -65,14 +65,14 @@ int Compare2TableauxDigit(char * TableauDigit1, char * TableauDigit2, char borne
   // Traitement
   int i = 0;
   int resultat_comparaison = 0;
-  for(i = borne_superieure - 1; i = 0; i--)
+  for(i = borne_superieure - 1; i >= 0; i--)
   {
-    if(TableauDigit1[i] > TableauDigit1[i])
+    if(TableauDigit1[i] > TableauDigit2[i])
     {
       resultat_comparaison = 1;
       break;
     }
-    if(TableauDigit1[i] < TableauDigit1[i])
+    if(TableauDigit1[i] < TableauDigit2[i])
     {
       resultat_comparaison = -1;
       break;
@@ -87,10 +87,13 @@ int Compare2TableauxDigit(char * TableauDigit1, char * TableauDigit2, char borne
 }
 
 /* \brief Incremente le tableau de 1
+
+Retourne 1 si c'est la fin du tableau
 */
-void IncrementerTableauxDigit(char *TableauDigit, char borne_superieure)
+int IncrementerTableauxDigit(char *TableauDigit, char borne_superieure)
 {
   int i = 0;
+  int fin_tableau = 0;
   for(i = 0; i < borne_superieure; i++)
   {
     TableauDigit[i]++;
@@ -98,20 +101,31 @@ void IncrementerTableauxDigit(char *TableauDigit, char borne_superieure)
     {
       break;
     }
-    TableauDigit[i] = 0;
+    
+    if(i != borne_superieure - 1)
+    {
+    	TableauDigit[i] = 0;
+    }
+    else
+    {
+    	fin_tableau = 1;
+    }
   }
   
-  return;
+  return fin_tableau;
 }
 
 /* \brief Incremente le tableau vers la prochaine combinaison unique
 
 Définition d'une combinaison unique :
 tab[0] >= tab[1], tab[1] >= tab[2], ..., tab[n-1] >= tab[n]
+
+Retourne 1 si c'est la fin du tableau
 */
 int IncrementerTableauxDigitCombinaisonUnique(char *TableauDigit, char borne_superieure)
 {
   int i = 0;
+  int fin_tableau = 0;
   for(i = 0; i < borne_superieure - 1; i++)
   {
     TableauDigit[i]++;
@@ -119,8 +133,16 @@ int IncrementerTableauxDigitCombinaisonUnique(char *TableauDigit, char borne_sup
     {
       break;
     }
-    TableauDigit[i] = TableauDigit[i+1] + 1;
+    
+    if (i != borne_superieure - 1)
+    {
+    	TableauDigit[i] = TableauDigit[i+1] + 1;
+    }
+    else
+    {
+    	fin_tableau = 1;
+    }
   }
   
-  return;
+  return fin_tableau;
 }

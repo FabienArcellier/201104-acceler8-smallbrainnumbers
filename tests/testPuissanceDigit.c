@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include "../app/puissanceDigit.h"
+#include "../app/timer.h"
 
 /* Liste des prototypes*/
 void testPuissanceDigitExposant5();
@@ -14,6 +15,9 @@ int main(void)
 void testPuissanceDigitExposant5()
 {	
 	puts("L: Debut du test testPuissanceDigitExposant5");
+	long long test_time;
+  test_time= time_start();
+  
 	CachePuissanceDigit cachePuissanceDigitExposant5;
 	InitCachePuissanceDigit(&cachePuissanceDigitExposant5, 3, 5);
 	
@@ -27,6 +31,7 @@ void testPuissanceDigitExposant5()
 	
 	DetruireCachePuissanceDigit(&cachePuissanceDigitExposant5);
 	
+	printf("T: %lld\n", time_end(test_time));
 	puts("L: Fin du test testPuissanceDigitExposant5");
 	puts("");
 }

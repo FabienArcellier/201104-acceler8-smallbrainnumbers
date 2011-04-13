@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include "../app/tacheCombinaisonEstNombreArmstrong.h"
+#include "../app/timer.h"
 
 /* Liste des prototypes*/
 void testCombinaisonEstNombreArmstrong_Clone();
@@ -14,16 +15,26 @@ int main(void)
 void testCombinaisonEstNombreArmstrong_Clone()
 {
   puts("Debut testCombinaisonEstNombreArmstrong_Clone");
+  
   char combinaison[3] = {1, 2, 3};
   char combinaison2[3] = {1, 2, 4};
-  TacheCombinaisonEstNombreArmstrong *tache1, *tache2; 
+  TacheCombinaisonEstNombreArmstrong *tache1, *tache2;
+  
+  long long test_time_init;
+  test_time_init = time_start();
   
   tache1 = TacheCombinaisonEstNombreArmstrong_Init(3, NULL, NULL);
   TacheCombinaisonEstNombreArmstrong_SetCombinaison(tache1, combinaison);
   
-  tache2 = TacheCombinaisonEstNombreArmstrong_Clone(tache1);
+  printf("T: Init : %lld\n", time_end(test_time_init));
   
+  long long test_time_clone;
+  test_time_clone= time_start();
+  
+  tache2 = TacheCombinaisonEstNombreArmstrong_Clone(tache1);
   TacheCombinaisonEstNombreArmstrong_SetCombinaison(tache2, combinaison2);
+  
+  printf("T: Clone : %lld\n", time_end(test_time_clone));
   
   assert((tache1 -> combinaison)[1] == 2);
   assert((tache1 -> combinaison)[2] == 3);
@@ -33,6 +44,7 @@ void testCombinaisonEstNombreArmstrong_Clone()
   
   TacheCombinaisonEstNombreArmstrong_Detruire(tache1);
   TacheCombinaisonEstNombreArmstrong_Detruire(tache2);
+  
   puts("Fin testCombinaisonEstNombreArmstrong_Clone");
   puts("");
 }

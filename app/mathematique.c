@@ -15,7 +15,7 @@ int inline factoriel(int nombre)
   
   int i = 0;
   int resultat = 1;
-  for(i = 1; i < nombre; resultat = resultat * i, i++);
+  for(i = 1; i <= nombre; resultat = resultat * i, i++);
   
   // Post conditions
   assert(nombre <= 479001600);

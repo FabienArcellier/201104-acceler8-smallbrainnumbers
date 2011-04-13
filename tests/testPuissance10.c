@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include "../app/puissance10.h"
+#include "../app/timer.h"
 
 /* Liste des prototypes*/
 void testPuissance10Exposant5();
@@ -13,7 +14,10 @@ int main(void)
 
 void testPuissance10Exposant5()
 {
-	puts("L: Debut du test testPuissance10Exposant5");
+  puts("L: Debut du test testPuissance10Exposant5");
+  long long test_time;
+  test_time= time_start();
+	
 	CachePuissance10 cachePuissance10Exposant5;
 	InitCachePuissance10(&cachePuissance10Exposant5, 5);
 	
@@ -24,6 +28,7 @@ void testPuissance10Exposant5()
 	
 	DetruireCachePuissance10(&cachePuissance10Exposant5);
 	
+	printf("T: %lld\n", time_end(test_time));
 	puts("L: Fin du test testPuissance10Exposant5");
 	puts("");
 }
