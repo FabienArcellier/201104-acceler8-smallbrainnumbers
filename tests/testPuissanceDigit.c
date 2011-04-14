@@ -19,7 +19,7 @@ void testPuissanceDigitExposant5()
   test_time= time_start();
   
 	CachePuissanceDigit cachePuissanceDigitExposant5;
-	InitCachePuissanceDigit(&cachePuissanceDigitExposant5, 3, 5);
+	InitCachePuissanceDigit(&cachePuissanceDigitExposant5, 0, 20);
 	
 	// Tests
 	// printf("D: GetPuissanceDigit(&cachePuissanceDigitExposant5, 4, 3) = %ld\n",
@@ -27,7 +27,8 @@ void testPuissanceDigitExposant5()
 	assert(GetPuissanceDigit(&cachePuissanceDigitExposant5, 4, 3) == 64);
 	assert(GetPuissanceDigit(&cachePuissanceDigitExposant5, 0, 3) == 0);
 	assert(GetPuissanceDigit(&cachePuissanceDigitExposant5, 0, 5) == 0);
-	assert(GetPuissanceDigit(&cachePuissanceDigitExposant5, 4, 5) == 1024);
+	printf("%lld",GetPuissanceDigit(&cachePuissanceDigitExposant5, 9, 19));
+	assert(GetPuissanceDigit(&cachePuissanceDigitExposant5, 9, 19) == 1350851717672992089LLU);
 	
 	DetruireCachePuissanceDigit(&cachePuissanceDigitExposant5);
 	

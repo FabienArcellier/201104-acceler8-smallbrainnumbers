@@ -22,3 +22,19 @@ int inline factoriel(int nombre)
   
   return resultat;
 }
+
+
+
+long long inline pow_long(int nombre, int exposant)
+{
+	int i=0;
+	long long puissance=1;
+	if(nombre != 0)
+	{
+		for(i=1;i<=exposant;i++)
+		{			puissance=nombre*puissance;
+		}
+	}
+	else puissance =0;
+	return puissance;
+}

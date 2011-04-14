@@ -21,7 +21,7 @@ void InitCachePuissanceDigit(CachePuissanceDigit *cache, unsigned char borne_inf
   // Traitement
   cache -> borne_inferieure = borne_inferieure;
   cache -> borne_superieure = borne_superieure;
-  cache -> cache = (long*) malloc(sizeof(long) * 10 * (borne_superieure + 1));
+  cache -> cache = (long long*) malloc(sizeof(long long) * 10 * (borne_superieure + 1));
 
   int i = 0;
   int j = 0;
@@ -37,7 +37,7 @@ void InitCachePuissanceDigit(CachePuissanceDigit *cache, unsigned char borne_inf
   {
     for(j = 0; j < 10;j++)
     {
-      cache -> cache[i * 10 + j] = pow(j, i);
+      cache -> cache[i * 10 + j] = pow_long(j, i);
     }
   }
 
@@ -46,7 +46,7 @@ void InitCachePuissanceDigit(CachePuissanceDigit *cache, unsigned char borne_inf
 
 /*! \brief Renvoie la puissance tirée du cache d'un chiffre entre 0 et 9
 */
-long inline GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, unsigned char exposant)
+long long inline GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, unsigned char exposant)
 {
   // Pré conditions
   assert(exposant >= cache -> borne_inferieure);

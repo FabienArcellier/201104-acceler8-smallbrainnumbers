@@ -7,3 +7,5 @@ Etant donné que nous sommes en base 10, il y'a au plus dans n'importe quelle nom
 9! permutation possible.
 */
 int inline factoriel(int nombre);
+
+long long inline pow_long(int nombre, int exposant);

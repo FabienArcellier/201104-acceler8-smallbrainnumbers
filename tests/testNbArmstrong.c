@@ -15,16 +15,17 @@ int main(void)
 
 void testCalculArmstrong()
 {
+	
+	int Combinaison[19] = {3,2,8,9,5,8,2,9,8,4,4,4,3,1,8,7,0,3,2};
+	CachePuissanceDigit cachePuissanceDigitExposant19;
+	InitCachePuissanceDigit(&cachePuissanceDigitExposant19, 0, 19);
+	// Tests
 	long long test_time;
 	test_time = time_start();
 	puts("L: Debut du test");
-	int Combinaison[9] = {1,4,6,5,1,1,2,0,8};
-	CachePuissanceDigit cachePuissanceDigitExposant9;
-	InitCachePuissanceDigit(&cachePuissanceDigitExposant9, 0, 9);
-	// Tests
-	assert(CalculNombreArmstrong(Combinaison,9, &cachePuissanceDigitExposant9) == 146511208);
-	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,9,&cachePuissanceDigitExposant9),
-	9) == TRUE);
+	assert(CalculNombreArmstrong(Combinaison,19, &cachePuissanceDigitExposant19) == 3289582984443187032LLU);
+	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,19,&cachePuissanceDigitExposant19),
+	19) == TRUE);
 	printf("%lld ms\n",time_end(test_time));
 	puts("L: Fin du test");
 	puts("");
