@@ -34,6 +34,7 @@ bool EstUnNombreArmstrong(int *Combinaison,long long NbTeste, int size)
 	{
 		Tache_en_cours->Combinatoire[i] = NbTeste % 10;
 	}
+	ConvertirNombreVersTableauDigit(Tache_en_cours->Combinatoire,NbTeste,size);
 	for(i=0;i<size && (Armstrong ==TRUE);i++){
 		for(j=0;(j<size) && (test==FALSE);j++)
 		{

@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
-#include "./puissanceDigit.h"
+#include "../app/puissanceDigit.h"
+#include "../app/combinaison.h"
 
 /*! \brief Fonctions de calculs et de vérification des nombres d'Armstrong
 
