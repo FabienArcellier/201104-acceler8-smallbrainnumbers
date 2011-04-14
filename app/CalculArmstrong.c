@@ -30,10 +30,6 @@ bool EstUnNombreArmstrong(int *Combinaison,long long NbTeste, int size)
 	Tache_Nombre_Armstrong * Tache_en_cours;
 	Tache_en_cours = InitialiserTacheArmstrong(size);
 	init_comparedigit(Tache_en_cours->Test_variable,size);
-	for(i=0;NbTeste!=0;NbTeste/=10,i++)
-	{
-		Tache_en_cours->Combinatoire[i] = NbTeste % 10;
-	}
 	ConvertirNombreVersTableauDigit(Tache_en_cours->Combinatoire,NbTeste,size);
 	for(i=0;i<size && (Armstrong ==TRUE);i++){
 		for(j=0;(j<size) && (test==FALSE);j++)
@@ -103,7 +99,7 @@ Tache_Nombre_Armstrong * InitialiserTacheArmstrong(int size)
   // Traitement
   Tache_Nombre_Armstrong * fabrique;
   fabrique = (Tache_Nombre_Armstrong *) malloc(sizeof(Tache_Nombre_Armstrong));
-  fabrique -> Combinatoire = (long *)malloc (sizeof(long)*size);
+  fabrique -> Combinatoire = (char *)malloc (sizeof(char)*size);
   fabrique -> Test_variable = (int *)malloc (sizeof(int)*size);
   return(fabrique);
 }

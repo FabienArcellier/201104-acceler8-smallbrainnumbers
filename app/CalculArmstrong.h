@@ -16,7 +16,7 @@ typedef enum {FALSE,TRUE} bool;
 
 typedef struct tache_nombre_armstrong
 {
-	long *Combinatoire;
+	char *Combinatoire;
 	int *Test_variable;
 } Tache_Nombre_Armstrong;
 

@@ -1,7 +1,7 @@
 Main: clean init timer.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o  main.o 
 	cc -Wall -o ../build/AfficherNombresArmstrong timer.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o  main.o
 	
-Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong
+Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong TestNbCombinaison
 
 TestCalculArmstrong: CalculArmstrong.o testNbArmstrong.o timer.o puissanceDigit.o  mathematique.o combinaison.o puissance10.o
 	cc -Wall -lm -o ../build/TestCalculArmstrong CalculArmstrong.o testNbArmstrong.o timer.o puissanceDigit.o  mathematique.o combinaison.o puissance10.o
@@ -20,6 +20,9 @@ TestPuissance10: timer.o puissance10.o testPuissance10.o
 
 TestPuissanceDigit: timer.o puissanceDigit.o testPuissanceDigit.o mathematique.o
 	cc -Wall -lm -o ../build/TestPuissanceDigit timer.o puissanceDigit.o testPuissanceDigit.o mathematique.o
+
+TestNbCombinaison: timer.o NombreCombinaison.o testNombreCombinaison.o
+	cc -Wall -lm -o ../build/TestNbCombinaison timer.o NombreCombinaison.o testNombreCombinaison.o
 	
 main.o: ./main.c
 	cc -Wall -O2 -c ../app/main.c
@@ -65,6 +68,14 @@ puissanceDigit.o: ../app/puissanceDigit.c ../app/puissanceDigit.h
 
 timer.o: ../app/timer.c ../app/timer.h
 	cc -Wall -O2 -c ../app/timer.c -lm
+
+testNombreCombinaison.o: ../tests/testNombreCombinaison.c 
+	cc -Wall -O2 -c ../tests/testNombreCombinaison.c
+
+NombreCombinaison.o: ../app/NombreCombinaison.c ../app/NombreCombinaison.h
+	cc -Wall -O2 -c ../app/NombreCombinaison.c -lm
+
+
 	
 clean:
 	-rm *.o
