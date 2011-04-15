@@ -13,7 +13,7 @@
 void InitCachePuissance10(CachePuissance10 *cache, unsigned char borne_superieure)
 {
   cache -> borne_superieure = borne_superieure;
-  cache -> cache = (long *) malloc(sizeof(int)*borne_superieure);
+  cache -> cache = (long *) malloc(sizeof(int)*(borne_superieure + 1));
   
   int i = 0;
   for(i = 0; i <= borne_superieure; i++)

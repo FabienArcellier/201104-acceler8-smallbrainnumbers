@@ -7,7 +7,7 @@
 #include <assert.h>
 #include <math.h>
 #include <stdlib.h>
-#include "../app/mathematique.h"
+#include "mathematique.h"
 
 /*! \brief Cache de puissance pour les chiffres entre 1 et 9
 

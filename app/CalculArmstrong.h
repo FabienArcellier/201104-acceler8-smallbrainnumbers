@@ -12,7 +12,7 @@
   Vous devez éviter de manipuler directement une instance de ce type la.
   Utilisez les fonctions ci-dessous.
 */
-typedef enum {FALSE,TRUE} bool;
+typedef enum {FALSE, TRUE} bool;
 
 typedef struct tache_nombre_armstrong
 {

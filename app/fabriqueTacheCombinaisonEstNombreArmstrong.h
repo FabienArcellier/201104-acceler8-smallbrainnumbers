@@ -22,7 +22,7 @@ typedef struct fabrique_tache_combinaison_est_nombre_armstrong
 typedef enum fabrique_tache_combinaison_est_nombre_armstrong_mode 
 {
 	combinaison_unique, //Ce mode ne fonctionne que si l'on part de 0 pour l'incrementation
-	incrementation_direct
+	incrementation_directe
 } FabriqueTacheCombinaisonEstNombreArmstrong_Mode;
 
 /* \brief Instancie un nouvel objet FabriqueTacheCombinaisonEstNombreArmstrong

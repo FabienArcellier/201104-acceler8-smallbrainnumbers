@@ -16,12 +16,14 @@ int main(void)
 void TestFactoriel()
 {
   puts("L: Debut du test TestFactoriel");
-  long long test_time;
-  test_time= time_start();
 
   assert(factoriel(0) == 1);
   assert(factoriel(1) == 1);
   assert(factoriel(2) == 2);
+  
+  long long test_time;
+  test_time= time_start();
+  
   assert(factoriel(9) == 362880);
   
   printf("T: %lld\n", time_end(test_time));

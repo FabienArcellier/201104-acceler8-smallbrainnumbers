@@ -56,6 +56,11 @@ void TestConvertirTableauDigitVersNombre()
   resultat = ConvertirTableauDigitVersNombre(tableauDigit1, 5, &cachePuissance10);
   assert(resultat == 371);
   
+  char tableauDigit2[5] = {1,7,3,2,1};
+  resultat = 0;
+  resultat = ConvertirTableauDigitVersNombre(tableauDigit2, 5, &cachePuissance10);
+  assert(resultat == 12371);
+  
   printf("T: %lld\n", time_end(test_time));
   puts("L: Fin du test TestConvertirTableauDigitVersNombre");
   puts("");

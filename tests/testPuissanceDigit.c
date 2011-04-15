@@ -27,7 +27,7 @@ void testPuissanceDigitExposant5()
 	assert(GetPuissanceDigit(&cachePuissanceDigitExposant5, 4, 3) == 64);
 	assert(GetPuissanceDigit(&cachePuissanceDigitExposant5, 0, 3) == 0);
 	assert(GetPuissanceDigit(&cachePuissanceDigitExposant5, 0, 5) == 0);
-	printf("%lld",GetPuissanceDigit(&cachePuissanceDigitExposant5, 9, 19));
+	printf("D: 9^19 : %lld\n",GetPuissanceDigit(&cachePuissanceDigitExposant5, 9, 19));
 	assert(GetPuissanceDigit(&cachePuissanceDigitExposant5, 9, 19) == 1350851717672992089LLU);
 	
 	DetruireCachePuissanceDigit(&cachePuissanceDigitExposant5);

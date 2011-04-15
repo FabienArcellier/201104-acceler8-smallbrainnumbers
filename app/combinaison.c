@@ -19,7 +19,7 @@ void ConvertirNombreVersTableauDigit(char * TableauDigit, long long nombre, int 
   // Traitement
   int i = 0;
   
-  for(i = 0; nombre != 0 ; i++, nombre = nombre / 10)
+  for(i = 0; nombre != 0 ; i++, nombre /= 10)
   {
     TableauDigit[i] = nombre % 10;
   }
@@ -49,7 +49,7 @@ long long ConvertirTableauDigitVersNombre(char * TableauDigit, int borne_superie
   }
   
   // Post conditions
-  assert(result > 0);
+  assert(result >= 0);
   assert(result < pow(10,borne_superieure));
   
   return result;
@@ -125,24 +125,27 @@ Retourne 1 si c'est la fin du tableau
 int IncrementerTableauxDigitCombinaisonUnique(char *TableauDigit, char borne_superieure)
 {
   int i = 0;
+  int profondeur = 0;
   int fin_tableau = 0;
-  for(i = 0; i < borne_superieure - 1; i++)
+  for(i = 0; i < borne_superieure; i++)
   {
     TableauDigit[i]++;
     if (TableauDigit[i] != 10)
     {
       break;
     }
-    
-    if (i != borne_superieure - 1)
-    {
-    	TableauDigit[i] = TableauDigit[i+1] + 1;
-    }
-    else
-    {
-    	fin_tableau = 1;
-    }
+    profondeur++;
   }
+  
+  for(i = 1;TableauDigit[borne_superieure - 1] < 10 && i <= profondeur; i++)
+  {
+  	TableauDigit[profondeur - i] = TableauDigit[profondeur];
+  }
+  
+  if (TableauDigit[borne_superieure - 1] > 9)
+ 	{
+ 		fin_tableau = 1;
+ 	}
   
   return fin_tableau;
 }

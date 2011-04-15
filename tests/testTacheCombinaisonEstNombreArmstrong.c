@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <stdio.h>
+#include "../app/mathematique.h"
 #include "../app/tacheCombinaisonEstNombreArmstrong.h"
 #include "../app/timer.h"
 
@@ -20,11 +21,19 @@ void testCombinaisonEstNombreArmstrong_Clone()
   char combinaison2[3] = {1, 2, 4};
   TacheCombinaisonEstNombreArmstrong *tache1, *tache2;
   
+  CachePuissance10 cachePuissance10;
+	InitCachePuissance10(&cachePuissance10, 5);
+	
+	CachePuissanceDigit cachePuissanceDigit;
+	InitCachePuissanceDigit(&cachePuissanceDigit, 1, 5);
+  
   long long test_time_init;
   test_time_init = time_start();
   
-  tache1 = TacheCombinaisonEstNombreArmstrong_Init(3, NULL, NULL);
+  tache1 = TacheCombinaisonEstNombreArmstrong_Init(3, &cachePuissanceDigit, &cachePuissance10);
   TacheCombinaisonEstNombreArmstrong_SetCombinaison(tache1, combinaison);
+  
+  
   
   printf("T: Init : %lld\n", time_end(test_time_init));
   
