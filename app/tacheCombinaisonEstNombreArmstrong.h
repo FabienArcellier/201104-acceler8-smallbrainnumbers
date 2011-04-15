@@ -23,9 +23,11 @@
 */
 
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "../app/puissanceDigit.h"
 #include "../app/puissance10.h"
+#include "../app/CalculArmstrong.h"
 
 typedef struct tache_combinaison_est_nombre_armstrong
 {
@@ -33,7 +35,7 @@ typedef struct tache_combinaison_est_nombre_armstrong
   char ordre_courant;
   CachePuissanceDigit *cache_puissance_digit;
   CachePuissance10 *cache_puissance_10;
-  long resultat; /* -1 si n'est pas un nombre d'armstrong, sinon valeur */
+  long long resultat; /* -1 si n'est pas un nombre d'armstrong, sinon valeur */
 } TacheCombinaisonEstNombreArmstrong;
 
 /* \brief \brief Instancie un objet TacheCombinaisonEstNombreArmstrong
@@ -57,3 +59,7 @@ TacheCombinaisonEstNombreArmstrong * TacheCombinaisonEstNombreArmstrong_Clone(
 */
 void TacheCombinaisonEstNombreArmstrong_SetCombinaison(TacheCombinaisonEstNombreArmstrong * tache,
   char *combinaison);
+
+/* \brief Tache : Calcule le nombre d'armstrong d'une combinaison, vérifie si le résultat est valide
+*/
+void TacheCombinaisonEstNombreArmstrong_Executer(TacheCombinaisonEstNombreArmstrong * tache);

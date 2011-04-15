@@ -79,3 +79,32 @@ void inline TacheCombinaisonEstNombreArmstrong_SetCombinaison(TacheCombinaisonEs
   
   return;
 }
+
+/* \brief Tache : Calcule le nombre d'armstrong d'une combinaison, vérifie si le résultat est valide
+*/
+void TacheCombinaisonEstNombreArmstrong_Executer(TacheCombinaisonEstNombreArmstrong * tache)
+{
+	// Pré conditions
+	assert(tache -> combinaison != NULL);
+	assert(tache -> cache_puissance_digit != NULL);
+	assert(tache -> cache_puissance_10 != NULL);
+	
+	// Traitement
+	long long nombre_armstrong = 0;
+	// Calculer le nombre d'armstrong de la combinaison
+	nombre_armstrong = CalculNombreArmstrong(tache -> combinaison, tache -> ordre_courant, tache -> cache_puissance_digit);
+
+	// Valider si le calcul renvoie un nombre d'armstrong
+	// Enregistrer le résultat dans resultat
+	if (EstUnNombreArmstrong(tache -> combinaison, nombre_armstrong, tache -> ordre_courant) == TRUE)
+	{
+		tache -> resultat = nombre_armstrong;
+		printf("NA: %lld\n", nombre_armstrong);
+	}
+	else
+	{
+		tache -> resultat = -1;
+	}
+	
+	return;
+}

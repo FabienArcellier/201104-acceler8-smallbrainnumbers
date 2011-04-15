@@ -6,8 +6,8 @@ Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNomb
 TestCalculArmstrong: timer.o mathematique.o puissanceDigit.o combinaison.o puissance10.o CalculArmstrong.o testNbArmstrong.o
 	cc -Wall -lm -o ../build/TestCalculArmstrong timer.o mathematique.o puissanceDigit.o combinaison.o puissance10.o CalculArmstrong.o testNbArmstrong.o
 	
-TestTacheCombinaisonEstNombreArmstrong: timer.o mathematique.o  puissance10.o puissanceDigit.o tacheCombinaisonEstNombreArmstrong.o testTacheCombinaisonEstNombreArmstrong.o
-	cc -Wall -lm -o ../build/TestTacheCombinaisonEstNombreArmstrong timer.o mathematique.o puissance10.o puissanceDigit.o tacheCombinaisonEstNombreArmstrong.o testTacheCombinaisonEstNombreArmstrong.o
+TestTacheCombinaisonEstNombreArmstrong: timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o testTacheCombinaisonEstNombreArmstrong.o
+	cc -Wall -lm -o ../build/TestTacheCombinaisonEstNombreArmstrong timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o testTacheCombinaisonEstNombreArmstrong.o
 
 SpikeCompterPermutationUnique: timer.o puissance10.o combinaison.o spikeCompterPermutationUnique.o
 	cc -Wall -lm -o ../build/SpikeCompterPermutationUnique timer.o puissance10.o combinaison.o spikeCompterPermutationUnique.o

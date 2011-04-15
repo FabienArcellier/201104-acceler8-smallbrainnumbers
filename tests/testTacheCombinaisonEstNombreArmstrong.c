@@ -6,10 +6,12 @@
 
 /* Liste des prototypes*/
 void testCombinaisonEstNombreArmstrong_Clone();
+void testCombinaisonEstNombreArmstrong_Executer371();
 
 int main(void)
 {
   testCombinaisonEstNombreArmstrong_Clone();
+  testCombinaisonEstNombreArmstrong_Executer371();
   return 0;
 }
 
@@ -56,4 +58,54 @@ void testCombinaisonEstNombreArmstrong_Clone()
   
   puts("Fin testCombinaisonEstNombreArmstrong_Clone");
   puts("");
+}
+
+void testCombinaisonEstNombreArmstrong_Executer371()
+{
+	puts("Debut testCombinaisonEstNombreArmstrong_Executer371");
+	  
+  CachePuissance10 cachePuissance10;
+	InitCachePuissance10(&cachePuissance10, 20);
+	
+	CachePuissanceDigit cachePuissanceDigit;
+	InitCachePuissanceDigit(&cachePuissanceDigit, 1, 20);
+  
+  char combinaison[3] = {1, 7, 3};
+  char combinaison2[19] = {3,2,8,9,5,8,2,9,8,4,4,4,3,1,8,7,0,3,2};
+  char combinaison3[2] = {3,2};
+  
+  TacheCombinaisonEstNombreArmstrong *tache1, *tache2, *tache3;
+  
+  tache1 = TacheCombinaisonEstNombreArmstrong_Init(3, &cachePuissanceDigit, &cachePuissance10);
+  tache2 = TacheCombinaisonEstNombreArmstrong_Init(19, &cachePuissanceDigit, &cachePuissance10);
+  tache3 = TacheCombinaisonEstNombreArmstrong_Init(2, &cachePuissanceDigit, &cachePuissance10);
+  
+  long long test_time;
+  
+  // Test1
+  TacheCombinaisonEstNombreArmstrong_SetCombinaison(tache1, combinaison);
+  test_time = time_start();
+  TacheCombinaisonEstNombreArmstrong_Executer(tache1);
+  printf("T: 371 : %lld\n", time_end(test_time));
+  assert(tache1 -> resultat == 371);
+  
+  // Test2
+  TacheCombinaisonEstNombreArmstrong_SetCombinaison(tache2, combinaison2);
+  
+  test_time = time_start();
+  TacheCombinaisonEstNombreArmstrong_Executer(tache2);
+  printf("T: 3289582984443187032 : %lld\n", time_end(test_time));
+  assert(tache2 -> resultat == 3289582984443187032LLU);
+  
+  // Test3
+  TacheCombinaisonEstNombreArmstrong_SetCombinaison(tache3, combinaison3);
+  
+  test_time = time_start();
+  TacheCombinaisonEstNombreArmstrong_Executer(tache3);
+  printf("T: 23 : %lld\n", time_end(test_time));
+  assert(tache3 -> resultat == -1);
+     
+ 	TacheCombinaisonEstNombreArmstrong_Detruire(tache1);  
+ 	TacheCombinaisonEstNombreArmstrong_Detruire(tache2);  
+ 	TacheCombinaisonEstNombreArmstrong_Detruire(tache3);  
 }

@@ -8,7 +8,7 @@
 
 /*! \brief Calcule le nombre d'Armstrong d'une combinaison à l'aide du cache des puissance
 */
-long long CalculNombreArmstrong(int *Combinaison, int size,CachePuissanceDigit *cache)
+long long CalculNombreArmstrong(char *Combinaison, int size,CachePuissanceDigit *cache)
 {
   int i;
   long long ResCalcul = 0;
@@ -21,7 +21,7 @@ long long CalculNombreArmstrong(int *Combinaison, int size,CachePuissanceDigit *
 
 /*! \brief Vérifie si le nombre trouvé est un nombre d'Armstrong ou non. Mise en tableau du Nombre à tester puis recherche de l'intersection entre les deux.
 */
-bool EstUnNombreArmstrong(int *Combinaison,long long NbTeste, int size)
+bool EstUnNombreArmstrong(char *Combinaison,long long NbTeste, int size)
 {
 	bool test = FALSE;
 	bool Armstrong = TRUE;
@@ -52,7 +52,7 @@ bool EstUnNombreArmstrong(int *Combinaison,long long NbTeste, int size)
 
 /*! \brief Initialisation du tableau de comparaison des digit déjà utilisé.
 */
-void init_comparedigit(int *Test_variable,int size)
+void init_comparedigit(char *Test_variable,int size)
 {
   int i;
   for(i=0;i<size;i++)
@@ -63,7 +63,7 @@ void init_comparedigit(int *Test_variable,int size)
 
 /*! \brief Vérification que le digit égal dans Combinatoire et Combinaison n'ai pas déja été utilisé pour un autre digit
 */
-bool used_comparedigit(int *Test_variable,int j,int size)
+bool used_comparedigit(char *Test_variable,int j,int size)
 {
   int i;
   bool test = FALSE;
@@ -80,7 +80,7 @@ bool used_comparedigit(int *Test_variable,int j,int size)
 
 /*! \brief Ajout de la variable égale dans Combinatoire et Combinaison dans le tableau de test des variables.
 */
-void add_comparedigit(int *Test_Variable,int j)
+void add_comparedigit(char *Test_Variable,int j)
 {
    int i=0;
    while(Test_Variable[i]!=-1)
@@ -100,7 +100,7 @@ Tache_Nombre_Armstrong * InitialiserTacheArmstrong(int size)
   Tache_Nombre_Armstrong * fabrique;
   fabrique = (Tache_Nombre_Armstrong *) malloc(sizeof(Tache_Nombre_Armstrong));
   fabrique -> Combinatoire = (char *)malloc (sizeof(char)*size);
-  fabrique -> Test_variable = (int *)malloc (sizeof(int)*size);
+  fabrique -> Test_variable = (char *)malloc (sizeof(char)*size);
   return(fabrique);
 }
 
