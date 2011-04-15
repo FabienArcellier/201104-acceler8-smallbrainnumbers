@@ -1,25 +1,28 @@
 Main: clean init timer.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o  main.o 
 	cc -Wall -o ../build/AfficherNombresArmstrong timer.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o  main.o
 	
-Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestNbCombinaison
+Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestNbCombinaison TestFabriqueTacheCombinaisonEstNombreArmstrong
 
 TestCalculArmstrong: timer.o mathematique.o puissanceDigit.o combinaison.o puissance10.o CalculArmstrong.o testNbArmstrong.o
 	cc -Wall -lm -o ../build/TestCalculArmstrong timer.o mathematique.o puissanceDigit.o combinaison.o puissance10.o CalculArmstrong.o testNbArmstrong.o
+
+TestFabriqueTacheCombinaisonEstNombreArmstrong: timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o testFabriqueTacheCombinaisonEstNombreArmstrong.o
+	cc -Wall -lm -o ../build/TestFabriqueTacheCombinaisonEstNombreArmstrong timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o testFabriqueTacheCombinaisonEstNombreArmstrong.o
 	
 TestTacheCombinaisonEstNombreArmstrong: timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o testTacheCombinaisonEstNombreArmstrong.o
 	cc -Wall -lm -o ../build/TestTacheCombinaisonEstNombreArmstrong timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o testTacheCombinaisonEstNombreArmstrong.o
 
-SpikeCompterPermutationUnique: timer.o puissance10.o combinaison.o spikeCompterPermutationUnique.o
-	cc -Wall -lm -o ../build/SpikeCompterPermutationUnique timer.o puissance10.o combinaison.o spikeCompterPermutationUnique.o
+SpikeCompterPermutationUnique: timer.o mathematique.o puissance10.o combinaison.o spikeCompterPermutationUnique.o
+	cc -Wall -lm -o ../build/SpikeCompterPermutationUnique timer.o mathematique.o puissance10.o combinaison.o spikeCompterPermutationUnique.o
 
 TestMathematique: timer.o mathematique.o testMathematique.o
 	cc -Wall -lm -o ../build/TestMathematique timer.o mathematique.o testMathematique.o
 
-TestCombinaison: timer.o puissance10.o combinaison.o testCombinaison.o 
-	cc -Wall -lm -o ../build/TestCombinaison timer.o puissance10.o combinaison.o testCombinaison.o 
+TestCombinaison: timer.o mathematique.o puissance10.o combinaison.o testCombinaison.o 
+	cc -Wall -lm -o ../build/TestCombinaison timer.o mathematique.o puissance10.o combinaison.o testCombinaison.o 
 
-TestPuissance10: timer.o puissance10.o testPuissance10.o
-	cc -Wall -lm -o ../build/TestPuissance10 timer.o puissance10.o testPuissance10.o
+TestPuissance10: timer.o mathematique.o puissance10.o testPuissance10.o
+	cc -Wall -lm -o ../build/TestPuissance10 timer.o mathematique.o puissance10.o testPuissance10.o
 
 TestPuissanceDigit: timer.o mathematique.o puissanceDigit.o testPuissanceDigit.o
 	cc -Wall -lm -o ../build/TestPuissanceDigit timer.o mathematique.o puissanceDigit.o testPuissanceDigit.o
@@ -29,6 +32,9 @@ TestNbCombinaison: timer.o NombreCombinaison.o testNombreCombinaison.o
 	
 main.o: ./main.c
 	cc -Wall -O2 -c ../app/main.c
+	
+testFabriqueTacheCombinaisonEstNombreArmstrong.o: ../tests/testFabriqueTacheCombinaisonEstNombreArmstrong.c
+	cc -Wall -O2 -c ../tests/testFabriqueTacheCombinaisonEstNombreArmstrong.c
 
 fabriqueTacheCombinaisonEstNombreArmstrong.o: ../app/fabriqueTacheCombinaisonEstNombreArmstrong.c ../app/fabriqueTacheCombinaisonEstNombreArmstrong.h
 	cc -Wall -O2 -c ../app/fabriqueTacheCombinaisonEstNombreArmstrong.c

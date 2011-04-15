@@ -3,8 +3,8 @@
 /* \brief Instancie un nouvel objet FabriqueTacheCombinaisonEstNombreArmstrong
 */
 FabriqueTacheCombinaisonEstNombreArmstrong * InitialiserFabriqueTacheCombinaisonEstNombreArmstrong(
-  long valeur_initiale, 
-  long valeur_finale, 
+  long long valeur_initiale, 
+  long long valeur_finale, 
   CachePuissanceDigit *cachePuissanceDigit, 
   CachePuissance10 *cachePuissance10)
 {
@@ -14,40 +14,72 @@ FabriqueTacheCombinaisonEstNombreArmstrong * InitialiserFabriqueTacheCombinaison
   assert(cachePuissance10 != NULL);
   
   // Traitement
-  FabriqueTacheCombinaisonEstNombreArmstrong * fabrique;
+  FabriqueTacheCombinaisonEstNombreArmstrong *fabrique;
   fabrique = (FabriqueTacheCombinaisonEstNombreArmstrong *) malloc(sizeof(FabriqueTacheCombinaisonEstNombreArmstrong));
   
-  fabrique -> valeur_courante = valeur_initiale;
   fabrique -> valeur_initiale = valeur_initiale;
   fabrique -> valeur_finale = valeur_finale;
-  fabrique -> ordre_courant = log10(valeur_initiale);
-  fabrique -> ordre_initiale = fabrique -> ordre_courant;
-  fabrique -> ordre_finale = log10(valeur_finale);
+  fabrique -> ordre_initiale = log10(valeur_initiale) + 1;
+  fabrique -> ordre_courant = fabrique -> ordre_initiale;
+  fabrique -> ordre_finale = log10(valeur_finale) + 1;
   
   fabrique -> cachePuissanceDigit = cachePuissanceDigit;
   fabrique -> cachePuissance10 = cachePuissance10;
   
   fabrique -> tacheModele = TacheCombinaisonEstNombreArmstrong_Init(valeur_initiale, cachePuissanceDigit, cachePuissance10);
-  fabrique -> combinaison_initiale = (char *) malloc(sizeof(char) * fabrique -> ordre_courant);
-  fabrique -> combinaison_courante = (char *) malloc(sizeof(char) * fabrique -> ordre_initiale);
+  fabrique -> combinaison_initiale = (char *) malloc(sizeof(char) * fabrique -> ordre_initiale);
+  fabrique -> combinaison_courante = (char *) malloc(sizeof(char) * fabrique -> ordre_finale);
   fabrique -> combinaison_finale = (char *) malloc(sizeof(char) * fabrique -> ordre_finale);
   
-  ConvertirNombreVersTableauDigit(fabrique -> combinaison_initiale, 0, fabrique -> ordre_initiale);
-  ConvertirNombreVersTableauDigit(fabrique -> combinaison_finale, valeur_initiale,  fabrique -> ordre_finale);
-  memcpy(fabrique -> combinaison_courante, fabrique -> combinaison_initiale, fabrique -> ordre_initiale);
+  ConvertirNombreVersTableauDigit(fabrique -> combinaison_initiale, fabrique -> valeur_initiale, fabrique -> ordre_initiale);
+  ConvertirNombreVersTableauDigit(fabrique -> combinaison_finale, valeur_finale, fabrique -> ordre_finale);
+  memcpy(fabrique -> combinaison_courante, fabrique -> combinaison_initiale, sizeof(char) * fabrique -> ordre_initiale);
   
   FabriqueTacheCombinaisonEstNombreArmstrong_ChoisirMeilleurFabricationMode(fabrique);
+  
+  return fabrique;
 }
 
 /* \brief Libere la mémoire d'un objet FabriqueTacheCombinaisonEstNombreArmstrong
 */
 void DetruireFabriqueTacheCombinaisonEstNombreArmstrong(
-  FabriqueTacheCombinaisonEstNombreArmstrong * TacheCombinaisonEstNombreArmstrong)
+  FabriqueTacheCombinaisonEstNombreArmstrong * fabrique)
 {
 	free(fabrique -> combinaison_initiale);
 	free(fabrique -> combinaison_courante);
 	free(fabrique -> combinaison_finale);
 	free(fabrique);
+}
+
+/* \brief Remplit tache_vide avec la tache suivante 
+  
+  \param tache_vide : réserver seulement l'adresse, l'espace mémoire sera réservé en interne
+  Si il reste des taches, retourne 1, sinon retourne 0
+*/
+int FabriqueTacheCombinaisonEstNombreArmstrong_ObtenirTacheSuivante(FabriqueTacheCombinaisonEstNombreArmstrong *fabrique, TacheCombinaisonEstNombreArmstrong **tache_vide)
+{
+	int reste_des_taches = 0;
+	
+	// Vérifier la valeur finale
+	if (fabrique -> ordre_courant != fabrique -> ordre_finale ||
+		Compare2TableauxDigit(fabrique -> combinaison_courante, fabrique -> combinaison_finale, fabrique -> ordre_courant) < 1)
+	{
+		// Cloner le template
+		reste_des_taches = 1;
+		*tache_vide = TacheCombinaisonEstNombreArmstrong_Clone(fabrique -> tacheModele);
+		TacheCombinaisonEstNombreArmstrong_SetCombinaison(*tache_vide, fabrique -> combinaison_courante);
+		
+		// Calculer la combinaison suivante
+		// Changer d'ordre si renvoie 1
+		if(IncrementerTableauxDigitCombinaisonUnique(fabrique -> combinaison_courante, fabrique -> ordre_courant) == 1)
+		{
+			fabrique -> ordre_courant++;
+			fabrique -> tacheModele -> ordre_courant = fabrique -> ordre_courant;
+			ConvertirNombreVersTableauDigit(fabrique -> combinaison_courante, 2, fabrique -> ordre_courant);
+		}
+	}
+	
+	return reste_des_taches;
 }
 
 /* \brief En fonction des paramètres de la fabrique, détermine le meilleur mode de fabrication des taches
@@ -77,7 +109,7 @@ On le choisira quand :
 
 */
 void FabriqueTacheCombinaisonEstNombreArmstrong_ChoisirMeilleurFabricationMode(
-	FabriqueTacheCombinaisonEstNombreArmstrong * tache)
+	FabriqueTacheCombinaisonEstNombreArmstrong * fabrique)
 {
-	
+	fabrique -> mode = combinaison_unique;
 }

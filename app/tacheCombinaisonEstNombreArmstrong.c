@@ -96,7 +96,9 @@ void TacheCombinaisonEstNombreArmstrong_Executer(TacheCombinaisonEstNombreArmstr
 
 	// Valider si le calcul renvoie un nombre d'armstrong
 	// Enregistrer le résultat dans resultat
-	if (EstUnNombreArmstrong(tache -> combinaison, nombre_armstrong, tache -> ordre_courant) == TRUE)
+	if (nombre_armstrong >= GetPuissance10(tache -> cache_puissance_10, tache -> ordre_courant - 1) && 
+		nombre_armstrong < GetPuissance10(tache -> cache_puissance_10, tache -> ordre_courant) &&
+		EstUnNombreArmstrong(tache -> combinaison, nombre_armstrong, tache -> ordre_courant) == TRUE)
 	{
 		tache -> resultat = nombre_armstrong;
 		printf("NA: %lld\n", nombre_armstrong);

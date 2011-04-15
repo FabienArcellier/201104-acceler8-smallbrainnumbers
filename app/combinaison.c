@@ -14,12 +14,11 @@ la charge de l'appellant.
 void ConvertirNombreVersTableauDigit(char * TableauDigit, long long nombre, int longueur)
 {
   // Pré conditions
-  assert(pow(10,longueur) > nombre);
   
   // Traitement
   int i = 0;
   
-  for(i = 0; nombre != 0 ; i++, nombre /= 10)
+  for(i = 0; nombre != 0; i++, nombre /= 10)
   {
     TableauDigit[i] = nombre % 10;
   }
