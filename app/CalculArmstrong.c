@@ -26,26 +26,33 @@ bool EstUnNombreArmstrong(char *Combinaison,long long NbTeste, int size)
 	bool test = FALSE;
 	bool Armstrong = TRUE;
 	int i = 0;
-	int j;
+	int j = 0;
 	Tache_Nombre_Armstrong * Tache_en_cours;
 	Tache_en_cours = InitialiserTacheArmstrong(size);
-	init_comparedigit(Tache_en_cours->Test_variable,size);
-	ConvertirNombreVersTableauDigit(Tache_en_cours->Combinatoire,NbTeste,size);
-	for(i=0;i<size && (Armstrong ==TRUE);i++){
-		for(j=0;(j<size) && (test==FALSE);j++)
+	init_comparedigit(Tache_en_cours -> Test_variable, size);
+	ConvertirNombreVersTableauDigit(Tache_en_cours->Combinatoire, NbTeste, size);
+	
+	for(i=0;i < size && (Armstrong == TRUE );i++)
+	{
+		for(j=0;(j < size) && (test == FALSE);j++)
 		{
-			if((Tache_en_cours->Combinatoire[i] == Tache_en_cours->Combinatoire[j]) && (used_comparedigit(Tache_en_cours->Test_variable,j,size) == FALSE))
+			if((Combinaison[i] == Tache_en_cours -> Combinatoire[j]) &&
+			 (used_comparedigit(Tache_en_cours->Test_variable, j,size) == FALSE))
 			{
-			test = TRUE;
-			add_comparedigit(Tache_en_cours->Test_variable,j);
+				test = TRUE;
+				add_comparedigit(Tache_en_cours -> Test_variable, j);
+				break;
 			}
 		}
+		
 		if (test == FALSE)
 		{
 			Armstrong = FALSE;
 		}
-		test= FALSE;
+		
+		test = FALSE;
 	}
+	
 	DetruireTacheNombreArmstrong(Tache_en_cours);
 	return Armstrong;
 }
@@ -63,7 +70,7 @@ void init_comparedigit(char *Test_variable,int size)
 
 /*! \brief Vérification que le digit égal dans Combinatoire et Combinaison n'ai pas déja été utilisé pour un autre digit
 */
-bool used_comparedigit(char *Test_variable,int j,int size)
+bool used_comparedigit(char *Test_variable, int j, int size)
 {
   int i;
   bool test = FALSE;
@@ -75,18 +82,20 @@ bool used_comparedigit(char *Test_variable,int j,int size)
       break;
     }
   }
+  
   return test;
 }
 
 /*! \brief Ajout de la variable égale dans Combinatoire et Combinaison dans le tableau de test des variables.
 */
-void add_comparedigit(char *Test_Variable,int j)
+void add_comparedigit(char *Test_Variable, int j)
 {
    int i=0;
-   while(Test_Variable[i]!=-1)
+   while(Test_Variable[i] != -1)
    {
     i++;
    }
+   
    Test_Variable[i] = j;
 }
 
