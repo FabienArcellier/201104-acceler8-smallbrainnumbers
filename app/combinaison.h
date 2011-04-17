@@ -1,5 +1,6 @@
 /* \file combinatoire.h
   \author Fabien Arcellier
+  \author Maxime Riviere
 */
 
 #ifndef COMBINAISON_H
@@ -43,5 +44,9 @@ tab[0] >= tab[1], tab[1] >= tab[2], ..., tab[n-1] >= tab[n]
 Retourne 1 si c'est la fin du tableau
 */
 int IncrementerTableauxDigitCombinaisonUnique(char *TableauDigit, char borne_superieure);
+
+/*! \brief Calcule du nombre de combinaison à calculer pour un nombre de digit donné (objectif => choix entre itératif et en combinaison unique pour ordre de valeur min et ordre valeur max)
+*/
+int nombreCombinaisonsDunNombreDigit(int size);
 
 #endif

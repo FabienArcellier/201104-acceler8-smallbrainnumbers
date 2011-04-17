@@ -3,71 +3,39 @@
 /*
 
 */
-int main(void)
+int main(int argc, char * argv[])
 {
-	long debut = RANGE_DEBUT;
-	long fin = RANGE_FIN;
-	int combinaison[NOMBRE_DIGIT_MAXIMUM];
-	int i = 0;
+	// Decouper les arguments en utilisant les espaces
+		// Si le nombre d'argument est != 2, afficher_aide
+		// Si l'un des arguments contient un caractere non numerique, afficher_aide_format_nombre_incorrecte
+	// Si le premier argument est superieur au deuxieme argument, afficher_aide_nombre_incoherent 
+	// Calculer le log10(borne_inferieure) + 1 -> ordre_initiale
+	// Calculer le log10(borne_superieure) + 1 -> ordre_finale
 	
-
-	int ordre_debut = (int) log10(debut);
-        int ordre_fin = ((int) log10(fin)) + 1;
-	int ordre_courant = ordre_debut;
-
-	for(i = 0; i < NOMBRE_DIGIT_MAXIMUM; i++)
-	{
-		combinaison[i] = 0;
-	}
-
-	do
-	{
-		long nombreArmstrong = ObtenirNombreArmstrong(combinaison, 
-			ordre_courant, 
-			debut, 
-			fin);
-
-		if (nombreArmstrong != -1)
-		{
-			printf("%ld\n", nombreArmstrong);
-		}
-
-		ObtenirCombinaisonSuivante(combinaison, &ordre_courant);
-	} while (ordre_courant < ordre_fin);
-
-	return 0;
+	// Initialiser de le cache des puissances_digit
 }
 
-long ObtenirNombreArmstrong (int combinaison[], int ordre_courant, long debut, long fin)
+void afficher_aide()
 {
-	long valeurArmstrong = 0;
-	int resultat = -1;// Aucun resultat
-	int i = 0;
-	for(i = 0; i < ordre_courant; i++)
-	{
-		valeurArmstrong = valeurArmstrong + 
-			pow(combinaison[i], ordre_courant);
-	}
-
-	// int nombre_permutation = fact(ordre_courant);
-	for(i = 0; i < nombre_permutation; i++)
-	{
-		long valeurCombinaison = ObtenirPermutation(
-			combinaison, 
-			ordre_courant,
-			i);
-
-		if (valeurCombinaison == valeurArmstrong)
-		{
-			resultat = valeurArmstrong;
-			break;
-		}
-	}
-
-	return resultat;
+	puts("./Smallbrain borne_inferieure borne_superieure");
+	puts("");
+	puts("borne_inferieure : Nombre entier ou l'on commence la recherche [1;9223372036854779999LL]");
+	puts("borne_superieure : Nombre entier ou l'on termine la recherche [1;9223372036854779999LL]");
+	puts("");
+	puts("Remarque : borne_inferieure doit etre inferieur ou egal a borne_superieure");
+	puts("Remarque : les nombres s'écrivent avec leur forme pleine 567, 456.");
+	puts("	N'utilisez pas de notation scientifique 1.5E23);
 }
 
-long ObtenirPermutation(int combinaison[], int ordre_courant, int i)
+void afficher_aide_format_nombre_incorrecte()
 {
-	
+	puts("le format de nombre que vous avez utilise n'est pas correcte");
+	puts("");
+	afficher_aide();
+}
+
+void afficher_aide_nombre_incoherent(long long borne_inferieure, long long borne_superieure)
+{
+	printf("%lld n'est pas inferieur a %lld\n\n", borne_inferieure, borne_superieure);
+	afficher_aide();
 }

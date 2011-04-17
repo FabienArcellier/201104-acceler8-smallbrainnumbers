@@ -65,10 +65,10 @@ void testCombinaisonEstNombreArmstrong_Executer371()
 	puts("Debut testCombinaisonEstNombreArmstrong_Executer371");
 	  
   CachePuissance10 cachePuissance10;
-	InitCachePuissance10(&cachePuissance10, 20);
+	InitCachePuissance10(&cachePuissance10, 19);
 	
 	CachePuissanceDigit cachePuissanceDigit;
-	InitCachePuissanceDigit(&cachePuissanceDigit, 1, 20);
+	InitCachePuissanceDigit(&cachePuissanceDigit, 1, 19);
   
   char combinaison[3] = {1, 7, 3};
   char combinaison2[19] = {3,2,8,9,5,8,2,9,8,4,4,4,3,1,8,7,0,3,2};
@@ -94,6 +94,7 @@ void testCombinaisonEstNombreArmstrong_Executer371()
   
   test_time = time_start();
   TacheCombinaisonEstNombreArmstrong_Executer(tache2);
+  //printf("D: tache2 -> result %lld\n", tache2 -> resultat);
   printf("T: 3289582984443187032 : %lld\n", time_end(test_time));
   assert(tache2 -> resultat == 3289582984443187032LLU);
   

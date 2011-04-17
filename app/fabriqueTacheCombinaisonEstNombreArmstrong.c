@@ -5,6 +5,8 @@
 FabriqueTacheCombinaisonEstNombreArmstrong * InitialiserFabriqueTacheCombinaisonEstNombreArmstrong(
   long long valeur_initiale, 
   long long valeur_finale, 
+  int ordre_initiale,
+  int ordre_finale,
   CachePuissanceDigit *cachePuissanceDigit, 
   CachePuissance10 *cachePuissance10)
 {
@@ -12,6 +14,10 @@ FabriqueTacheCombinaisonEstNombreArmstrong * InitialiserFabriqueTacheCombinaison
   assert(valeur_initiale < valeur_finale);
   assert(cachePuissanceDigit != NULL);
   assert(cachePuissance10 != NULL);
+  assert(log10(valeur_initiale) + 1 == ordre_initiale);
+  
+  //printf("D: log10(valeur_finale) + 1 : %lld\n", log10(valeur_finale) + 1);
+  assert(log10(valeur_finale) + 1 == ordre_finale);
   
   // Traitement
   FabriqueTacheCombinaisonEstNombreArmstrong *fabrique;
@@ -19,9 +25,9 @@ FabriqueTacheCombinaisonEstNombreArmstrong * InitialiserFabriqueTacheCombinaison
   
   fabrique -> valeur_initiale = valeur_initiale;
   fabrique -> valeur_finale = valeur_finale;
-  fabrique -> ordre_initiale = log10(valeur_initiale) + 1;
+  fabrique -> ordre_initiale = ordre_initiale;
   fabrique -> ordre_courant = fabrique -> ordre_initiale;
-  fabrique -> ordre_finale = log10(valeur_finale) + 1;
+  fabrique -> ordre_finale = ordre_finale;
   
   fabrique -> cachePuissanceDigit = cachePuissanceDigit;
   fabrique -> cachePuissance10 = cachePuissance10;

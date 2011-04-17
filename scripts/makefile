@@ -1,93 +1,95 @@
-Main: clean init timer.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o  main.o 
-	cc -Wall -o ../build/AfficherNombresArmstrong timer.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o  main.o
-	
-Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestNbCombinaison TestFabriqueTacheCombinaisonEstNombreArmstrong
+CC=cc
+#CFLAG=-Wall -lm -O3 -DNDEBUG=0
+CFLAG=-Wall -lm -O3 -DNDEBUG=1
+LDFLAG=-Wall -lm
+
+CPARALLEL= -pthread -ftree-parallelize-loops=40
+PATH_BUILD=../build
+PATH_APP=../app
+PATH_TESTS=../tests
+
+
+Production: clean init Main
+
+Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestFabriqueTacheCombinaisonEstNombreArmstrong
+
+Main: timer.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o  main.o 
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 TestCalculArmstrong: timer.o mathematique.o puissanceDigit.o combinaison.o puissance10.o CalculArmstrong.o testNbArmstrong.o
-	cc -Wall -lm -o ../build/TestCalculArmstrong timer.o mathematique.o puissanceDigit.o combinaison.o puissance10.o CalculArmstrong.o testNbArmstrong.o
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 TestFabriqueTacheCombinaisonEstNombreArmstrong: timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o testFabriqueTacheCombinaisonEstNombreArmstrong.o
-	cc -Wall -lm -o ../build/TestFabriqueTacheCombinaisonEstNombreArmstrong timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o testFabriqueTacheCombinaisonEstNombreArmstrong.o
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 	
 TestTacheCombinaisonEstNombreArmstrong: timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o testTacheCombinaisonEstNombreArmstrong.o
-	cc -Wall -lm -o ../build/TestTacheCombinaisonEstNombreArmstrong timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o testTacheCombinaisonEstNombreArmstrong.o
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 SpikeCompterPermutationUnique: timer.o mathematique.o puissance10.o combinaison.o spikeCompterPermutationUnique.o
-	cc -Wall -lm -o ../build/SpikeCompterPermutationUnique timer.o mathematique.o puissance10.o combinaison.o spikeCompterPermutationUnique.o
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 TestMathematique: timer.o mathematique.o testMathematique.o
-	cc -Wall -lm -o ../build/TestMathematique timer.o mathematique.o testMathematique.o
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 TestCombinaison: timer.o mathematique.o puissance10.o combinaison.o testCombinaison.o 
-	cc -Wall -lm -o ../build/TestCombinaison timer.o mathematique.o puissance10.o combinaison.o testCombinaison.o 
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^ 
 
 TestPuissance10: timer.o mathematique.o puissance10.o testPuissance10.o
-	cc -Wall -lm -o ../build/TestPuissance10 timer.o mathematique.o puissance10.o testPuissance10.o
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 TestPuissanceDigit: timer.o mathematique.o puissanceDigit.o testPuissanceDigit.o
-	cc -Wall -lm -o ../build/TestPuissanceDigit timer.o mathematique.o puissanceDigit.o testPuissanceDigit.o
-
-TestNbCombinaison: timer.o NombreCombinaison.o testNombreCombinaison.o
-	cc -Wall -lm -o ../build/TestNbCombinaison timer.o NombreCombinaison.o testNombreCombinaison.o
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 	
-main.o: ./main.c
-	cc -Wall -O2 -c ../app/main.c
+main.o: $(PATH_APP)/main.c
+	$(CC) $(CFLAG) -c $<
 	
-testFabriqueTacheCombinaisonEstNombreArmstrong.o: ../tests/testFabriqueTacheCombinaisonEstNombreArmstrong.c
-	cc -Wall -O2 -c ../tests/testFabriqueTacheCombinaisonEstNombreArmstrong.c
+testFabriqueTacheCombinaisonEstNombreArmstrong.o: $(PATH_TESTS)/testFabriqueTacheCombinaisonEstNombreArmstrong.c
+	$(CC) $(CFLAG) -c $<
 
-fabriqueTacheCombinaisonEstNombreArmstrong.o: ../app/fabriqueTacheCombinaisonEstNombreArmstrong.c ../app/fabriqueTacheCombinaisonEstNombreArmstrong.h
-	cc -Wall -O2 -c ../app/fabriqueTacheCombinaisonEstNombreArmstrong.c
+fabriqueTacheCombinaisonEstNombreArmstrong.o: $(PATH_APP)/fabriqueTacheCombinaisonEstNombreArmstrong.c $(PATH_APP)/fabriqueTacheCombinaisonEstNombreArmstrong.h
+	$(CC) $(CFLAG) -c $<
 
-testTacheCombinaisonEstNombreArmstrong.o: ../tests/testTacheCombinaisonEstNombreArmstrong.c
-	cc -Wall -O2 -c ../tests/testTacheCombinaisonEstNombreArmstrong.c
+testTacheCombinaisonEstNombreArmstrong.o: $(PATH_TESTS)/testTacheCombinaisonEstNombreArmstrong.c
+	$(CC) $(CFLAG) -c $<
 	
-tacheCombinaisonEstNombreArmstrong.o: ../app/tacheCombinaisonEstNombreArmstrong.c ../app/tacheCombinaisonEstNombreArmstrong.h
-	cc -Wall -O2 -c ../app/tacheCombinaisonEstNombreArmstrong.c
+tacheCombinaisonEstNombreArmstrong.o: $(PATH_APP)/tacheCombinaisonEstNombreArmstrong.c $(PATH_APP)/tacheCombinaisonEstNombreArmstrong.h
+	$(CC) $(CFLAG) -c $<
 	
-testNbArmstrong.o:  ../tests/testNbArmstrong.c
-	cc -Wall -c ../tests/testNbArmstrong.c
+testNbArmstrong.o:  $(PATH_TESTS)/testNbArmstrong.c
+	$(CC) $(CFLAG) -c $<
 
-CalculArmstrong.o:../app/CalculArmstrong.c ../app/CalculArmstrong.h
-	cc -Wall -O2 -c ../app/CalculArmstrong.c -lm
+CalculArmstrong.o:$(PATH_APP)/CalculArmstrong.c $(PATH_APP)/CalculArmstrong.h
+	$(CC) $(CFLAG) -c $<
 	
-testCombinaison.o: ../tests/testCombinaison.c
-	cc -Wall -c ../tests/testCombinaison.c
+testCombinaison.o: $(PATH_TESTS)/testCombinaison.c
+	$(CC) $(CFLAG) -c $<
 	
-spikeCompterPermutationUnique.o: ../tests/spikeCompterPermutationUnique.c
-	cc -Wall -c ../tests/spikeCompterPermutationUnique.c
+spikeCompterPermutationUnique.o: $(PATH_TESTS)/spikeCompterPermutationUnique.c
+	$(CC) $(CFLAG) -c $<
 
-combinaison.o: ../app/combinaison.c ../app/combinaison.h
-	cc -Wall -O2 -c ../app/combinaison.c -lm
+combinaison.o: $(PATH_APP)/combinaison.c $(PATH_APP)/combinaison.h
+	$(CC) $(CFLAG) -c $<
 	
-testPuissance10.o: ../tests/testPuissance10.c
-	cc -Wall -c ../tests/testPuissance10.c
+testPuissance10.o: $(PATH_TESTS)/testPuissance10.c
+	$(CC) $(CFLAG) -c $<
 
-puissance10.o: ../app/puissance10.c ../app/puissance10.h
-	cc -Wall -O2 -c ../app/puissance10.c -lm
+puissance10.o: $(PATH_APP)/puissance10.c $(PATH_APP)/puissance10.h
+	$(CC) $(CFLAG) -c $<
 	
-testPuissanceDigit.o: ../tests/testPuissanceDigit.c
-	cc -Wall -O2 -c ../tests/testPuissanceDigit.c
+testPuissanceDigit.o: $(PATH_TESTS)/testPuissanceDigit.c
+	$(CC) $(CFLAG) -c $<
 	
-puissanceDigit.o: ../app/puissanceDigit.c ../app/puissanceDigit.h
-	cc -Wall -O2 -c ../app/puissanceDigit.c -lm
+puissanceDigit.o: $(PATH_APP)/puissanceDigit.c $(PATH_APP)/puissanceDigit.h
+	$(CC) $(CFLAG) -c $<
 	
-testMathematique.o: ../tests/testMathematique.c
-	cc -Wall -c ../tests/testMathematique.c
+testMathematique.o: $(PATH_TESTS)/testMathematique.c
+	$(CC) $(CFLAG) -c $<
 
-mathematique.o: ../app/mathematique.c ../app/mathematique.h
-	cc -Wall -O2 -c ../app/mathematique.c -lm
+mathematique.o: $(PATH_APP)/mathematique.c $(PATH_APP)/mathematique.h
+	$(CC) $(CFLAG) -c $<
 
-timer.o: ../app/timer.c ../app/timer.h
-	cc -Wall -O2 -c ../app/timer.c -lm
-
-testNombreCombinaison.o: ../tests/testNombreCombinaison.c 
-	cc -Wall -O2 -c ../tests/testNombreCombinaison.c
-
-NombreCombinaison.o: ../app/NombreCombinaison.c ../app/NombreCombinaison.h
-	cc -Wall -O2 -c ../app/NombreCombinaison.c -lm
-
-
+timer.o: $(PATH_APP)/timer.c $(PATH_APP)/timer.h
+	$(CC) $(CFLAG) -c $<
 	
 clean:
 	-rm *.o

@@ -11,6 +11,9 @@
 */
 void InitCachePuissance10(CachePuissance10 *cache, unsigned char borne_superieure)
 {
+	// Pré condition
+	assert(borne_superieure <= PUISSANCE10_EXPOSANT_LIMIT);
+	
   cache -> borne_superieure = borne_superieure;
   cache -> cache = (long long *) malloc(sizeof(long long)*(borne_superieure + 1));
   
@@ -33,9 +36,9 @@ long long inline GetPuissance10(CachePuissance10 *cache, unsigned char exposant)
   assert(cache -> borne_superieure >= exposant);
   
 	long long result = 0;
-	if (exposant > 19)
+	if (exposant > PUISSANCE10_EXPOSANT_LIMIT)
 	{
-		result = 4611686018427387899LL;
+		result = -1;
 	}
 	else
 	{
@@ -45,6 +48,15 @@ long long inline GetPuissance10(CachePuissance10 *cache, unsigned char exposant)
   //Post condition
   assert(result != 0);
   return result;
+}
+
+/* \brief Renvoie 1 si la puissance de 10 demandé est au dela de la capacite technique
+	du long long
+*/
+int inline Puissance10_EstOverflow(CachePuissance10 *cache, unsigned char exposant)
+{
+	//Traitement
+	return exposant > PUISSANCE10_EXPOSANT_LIMIT;	
 }
 
 /*! \brief Destructeur du cache

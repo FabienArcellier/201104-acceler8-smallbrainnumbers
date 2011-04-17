@@ -15,16 +15,16 @@ int main(void)
 void TestFabriqueTacheCombinaisonEstNombreArmstrong_ObtenirTache()
 {
 	CachePuissance10 cachePuissance10;
-	InitCachePuissance10(&cachePuissance10, 30);
+	InitCachePuissance10(&cachePuissance10, 19);
 	
 	CachePuissanceDigit cachePuissanceDigit;
-	InitCachePuissanceDigit(&cachePuissanceDigit, 1, 30);
+	InitCachePuissanceDigit(&cachePuissanceDigit, 1, 19);
 	
 	long long test_time;
   test_time = time_start();
 	
 	FabriqueTacheCombinaisonEstNombreArmstrong *fabrique;
-	fabrique = InitialiserFabriqueTacheCombinaisonEstNombreArmstrong(1, 4611686018427387899LL, &cachePuissanceDigit, &cachePuissance10);
+	fabrique = InitialiserFabriqueTacheCombinaisonEstNombreArmstrong(1, 9223372036854770000LL, 1, 20,&cachePuissanceDigit, &cachePuissance10);
 	int reste_des_taches = 1;
 	
 	do

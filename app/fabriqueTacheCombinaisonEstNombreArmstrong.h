@@ -30,6 +30,8 @@ typedef struct fabrique_tache_combinaison_est_nombre_armstrong
 FabriqueTacheCombinaisonEstNombreArmstrong * InitialiserFabriqueTacheCombinaisonEstNombreArmstrong(
   long long valeur_initiale, 
   long long valeur_finale, 
+  int ordre_initiale,
+  int ordre_finale,
   CachePuissanceDigit *cachePuissanceDigit, 
   CachePuissance10 *cachePuissance10);
 
