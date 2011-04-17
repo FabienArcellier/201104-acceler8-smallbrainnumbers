@@ -27,12 +27,18 @@
 /* \brief Instancie un objet TacheCombinaisonEstNombreArmstrong
 */
 TacheCombinaisonEstNombreArmstrong * TacheCombinaisonEstNombreArmstrong_Init(
-  char ordre_courant, CachePuissanceDigit *cache_puissance_digit, CachePuissance10 *cache_puissance_10)
+  char ordre_courant, 
+	long long borne_inferieure, 
+	long long borne_superieure, 
+	CachePuissanceDigit *cache_puissance_digit, 
+	CachePuissance10 *cache_puissance_10)
 {
   TacheCombinaisonEstNombreArmstrong *tache;
   tache = (TacheCombinaisonEstNombreArmstrong *) malloc(sizeof(TacheCombinaisonEstNombreArmstrong));
   tache -> combinaison = (char *) malloc(sizeof(char) * ordre_courant);
   tache -> ordre_courant = ordre_courant;
+	tache -> borne_inferieure = borne_inferieure;
+	tache -> borne_superieure = borne_superieure;
   tache -> cache_puissance_digit = cache_puissance_digit;
   tache -> cache_puissance_10 = cache_puissance_10;
   tache -> resultat = -1;
@@ -96,7 +102,9 @@ void TacheCombinaisonEstNombreArmstrong_Executer(TacheCombinaisonEstNombreArmstr
 
 	// Valider si le calcul renvoie un nombre d'armstrong
 	// Enregistrer le résultat dans resultat
-	if (nombre_armstrong >= GetPuissance10(tache -> cache_puissance_10, tache -> ordre_courant - 1) && 
+	if (nombre_armstrong >= GetPuissance10(tache -> cache_puissance_10, tache -> ordre_courant - 1) &&
+		nombre_armstrong >= tache -> borne_inferieure &&
+		nombre_armstrong <= tache -> borne_superieure &&
 		(nombre_armstrong < GetPuissance10(tache -> cache_puissance_10, tache -> ordre_courant) || Puissance10_EstOverflow(tache -> cache_puissance_10, tache -> ordre_courant + 1) == 1) &&
 		EstUnNombreArmstrong(tache -> combinaison, nombre_armstrong, tache -> ordre_courant) == 1)
 	{

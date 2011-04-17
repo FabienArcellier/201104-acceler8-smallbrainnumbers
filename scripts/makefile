@@ -1,6 +1,6 @@
 CC=cc
-#CFLAG=-Wall -lm -O3 -DNDEBUG=0
-CFLAG=-Wall -lm -O3 -DNDEBUG=1
+CFLAG=-Wall -lm -O3 -DNDEBUG=0
+#CFLAG=-Wall -lm -O3
 LDFLAG=-Wall -lm
 
 CPARALLEL= -pthread -ftree-parallelize-loops=40
@@ -9,11 +9,11 @@ PATH_APP=../app
 PATH_TESTS=../tests
 
 
-Production: clean init Main
+Production: clean init Smallbrain
 
 Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestFabriqueTacheCombinaisonEstNombreArmstrong
 
-Main: timer.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o  main.o 
+Smallbrain: timer.o mathematique.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o main.o 
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 TestCalculArmstrong: timer.o mathematique.o puissanceDigit.o combinaison.o puissance10.o CalculArmstrong.o testNbArmstrong.o

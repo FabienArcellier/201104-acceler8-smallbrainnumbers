@@ -20,11 +20,22 @@ void TestFabriqueTacheCombinaisonEstNombreArmstrong_ObtenirTache()
 	CachePuissanceDigit cachePuissanceDigit;
 	InitCachePuissanceDigit(&cachePuissanceDigit, 1, 19);
 	
+	char borne_inferieure[20], borne_superieure[20]; 
+	
+	ConvertirNombreVersTableauDigit(borne_inferieure, 1, 20);
+	ConvertirNombreVersTableauDigit(borne_superieure, 4611686018427387899LL, 20);
+	
 	long long test_time;
   test_time = time_start();
 	
 	FabriqueTacheCombinaisonEstNombreArmstrong *fabrique;
-	fabrique = InitialiserFabriqueTacheCombinaisonEstNombreArmstrong(1, 9223372036854770000LL, 1, 20,&cachePuissanceDigit, &cachePuissance10);
+	fabrique = InitialiserFabriqueTacheCombinaisonEstNombreArmstrong(borne_inferieure, 
+																																	 borne_superieure, 
+																																	 1, 
+																																	 20,
+																																	 &cachePuissanceDigit, 
+																																	 &cachePuissance10);
+	
 	int reste_des_taches = 1;
 	
 	do

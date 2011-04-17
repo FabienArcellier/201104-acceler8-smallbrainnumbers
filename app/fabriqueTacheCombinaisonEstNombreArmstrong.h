@@ -11,9 +11,9 @@ typedef enum fabrique_tache_combinaison_est_nombre_armstrong_mode
 
 typedef struct fabrique_tache_combinaison_est_nombre_armstrong
 {
+	long long valeur_initiale;
+	long long valeur_finale;
   TacheCombinaisonEstNombreArmstrong *tacheModele;
-  long long valeur_initiale;
-  long long valeur_finale;
   char *combinaison_courante;
   char *combinaison_initiale;
   char *combinaison_finale;
@@ -28,8 +28,8 @@ typedef struct fabrique_tache_combinaison_est_nombre_armstrong
 /* \brief Instancie un nouvel objet FabriqueTacheCombinaisonEstNombreArmstrong
 */
 FabriqueTacheCombinaisonEstNombreArmstrong * InitialiserFabriqueTacheCombinaisonEstNombreArmstrong(
-  long long valeur_initiale, 
-  long long valeur_finale, 
+  char * combinaison_initiale, 
+  char * combinaison_finale, 
   int ordre_initiale,
   int ordre_finale,
   CachePuissanceDigit *cachePuissanceDigit, 

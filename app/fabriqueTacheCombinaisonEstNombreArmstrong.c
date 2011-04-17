@@ -3,43 +3,43 @@
 /* \brief Instancie un nouvel objet FabriqueTacheCombinaisonEstNombreArmstrong
 */
 FabriqueTacheCombinaisonEstNombreArmstrong * InitialiserFabriqueTacheCombinaisonEstNombreArmstrong(
-  long long valeur_initiale, 
-  long long valeur_finale, 
+  char * combinaison_initiale, 
+  char * combinaison_finale, 
   int ordre_initiale,
   int ordre_finale,
   CachePuissanceDigit *cachePuissanceDigit, 
   CachePuissance10 *cachePuissance10)
 {
   // Pré conditions
-  assert(valeur_initiale < valeur_finale);
   assert(cachePuissanceDigit != NULL);
   assert(cachePuissance10 != NULL);
-  assert(log10(valeur_initiale) + 1 == ordre_initiale);
-  
-  //printf("D: log10(valeur_finale) + 1 : %lld\n", log10(valeur_finale) + 1);
-  assert(log10(valeur_finale) + 1 == ordre_finale);
   
   // Traitement
   FabriqueTacheCombinaisonEstNombreArmstrong *fabrique;
   fabrique = (FabriqueTacheCombinaisonEstNombreArmstrong *) malloc(sizeof(FabriqueTacheCombinaisonEstNombreArmstrong));
   
-  fabrique -> valeur_initiale = valeur_initiale;
-  fabrique -> valeur_finale = valeur_finale;
+	fabrique -> valeur_initiale = ConvertirTableauDigitVersNombre(combinaison_initiale, ordre_initiale, cachePuissance10);
+	fabrique -> valeur_finale = ConvertirTableauDigitVersNombre(combinaison_finale, ordre_finale, cachePuissance10);
   fabrique -> ordre_initiale = ordre_initiale;
-  fabrique -> ordre_courant = fabrique -> ordre_initiale;
+  fabrique -> ordre_courant = ordre_initiale;
   fabrique -> ordre_finale = ordre_finale;
   
   fabrique -> cachePuissanceDigit = cachePuissanceDigit;
   fabrique -> cachePuissance10 = cachePuissance10;
   
-  fabrique -> tacheModele = TacheCombinaisonEstNombreArmstrong_Init(valeur_initiale, cachePuissanceDigit, cachePuissance10);
+  fabrique -> tacheModele = TacheCombinaisonEstNombreArmstrong_Init(ordre_initiale, 
+																																		fabrique -> valeur_initiale,
+																																		fabrique -> valeur_finale, 
+																																		cachePuissanceDigit, 
+																																		cachePuissance10);
+	
   fabrique -> combinaison_initiale = (char *) malloc(sizeof(char) * fabrique -> ordre_initiale);
   fabrique -> combinaison_courante = (char *) malloc(sizeof(char) * fabrique -> ordre_finale);
   fabrique -> combinaison_finale = (char *) malloc(sizeof(char) * fabrique -> ordre_finale);
-  
-  ConvertirNombreVersTableauDigit(fabrique -> combinaison_initiale, fabrique -> valeur_initiale, fabrique -> ordre_initiale);
-  ConvertirNombreVersTableauDigit(fabrique -> combinaison_finale, valeur_finale, fabrique -> ordre_finale);
-  memcpy(fabrique -> combinaison_courante, fabrique -> combinaison_initiale, sizeof(char) * fabrique -> ordre_initiale);
+	
+  memcpy(fabrique -> combinaison_initiale, combinaison_initiale, sizeof(char) * fabrique -> ordre_initiale);
+	memcpy(fabrique -> combinaison_courante, fabrique -> combinaison_initiale, sizeof(char) * fabrique -> ordre_initiale);
+	memcpy(fabrique -> combinaison_finale, combinaison_finale, sizeof(char) * fabrique -> ordre_finale);
   
   FabriqueTacheCombinaisonEstNombreArmstrong_ChoisirMeilleurFabricationMode(fabrique);
   

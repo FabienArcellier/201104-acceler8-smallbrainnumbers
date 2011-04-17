@@ -33,6 +33,8 @@ typedef struct tache_combinaison_est_nombre_armstrong
 {
   char *combinaison;
   char ordre_courant;
+	long long borne_inferieure;
+	long long borne_superieure;
   CachePuissanceDigit *cache_puissance_digit;
   CachePuissance10 *cache_puissance_10;
   long long resultat; /* -1 si n'est pas un nombre d'armstrong, sinon valeur */
@@ -40,7 +42,11 @@ typedef struct tache_combinaison_est_nombre_armstrong
 
 /* \brief \brief Instancie un objet TacheCombinaisonEstNombreArmstrong
 */
-TacheCombinaisonEstNombreArmstrong * TacheCombinaisonEstNombreArmstrong_Init(char ordre_courant, CachePuissanceDigit *cache_puissance_digit, CachePuissance10 *cache_puissance_10);
+TacheCombinaisonEstNombreArmstrong * TacheCombinaisonEstNombreArmstrong_Init(char ordre_courant, 
+																																						 long long borne_inferieure,
+																																						 long long borne_superieure,
+																																						 CachePuissanceDigit *cache_puissance_digit, 
+																																						 CachePuissance10 *cache_puissance_10);
 
 /* \brief \brief Désalloue la mémoire associée à une instance de TacheCombinaisonEstNombreArmstrong
 */
