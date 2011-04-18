@@ -1,7 +1,7 @@
-CC=cc
-CFLAG=-Wall -lm -O3 -DNDEBUG=0
+CC=gcc
+CFLAG=-Wall -lm -O3 -DNDEBUG=0 -fopenmp
 #CFLAG=-Wall -lm -O3
-LDFLAG=-Wall -lm
+LDFLAG=-Wall -lm -fopenmp
 
 CPARALLEL= -pthread -ftree-parallelize-loops=40
 PATH_BUILD=../build
@@ -59,7 +59,7 @@ testNbArmstrong.o:  $(PATH_TESTS)/testNbArmstrong.c
 	$(CC) $(CFLAG) -c $<
 
 ordonnanceur.o: $(PATH_APP)/ordonnanceur.c $(PATH_APP)/ordonnanceur.h
-	$(CC) $(CFLAG) -c $<
+	$(CC) $(CFLAG) -c  $<
 
 CalculArmstrong.o:$(PATH_APP)/CalculArmstrong.c $(PATH_APP)/CalculArmstrong.h
 	$(CC) $(CFLAG) -c $<

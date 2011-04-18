@@ -1,5 +1,6 @@
 #include <assert.h>
 #include "fabriqueTacheCombinaisonEstNombreArmstrong.h"
+#include <omp.h>
 
 typedef struct ordonnanceur
 {
