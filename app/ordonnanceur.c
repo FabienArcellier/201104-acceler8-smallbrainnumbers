@@ -15,9 +15,7 @@ Ordonnanceur inline * Ordonnanceur_Init(int nombre_processeurs, FabriqueTacheCom
 void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 {
   int reste_des_taches = 1;
- long long i;
-  #pragma omp parallel for 
-  for(i=0;i<20000000LLU;i++)
+  do
   {
 	  TacheCombinaisonEstNombreArmstrong *tache = NULL;
 	  reste_des_taches = FabriqueTacheCombinaisonEstNombreArmstrong_ObtenirTacheSuivante(ordonnanceur -> fabrique, &tache);
@@ -26,7 +24,8 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 		  TacheCombinaisonEstNombreArmstrong_Executer(tache);
 		  TacheCombinaisonEstNombreArmstrong_Detruire(tache);
 	  }
-  } 	
+  } while (reste_des_taches == 1);
+	
 }
 
 /*! \brief Permet a un code exterieur de se mettre en attente de la fin de l'ordonnanceur
