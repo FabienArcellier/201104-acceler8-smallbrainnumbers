@@ -102,8 +102,8 @@ void TacheCombinaisonEstNombreArmstrong_Executer(TacheCombinaisonEstNombreArmstr
 
 	// Valider si le calcul renvoie un nombre d'armstrong
 	// Enregistrer le résultat dans resultat
-	if (nombre_armstrong >= GetPuissance10(tache -> cache_puissance_10, tache -> ordre_courant - 1) &&
-		nombre_armstrong >= tache -> borne_inferieure &&
+	//inutile car calculé dans CalculArmstrong.c/*if (nombre_armstrong >= GetPuissance10(tache -> cache_puissance_10, tache -> ordre_courant - 1) &&*//
+		if(nombre_armstrong >= tache -> borne_inferieure &&
 		nombre_armstrong <= tache -> borne_superieure &&
 		(nombre_armstrong < GetPuissance10(tache -> cache_puissance_10, tache -> ordre_courant) || Puissance10_EstOverflow(tache -> cache_puissance_10, tache -> ordre_courant + 1) == 1) &&
 		EstUnNombreArmstrong(tache -> combinaison, nombre_armstrong, tache -> ordre_courant,tache -> cache_puissance_10) == 1)
