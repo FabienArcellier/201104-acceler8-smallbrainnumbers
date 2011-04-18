@@ -29,8 +29,6 @@ bool EstUnNombreArmstrong(char *Combinaison,long long NbTeste, int size, CachePu
 	Tache_en_cours = InitialiserTacheArmstrong(size,cache_puissance_10);
 	init_comparedigit(Tache_en_cours -> Test_variable, size);
 	ConvertirNombreVersTableauDigit(Tache_en_cours->Combinatoire, NbTeste, size);
-	if(NbTeste>= GetPuissance10(cache_puissance_10,size-1))
-	{
 		for(i=0;i < size && (Armstrong == TRUE );i++)
 		{
 			for(j=0;(j < size) && (test == FALSE);j++)
@@ -51,6 +49,9 @@ bool EstUnNombreArmstrong(char *Combinaison,long long NbTeste, int size, CachePu
 		
 			test = FALSE;
 		}
+	if(Armstrong==TRUE && (NbTeste<GetPuissance10(cache_puissance_10,size-1)))
+	{
+		Armstrong=FALSE;
 	}
 	
 	DetruireTacheNombreArmstrong(Tache_en_cours);
