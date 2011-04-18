@@ -5,6 +5,7 @@
 #include "puissanceDigit.h"
 #include "puissance10.h"
 #include "fabriqueTacheCombinaisonEstNombreArmstrong.h"
+#include "ordonnanceur.h"
 
 
 /*! \brief Affiche l'aide de la ligne de commande dans le terminal

@@ -85,18 +85,14 @@ int main(int argc, char *argv[])
 		&cachePuissanceDigit, 
 		&cachePuissance10);
 	
-	int reste_des_taches = 1;
+	Ordonnanceur *ordonnanceur = Ordonnanceur_Init(1, fabrique);
+	Ordonnanceur_Start(ordonnanceur);
+	Ordonnanceur_AttendreFin(ordonnanceur);
 	
-	do
-	{
-		TacheCombinaisonEstNombreArmstrong *tache = NULL;
-		reste_des_taches = FabriqueTacheCombinaisonEstNombreArmstrong_ObtenirTacheSuivante(fabrique, &tache);
-		if (reste_des_taches == 1)
-		{
-			TacheCombinaisonEstNombreArmstrong_Executer(tache);
-			TacheCombinaisonEstNombreArmstrong_Detruire(tache);
-		}
-	} while(reste_des_taches == 1);
+	Ordonnanceur_Detruire(ordonnanceur);
+	DetruireFabriqueTacheCombinaisonEstNombreArmstrong(fabrique);
+	DetruireCachePuissanceDigit(&cachePuissanceDigit);
+	DetruireCachePuissance10(&cachePuissance10);
 	
 	printf("T: Temps total : %lld\n", time_end(time_zero));
 	

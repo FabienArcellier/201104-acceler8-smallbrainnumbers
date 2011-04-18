@@ -1,11 +1,15 @@
 /*! \file CalculArmstrong.h
 	\author Maxime RIVIERE
 */
+
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
 #include "../app/puissanceDigit.h"
 #include "../app/combinaison.h"
+
+#ifndef CALCUL_ARMSTRONG_H
+#define CALCUL_ARMSTRONG_H
 
 /*! \brief Fonctions de calculs et de vérification des nombres d'Armstrong
 
@@ -50,4 +54,4 @@ Tache_Nombre_Armstrong * InitialiserTacheArmstrong(int size);
 */
 void DetruireTacheNombreArmstrong(Tache_Nombre_Armstrong * TacheCombinaison);
 
-
+#endif

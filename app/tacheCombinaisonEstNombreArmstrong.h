@@ -22,6 +22,9 @@
 	- tache -> resultat
 */
 
+#ifndef TACHE_COMBINAISON_EST_NOMBRE_ARMSTRONG_H
+#define TACHE_COMBINAISON_EST_NOMBRE_ARMSTRONG_H
+
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -69,3 +72,5 @@ void TacheCombinaisonEstNombreArmstrong_SetCombinaison(TacheCombinaisonEstNombre
 /* \brief Tache : Calcule le nombre d'armstrong d'une combinaison, vérifie si le résultat est valide
 */
 void TacheCombinaisonEstNombreArmstrong_Executer(TacheCombinaisonEstNombreArmstrong * tache);
+
+#endif

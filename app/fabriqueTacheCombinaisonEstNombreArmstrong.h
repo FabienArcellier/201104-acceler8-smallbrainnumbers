@@ -1,3 +1,6 @@
+#ifndef FABRIQUE_TACHE_COMBINAISON_EST_NOMBRE_ARMSTRONG_H
+#define FABRIQUE_TACHE_COMBINAISON_EST_NOMBRE_ARMSTRONG_H
+
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
@@ -52,3 +55,4 @@ void DetruireFabriqueTacheCombinaisonEstNombreArmstrong(
 void FabriqueTacheCombinaisonEstNombreArmstrong_ChoisirMeilleurFabricationMode(
 	FabriqueTacheCombinaisonEstNombreArmstrong *tache);
 
+#endif

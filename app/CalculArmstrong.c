@@ -4,8 +4,6 @@
 
 #include "CalculArmstrong.h"
 
-
-
 /*! \brief Calcule le nombre d'Armstrong d'une combinaison à l'aide du cache des puissance
 */
 long long CalculNombreArmstrong(char *Combinaison, int size,CachePuissanceDigit *cache)

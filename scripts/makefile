@@ -13,7 +13,7 @@ Production: clean init Smallbrain
 
 Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestFabriqueTacheCombinaisonEstNombreArmstrong
 
-Smallbrain: timer.o mathematique.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o main.o 
+Smallbrain: timer.o mathematique.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o ordonnanceur.o main.o 
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 TestCalculArmstrong: timer.o mathematique.o puissanceDigit.o combinaison.o puissance10.o CalculArmstrong.o testNbArmstrong.o
@@ -56,6 +56,9 @@ tacheCombinaisonEstNombreArmstrong.o: $(PATH_APP)/tacheCombinaisonEstNombreArmst
 	$(CC) $(CFLAG) -c $<
 	
 testNbArmstrong.o:  $(PATH_TESTS)/testNbArmstrong.c
+	$(CC) $(CFLAG) -c $<
+
+ordonnanceur.o: $(PATH_APP)/ordonnanceur.c $(PATH_APP)/ordonnanceur.h
 	$(CC) $(CFLAG) -c $<
 
 CalculArmstrong.o:$(PATH_APP)/CalculArmstrong.c $(PATH_APP)/CalculArmstrong.h
