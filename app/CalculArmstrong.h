@@ -7,6 +7,7 @@
 #include <assert.h>
 #include "../app/puissanceDigit.h"
 #include "../app/combinaison.h"
+#include "../app/puissance10.h"
 
 #ifndef CALCUL_ARMSTRONG_H
 #define CALCUL_ARMSTRONG_H
@@ -22,6 +23,7 @@ typedef struct tache_nombre_armstrong
 {
 	char *Combinatoire;
 	char *Test_variable;
+	CachePuissance10 *cache_puissance_10;
 } Tache_Nombre_Armstrong;
 
 /*! \brief Calcule le nombre (potentiellement d'Armstrong) à l'aide d'une combinaison fournie en paramètre et retourne le nombre calculé
@@ -30,7 +32,7 @@ long long CalculNombreArmstrong(char *Combinaison,int size,CachePuissanceDigit *
 
 /* \brief Retourne vrai ou faux selon que le nombre est d'Armstrong ou pas
 */
-bool EstUnNombreArmstrong(char *Combinaison,long long NbTeste, int size);
+bool EstUnNombreArmstrong(char *Combinaison,long long NbTeste, int size,CachePuissance10 *cache_puissance_10;);
 
 
 /* \brief Initialise le tableau de test pour la vérification d'Armstrong
@@ -48,7 +50,7 @@ void add_comparedigit(char *Test_variable,int j);
 
 /* \brief Instancie un nouvel objet Tache_Nombre_Armstrong
 */
-Tache_Nombre_Armstrong * InitialiserTacheArmstrong(int size);
+Tache_Nombre_Armstrong * InitialiserTacheArmstrong(int size,CachePuissance10 *cache_puissance_10;);
 
 /* \brief Libere la mémoire d'un objet Tache_Nombre_Armstrong
 */

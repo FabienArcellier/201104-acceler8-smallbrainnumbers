@@ -6,7 +6,7 @@
 
 void IncrementData (int data[]);
 int RecherchePremierNonNul(int data[]);
-long CalculArmstrong(int data[], int n);
+long long CalculArmstrong(int data[], int n);
 
 int main(void)
 {
@@ -19,17 +19,17 @@ int main(void)
 		data[i]=0;
 	}
 
-	long end = 2000000;
-	long k = 1;
+	long long end = 5000000000LLU;
+	long long k = 1;
 	for (k = 1; k < end; k++)
 	{
 		IncrementData(data);
 		int n = RecherchePremierNonNul(data);
-		long Armstrong = CalculArmstrong(data, n);
+		long long  Armstrong = CalculArmstrong(data, n);
 		// printf("debug Armstrong %d - k %d\n", Armstrong, k);
 		if (Armstrong == k)
 		{
-			printf("%ld\n", Armstrong);
+			printf("%lld\n", Armstrong);
 		}
 	}
 	time_end = time(NULL);
@@ -71,10 +71,10 @@ int RecherchePremierNonNul(int data[])
 	return LONGUEUR_DATA - i;
 }
 
-long CalculArmstrong(int data[], int n)
+long long  CalculArmstrong(int data[], int n)
 {
 	int i = 0;
-	long result = 0;
+	long long result = 0;
 	for (i = 0; i < n; i++)
 	{
 		result = result + pow(data[LONGUEUR_DATA -1 -i], n);

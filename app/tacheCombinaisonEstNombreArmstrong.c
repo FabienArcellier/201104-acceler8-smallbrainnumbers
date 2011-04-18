@@ -106,7 +106,7 @@ void TacheCombinaisonEstNombreArmstrong_Executer(TacheCombinaisonEstNombreArmstr
 		nombre_armstrong >= tache -> borne_inferieure &&
 		nombre_armstrong <= tache -> borne_superieure &&
 		(nombre_armstrong < GetPuissance10(tache -> cache_puissance_10, tache -> ordre_courant) || Puissance10_EstOverflow(tache -> cache_puissance_10, tache -> ordre_courant + 1) == 1) &&
-		EstUnNombreArmstrong(tache -> combinaison, nombre_armstrong, tache -> ordre_courant) == 1)
+		EstUnNombreArmstrong(tache -> combinaison, nombre_armstrong, tache -> ordre_courant,tache -> cache_puissance_10) == 1)
 	{
 		tache -> resultat = nombre_armstrong;
 		printf("NA: %lld\n", nombre_armstrong);

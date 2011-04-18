@@ -20,7 +20,12 @@ int main(void)
 void testCalculArmstrong()
 {
 	
+<<<<<<< .mine
+	int Combinaison[3] = {3,7,0};
+	int Combinaison[19] = {4,9,2,9,2,7,3,8,8,5,9,2,8,0,8,8,8,2,6};
+=======
 	char Combinaison[19] = {3,2,8,9,5,8,2,9,8,4,4,4,3,1,8,7,0,3,2};
+>>>>>>> .r26
 	CachePuissanceDigit cachePuissanceDigitExposant19;
 	InitCachePuissanceDigit(&cachePuissanceDigitExposant19, 0, 19);
 	
@@ -29,12 +34,24 @@ void testCalculArmstrong()
 	test_time = time_start();
 	
 	puts("L: Debut du test");
+<<<<<<< .mine
+	assert(CalculNombreArmstrong(Combinaison,3, &cachePuissanceDigitExposant19) == 370LLU);
+	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,3,&cachePuissanceDigitExposant19),
+	3) == TRUE);
+	assert(CalculNombreArmstrong(Combinaison2,19, &cachePuissanceDigitExposant19) == 4929273885928088826LLU);
+	assert(EstUnNombreArmstrong(Combinaison2,CalculNombreArmstrong(Combinaison2,19,&cachePuissanceDigitExposant19),
+=======
 	
 	assert(CalculNombreArmstrong(Combinaison,19, &cachePuissanceDigitExposant19) == 3289582984443187032LLU);
 	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,19,&cachePuissanceDigitExposant19),
+>>>>>>> .r26
 	19) == TRUE);
+<<<<<<< .mine
+	printf("%lld us\n",time_end(test_time));
+=======
 	
 	printf("%lld ms\n",time_end(test_time));
+>>>>>>> .r26
 	puts("L: Fin du test");
 	puts("");
 }
