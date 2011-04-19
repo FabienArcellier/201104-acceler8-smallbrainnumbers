@@ -19,7 +19,7 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
   int nb_combinaison_max;
   int nombre_proc = ObtenirNombreProcesseurs();
   nb_combinaison_max = nombreCombinaisonsDunRange(ordonnanceur->fabrique->ordre_initiale, ordonnanceur->fabrique->ordre_finale);  
-  #pragma omp parallel for num_threads(nombre_proc*2)
+  #pragma omp parallel for num_threads(nombre_proc*4)
   for(i=0;i<nb_combinaison_max;i++)
   {
     //printf("D: Nombre de Thread : %d\n",omp_get_num_threads());

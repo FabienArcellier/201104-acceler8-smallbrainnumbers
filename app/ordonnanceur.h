@@ -2,7 +2,7 @@
 #include "fabriqueTacheCombinaisonEstNombreArmstrong.h"
 #include <omp.h>
 #include "hardware.h"
-
+#include "combinaison.h"
 typedef struct ordonnanceur
 {
    int nombre_processeurs;
