@@ -39,8 +39,8 @@ TacheCombinaisonEstNombreArmstrong * TacheCombinaisonEstNombreArmstrong_Init(
   tache -> ordre_courant = ordre_courant;
 	tache -> borne_inferieure = borne_inferieure;
 	tache -> borne_superieure = borne_superieure;
-  tache -> cache_puissance_digit = cache_puissance_digit;
-  tache -> cache_puissance_10 = cache_puissance_10;
+  tache -> cache_puissance_digit = CloneCachePuissanceDigit(cache_puissance_digit);
+  tache -> cache_puissance_10 = CloneCachePuissance10(cache_puissance_10);
   tache -> resultat = -1;
   return tache;
 }
@@ -50,6 +50,8 @@ TacheCombinaisonEstNombreArmstrong * TacheCombinaisonEstNombreArmstrong_Init(
 void TacheCombinaisonEstNombreArmstrong_Detruire(
   TacheCombinaisonEstNombreArmstrong * tache)
 {
+  DetruireCachePuissanceDigit(tache -> cache_puissance_digit);
+  DetruireCachePuissance10(tache -> cache_puissance_10);
   free(tache -> combinaison);
   free(tache);
 }
@@ -68,6 +70,8 @@ TacheCombinaisonEstNombreArmstrong * TacheCombinaisonEstNombreArmstrong_Clone(
 
   tache_clone -> combinaison = (char *) malloc(sizeof(char) * (tache_clone -> ordre_courant));
   TacheCombinaisonEstNombreArmstrong_SetCombinaison(tache_clone, tache_parent -> combinaison);
+  tache_clone -> cache_puissance_digit = CloneCachePuissanceDigit(tache_parent -> cache_puissance_digit);
+  tache_clone -> cache_puissance_10 = CloneCachePuissance10(tache_parent -> cache_puissance_10);
   
   return tache_clone;
 }

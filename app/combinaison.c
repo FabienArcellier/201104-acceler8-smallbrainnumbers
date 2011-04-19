@@ -49,7 +49,7 @@ long long ConvertirTableauDigitVersNombre(char * TableauDigit, int borne_superie
   
   // Post conditions
   assert(result >= 0);
-  assert(result < pow(10,borne_superieure));
+  //assert(result < pow_long(10,borne_superieure));
   
   return result;
 }

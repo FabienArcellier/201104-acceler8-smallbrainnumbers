@@ -19,6 +19,7 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
   #pragma omp parallel for 
   for(i=0;i<20000000LLU;i++)
   {
+    //printf("D: Nombre de Thread : %d\n",omp_get_num_threads());
 	  TacheCombinaisonEstNombreArmstrong *tache = NULL;
 	  #pragma omp critical
 	  {

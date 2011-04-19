@@ -9,6 +9,7 @@
 */
 int main(int argc, char *argv[])
 {
+	// omp_set_num_threads(4);
 	long long time_zero = time_start();
 	
 	int i = 0;
