@@ -3,8 +3,8 @@
 #include "../app/timer.h"
 #include "../app/combinaison.h"
 
-#define VALEUR_DEBUT {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-#define ORDRE 20
+#define VALEUR_DEBUT {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+#define ORDRE 19
 
 // #define VALEUR_DEBUT {0,0,0}
 // #define ORDRE 3
