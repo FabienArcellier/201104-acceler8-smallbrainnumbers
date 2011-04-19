@@ -199,3 +199,63 @@ int nombreCombinaisonsDunNombreDigit(int size)
 	}
 	return resultat;
 }
+
+/*! \brief Calcule du nombre maximum de combinaison a calculer pour un range donne
+*/
+
+int nombreCombinaisonsDunRange(int ordre_initial,int ordre_final)
+{
+	int i,ordre=0,resultat =0;
+	int Tab_Calcul1[11], Tab_Calcul2[11];
+	Tab_Calcul1[0]=0;
+	Tab_Calcul2[0]=0;
+	if(ordre_final==0)
+	{
+		return 0;
+	}
+	
+	for(i=1;i<=10;i++)
+	{
+		Tab_Calcul1[i]=1;
+	}
+	if(ordre>=ordre_initial)
+	{
+		for(i=1;i<=10;i++)
+			{
+				resultat = resultat +Tab_Calcul1[i];
+			}
+	}
+	ordre+=1;
+	while(ordre<=ordre_final)
+	{
+		for(i=1;i<=10;i++)
+		{
+			Tab_Calcul2[i]=Tab_Calcul1[i]+Tab_Calcul2[i-1];
+		}
+		if(ordre>=ordre_initial)
+		{
+			for(i=1;i<=10;i++)
+			{
+				resultat = resultat +Tab_Calcul1[i];
+			}
+		}
+		ordre+=1;
+		if(ordre<=ordre_final)
+		{
+			for(i=1;i<=10;i++)
+			{
+				Tab_Calcul1[i]=Tab_Calcul2[i]+Tab_Calcul1[i-1];
+			}
+			ordre+=1;
+			if(ordre>=ordre_initial)
+			{
+				for(i=1;i<=10;i++)
+				{
+					resultat = resultat +Tab_Calcul2[i];
+				}
+			
+			}
+		}
+	}
+	return resultat;
+}

@@ -11,6 +11,7 @@ int ObtenirNombreProcesseurs()
   return(omp_get_num_procs());
 }
 
+/*! \brief inutile pour l'instant, à voir*/
 int ObtenirNombreThreads()
 {
   return(omp_get_num_threads());

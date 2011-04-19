@@ -9,4 +9,5 @@
 */
 int ObtenirNombreProcesseurs();
 
+/*! \brief inutile pour l'instant, à voir*/
 int ObtenirNombreThreads();

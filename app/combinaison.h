@@ -49,4 +49,8 @@ int IncrementerTableauxDigitCombinaisonUnique(char *TableauDigit, char borne_sup
 */
 int nombreCombinaisonsDunNombreDigit(int size);
 
+/*! \brief Calcule du nombre maximum de combinaison à calculer pour un range donné
+*/
+int nombreCombinaisonsDunRange(int ordre_initial,int ordre_final);
+
 #endif
