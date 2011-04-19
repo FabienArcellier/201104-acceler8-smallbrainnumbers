@@ -14,8 +14,8 @@ int main()
 	long long compteur_armstrong_a_calculer = 0;
 	char combinaison[ORDRE] = VALEUR_DEBUT;
 	
-	CachePuissance10 cachePuissance10;
-	InitCachePuissance10(&cachePuissance10, ORDRE);
+	CachePuissance10 * cachePuissance10;
+	cachePuissance10 = InitCachePuissance10(ORDRE);
 	
 	puts("L: Debut du test spikeCompterPermutationUnique");
 	

@@ -55,8 +55,8 @@ int main(int argc, char *argv[])
 	printf("T: Recuperation des arguments : %lld\n", time_end(time_zero));
 	
 	// Initialiser le cache des puissances de 10
-	CachePuissance10 cachePuissance10;
-	InitCachePuissance10(&cachePuissance10, borne_superieure_longueur);
+	CachePuissance10 * cachePuissance10;
+	cachePuissance10 = InitCachePuissance10(borne_superieure_longueur);
 	
 	// Initialiser de le cache des puissances_digit
 	CachePuissanceDigit cachePuissanceDigit;
@@ -66,8 +66,8 @@ int main(int argc, char *argv[])
 	if (borne_inferieure_longueur > borne_superieure_longueur || Compare2TableauxDigit(borne_inferieure, borne_superieure, borne_superieure_longueur) == 1)
 	{
 		afficher_aide_nombre_incoherent(
-			ConvertirTableauDigitVersNombre(borne_inferieure, borne_inferieure_longueur, &cachePuissance10), 
-			ConvertirTableauDigitVersNombre(borne_superieure, borne_superieure_longueur, &cachePuissance10));
+			ConvertirTableauDigitVersNombre(borne_inferieure, borne_inferieure_longueur, cachePuissance10), 
+			ConvertirTableauDigitVersNombre(borne_superieure, borne_superieure_longueur, cachePuissance10));
 		return 4;
 	}
 	
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 		borne_inferieure_longueur, 
 		borne_superieure_longueur,
 		&cachePuissanceDigit, 
-		&cachePuissance10);
+		cachePuissance10);
 	
 	Ordonnanceur *ordonnanceur = Ordonnanceur_Init(1, fabrique);
 	Ordonnanceur_Start(ordonnanceur);
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 	Ordonnanceur_Detruire(ordonnanceur);
 	DetruireFabriqueTacheCombinaisonEstNombreArmstrong(fabrique);
 	DetruireCachePuissanceDigit(&cachePuissanceDigit);
-	DetruireCachePuissance10(&cachePuissance10);
+	DetruireCachePuissance10(cachePuissance10);
 	
 	printf("T: Temps total : %lld\n", time_end(time_zero));
 	

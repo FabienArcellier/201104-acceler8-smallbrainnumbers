@@ -9,22 +9,38 @@
   les puissances de 10. On économise ainsi de nombreux cycles processeurs
 
 */
-void InitCachePuissance10(CachePuissance10 *cache, unsigned char borne_superieure)
+CachePuissance10 * InitCachePuissance10(unsigned char borne_superieure)
 {
-	// Pré condition
-	assert(borne_superieure <= PUISSANCE10_EXPOSANT_LIMIT);
+  // Pré condition
+  assert(borne_superieure <= PUISSANCE10_EXPOSANT_LIMIT);
+  CachePuissance10 * cache = (CachePuissance10 *) malloc(sizeof(CachePuissance10));
+  
 	
   cache -> borne_superieure = borne_superieure;
   cache -> cache = (long long *) malloc(sizeof(long long)*(borne_superieure + 1));
-  
+
   int i = 0;
   for(i = 0; i <= borne_superieure; i++)
   {
     (cache -> cache)[i] = pow_long(10, i);
   }
 
-  return;
+  return cache;
 }
+
+
+/*! \brief Clone le cache dans une nouvelle structure de donnée
+*/
+CachePuissance10 * CloneCachePuissance10(CachePuissance10 *cache)
+{
+    CachePuissance10 * cache_clone = (CachePuissance10 *) malloc(sizeof(CachePuissance10));
+    cache_clone -> borne_superieure = cache -> borne_superieure;
+    cache_clone -> cache = (long long *) malloc(sizeof(long long)*(cache -> borne_superieure));
+    memcpy(cache_clone -> cache, cache -> cache, sizeof(long long)*(cache -> borne_superieure));
+    
+    return cache_clone;
+}
+
 
 /* \brief Retourne la puissance de 10 recherchée depuis le cache
 
@@ -66,4 +82,5 @@ int inline Puissance10_EstOverflow(CachePuissance10 *cache, unsigned char exposa
 void DetruireCachePuissance10(CachePuissance10 *cache)
 {
   free(cache -> cache);
+  free(cache);
 }

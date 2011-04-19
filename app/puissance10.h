@@ -6,6 +6,7 @@
 #define PUISSANCE10_H
 
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <assert.h>
 #include "mathematique.h"
@@ -25,7 +26,11 @@ typedef struct cache_puissance_10
 
 /*! \brief Initialise le cache en calculant les valeurs de 10^0 à 10^n
 */
-void InitCachePuissance10(CachePuissance10 *cache, unsigned char borne_superieur);
+CachePuissance10 * InitCachePuissance10(unsigned char borne_superieure);
+
+/*! \brief Clone le cache dans une nouvelle structure de donnée
+*/
+CachePuissance10 * CloneCachePuissance10(CachePuissance10 *cache);
 
 /* \brief Retourne la puissance de 10 recherchée depuis le cache
 */

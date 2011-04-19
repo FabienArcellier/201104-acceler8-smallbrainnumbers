@@ -47,20 +47,20 @@ void TestConvertirTableauDigitVersNombre()
 {
   puts("L: Debut du test TestConvertirTableauDigitVersNombre");
   
-  CachePuissance10 cachePuissance10;
-	InitCachePuissance10(&cachePuissance10, 5);
+  CachePuissance10 * cachePuissance10;
+  cachePuissance10 = InitCachePuissance10(5);
 	
-	long long test_time;
+  long long test_time;
   test_time= time_start();
   
   char tableauDigit1[5] = {1,7,3,0,0};
   long long resultat = 0;
-  resultat = ConvertirTableauDigitVersNombre(tableauDigit1, 5, &cachePuissance10);
+  resultat = ConvertirTableauDigitVersNombre(tableauDigit1, 5, cachePuissance10);
   assert(resultat == 371);
   
   char tableauDigit2[5] = {1,7,3,2,1};
   resultat = 0;
-  resultat = ConvertirTableauDigitVersNombre(tableauDigit2, 5, &cachePuissance10);
+  resultat = ConvertirTableauDigitVersNombre(tableauDigit2, 5, cachePuissance10);
   assert(resultat == 12371);
   
   printf("T: %lld\n", time_end(test_time));
@@ -113,8 +113,8 @@ void TestIncrementerTableauxDigitCombinaisonUnique()
 {
   puts("L: Debut du test TestIncrementerTableauxDigit");
   
-  CachePuissance10 cachePuissance10;
-	InitCachePuissance10(&cachePuissance10, 5);
+  CachePuissance10 * cachePuissance10;
+  cachePuissance10 = InitCachePuissance10(5);
   
   long long test_time;
   test_time= time_start();
@@ -129,7 +129,7 @@ void TestIncrementerTableauxDigitCombinaisonUnique()
   
   IncrementerTableauxDigitCombinaisonUnique(tableauDigit2, 5);
   
-  // printf("D: tableau : %lld\n", ConvertirTableauDigitVersNombre(tableauDigit2, 5, &cachePuissance10));
+  // printf("D: tableau : %lld\n", ConvertirTableauDigitVersNombre(tableauDigit2, 5, cachePuissance10));
   
   assert(tableauDigit2[0] == 9 &&
     tableauDigit2[1] == 9 &&
