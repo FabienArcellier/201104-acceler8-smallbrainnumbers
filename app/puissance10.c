@@ -35,7 +35,7 @@ CachePuissance10 * CloneCachePuissance10(CachePuissance10 *cache)
 {
     CachePuissance10 * cache_clone = (CachePuissance10 *) malloc(sizeof(CachePuissance10));
     cache_clone -> borne_superieure = cache -> borne_superieure;
-    cache_clone -> cache = (long long *) malloc(sizeof(long long)*(cache -> borne_superieure));
+    cache_clone -> cache = (long long *) malloc(sizeof(long long)*(cache -> borne_superieure + 1));
     memcpy(cache_clone -> cache, cache -> cache, sizeof(long long)*(cache -> borne_superieure + 1));
     
     return cache_clone;

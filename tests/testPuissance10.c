@@ -5,10 +5,12 @@
 
 /* Liste des prototypes*/
 void testPuissance10Exposant5();
+void testPuissance10Clone();
 
 int main(void)
 {
 	testPuissance10Exposant5();
+	testPuissance10Clone();
 	return 0;
 }
 
