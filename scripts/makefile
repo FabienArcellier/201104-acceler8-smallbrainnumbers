@@ -1,5 +1,5 @@
 CC=gcc
-CFLAG=-Wall -lm -O3 -DNDEBUG=0 -fopenmp
+CFLAG=-Wall -lm -O3 -fopenmp
 #CFLAG=-Wall -lm -O3
 LDFLAG=-Wall -lm -fopenmp
 

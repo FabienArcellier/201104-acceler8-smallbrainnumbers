@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 #include "mathematique.h"
 
 /*! \brief Cache de puissance pour les chiffres entre 1 et 9
@@ -23,8 +24,12 @@ typedef struct cache_puissance_digit
 
 /*! \brief Initialise un cache pour les puissances des chiffres de 1 à 9
 */
-void InitCachePuissanceDigit(CachePuissanceDigit *cache, unsigned char borne_inferieure,
+CachePuissanceDigit * InitCachePuissanceDigit(unsigned char borne_inferieure,
   unsigned char borne_superieure);
+
+/*! \brief Initialise un cache pour les puissances des chiffres de 1 à 9
+*/
+CachePuissanceDigit * CloneCachePuissanceDigit(CachePuissanceDigit *cache);
 
 /*! \brief Renvoie la puissance tirée du cache d'un chiffre entre 0 et 9
 */

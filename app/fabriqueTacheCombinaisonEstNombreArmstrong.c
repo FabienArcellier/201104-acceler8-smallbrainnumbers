@@ -28,10 +28,10 @@ FabriqueTacheCombinaisonEstNombreArmstrong * InitialiserFabriqueTacheCombinaison
   fabrique -> cachePuissance10 = cachePuissance10;
   
   fabrique -> tacheModele = TacheCombinaisonEstNombreArmstrong_Init(ordre_initiale, 
-																																		fabrique -> valeur_initiale,
-																																		fabrique -> valeur_finale, 
-																																		cachePuissanceDigit, 
-																																		cachePuissance10);
+								    fabrique -> valeur_initiale,
+								    fabrique -> valeur_finale, 
+								    cachePuissanceDigit, 
+								    cachePuissance10);
 	
   fabrique -> combinaison_initiale = (char *) malloc(sizeof(char) * fabrique -> ordre_initiale);
   fabrique -> combinaison_courante = (char *) malloc(sizeof(char) * fabrique -> ordre_finale);

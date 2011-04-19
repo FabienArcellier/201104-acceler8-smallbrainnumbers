@@ -26,13 +26,13 @@ void testCombinaisonEstNombreArmstrong_Clone()
   CachePuissance10 * cachePuissance10;
   cachePuissance10 = InitCachePuissance10(5);
 	
-  CachePuissanceDigit cachePuissanceDigit;
-  InitCachePuissanceDigit(&cachePuissanceDigit, 1, 5);
+  CachePuissanceDigit *cachePuissanceDigit;
+  cachePuissanceDigit = InitCachePuissanceDigit(1, 5);
   
   long long test_time_init;
   test_time_init = time_start();
   
-  tache1 = TacheCombinaisonEstNombreArmstrong_Init(3, 200, 400, &cachePuissanceDigit, cachePuissance10);
+  tache1 = TacheCombinaisonEstNombreArmstrong_Init(3, 200, 400, cachePuissanceDigit, cachePuissance10);
   TacheCombinaisonEstNombreArmstrong_SetCombinaison(tache1, combinaison);
   
   
@@ -64,11 +64,11 @@ void testCombinaisonEstNombreArmstrong_Executer371()
 {
 	puts("Debut testCombinaisonEstNombreArmstrong_Executer371");
 	  
-  CachePuissance10 * cachePuissance10;
+  CachePuissance10 *cachePuissance10;
   cachePuissance10 = InitCachePuissance10(19);
 	
-  CachePuissanceDigit cachePuissanceDigit;
-  InitCachePuissanceDigit(&cachePuissanceDigit, 1, 19);
+  CachePuissanceDigit *cachePuissanceDigit;
+  cachePuissanceDigit = InitCachePuissanceDigit(1, 19);
 
   char combinaison[3] = {1, 7, 3};
   char combinaison2[19] = {3,2,8,9,5,8,2,9,8,4,4,4,3,1,8,7,0,3,2};
@@ -76,9 +76,9 @@ void testCombinaisonEstNombreArmstrong_Executer371()
   
   TacheCombinaisonEstNombreArmstrong *tache1, *tache2, *tache3;
   
-  tache1 = TacheCombinaisonEstNombreArmstrong_Init(3, 300, 1000, &cachePuissanceDigit, cachePuissance10);
-  tache2 = TacheCombinaisonEstNombreArmstrong_Init(19, 1, 4000000000000000000LL, &cachePuissanceDigit, cachePuissance10);
-  tache3 = TacheCombinaisonEstNombreArmstrong_Init(2, 31, 34, &cachePuissanceDigit, cachePuissance10);
+  tache1 = TacheCombinaisonEstNombreArmstrong_Init(3, 300, 1000, cachePuissanceDigit, cachePuissance10);
+  tache2 = TacheCombinaisonEstNombreArmstrong_Init(19, 1, 4000000000000000000LL, cachePuissanceDigit, cachePuissance10);
+  tache3 = TacheCombinaisonEstNombreArmstrong_Init(2, 31, 34, cachePuissanceDigit, cachePuissance10);
   
   long long test_time;
   

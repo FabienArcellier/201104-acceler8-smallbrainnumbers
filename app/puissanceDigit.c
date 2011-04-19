@@ -12,13 +12,14 @@
 
   Le contenu des lignes dont l'indice est < à [borne_inferieure] sont initialisés à 0
 */
-void InitCachePuissanceDigit(CachePuissanceDigit *cache, unsigned char borne_inferieure,
+CachePuissanceDigit * InitCachePuissanceDigit(unsigned char borne_inferieure,
   unsigned char borne_superieure)
 {
   // Pré conditions
   assert(borne_inferieure <= borne_superieure);
   
   // Traitement
+  CachePuissanceDigit * cache = (CachePuissanceDigit *) malloc(sizeof(CachePuissanceDigit));
   cache -> borne_inferieure = borne_inferieure;
   cache -> borne_superieure = borne_superieure;
   cache -> cache = (long long*) malloc(sizeof(long long) * 10 * (borne_superieure + 1));
@@ -41,7 +42,20 @@ void InitCachePuissanceDigit(CachePuissanceDigit *cache, unsigned char borne_inf
     }
   }
 
-  return;
+  return cache;
+}
+
+/*! \brief Clone un cache pour les puissances des chiffres de 1 à 9
+*/
+CachePuissanceDigit * CloneCachePuissanceDigit(CachePuissanceDigit *cache)
+{
+  CachePuissanceDigit * cache_clone = (CachePuissanceDigit *) malloc(sizeof(CachePuissanceDigit));
+  cache_clone -> borne_inferieure = cache -> borne_inferieure;
+  cache_clone -> borne_superieure = cache -> borne_superieure;
+  cache_clone -> cache = (long long*) malloc(sizeof(long long) * 10 * (cache -> borne_superieure + 1));
+  memcpy(cache_clone -> cache, cache -> cache, sizeof(long long) * 10 *(cache -> borne_superieure + 1));
+  
+  return cache_clone;
 }
 
 /*! \brief Renvoie la puissance tirée du cache d'un chiffre entre 0 et 9

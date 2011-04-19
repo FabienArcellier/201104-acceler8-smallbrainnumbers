@@ -15,10 +15,10 @@ int main(void)
 void TestFabriqueTacheCombinaisonEstNombreArmstrong_ObtenirTache()
 {
   CachePuissance10 * cachePuissance10;
-  cachePuissance10 = InitCachePuissance10(5);
+  cachePuissance10 = InitCachePuissance10(19);
 
-  CachePuissanceDigit cachePuissanceDigit;
-  InitCachePuissanceDigit(&cachePuissanceDigit, 1, 19);
+  CachePuissanceDigit *cachePuissanceDigit;
+  cachePuissanceDigit = InitCachePuissanceDigit(1, 19);
 
   char borne_inferieure[20], borne_superieure[20]; 
 
@@ -33,7 +33,7 @@ void TestFabriqueTacheCombinaisonEstNombreArmstrong_ObtenirTache()
 								    borne_superieure, 
 								    1, 
 								    20,
-								    &cachePuissanceDigit, 
+								    cachePuissanceDigit, 
 								    cachePuissance10);
 
   int reste_des_taches = 1;

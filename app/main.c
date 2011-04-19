@@ -55,12 +55,12 @@ int main(int argc, char *argv[])
 	printf("T: Recuperation des arguments : %lld\n", time_end(time_zero));
 	
 	// Initialiser le cache des puissances de 10
-	CachePuissance10 * cachePuissance10;
+	CachePuissance10 *cachePuissance10;
 	cachePuissance10 = InitCachePuissance10(borne_superieure_longueur);
 	
 	// Initialiser de le cache des puissances_digit
-	CachePuissanceDigit cachePuissanceDigit;
-	InitCachePuissanceDigit(&cachePuissanceDigit, borne_inferieure_longueur, borne_superieure_longueur);
+	CachePuissanceDigit *cachePuissanceDigit;
+	cachePuissanceDigit = InitCachePuissanceDigit(borne_inferieure_longueur, borne_superieure_longueur);
 	
 		// Si le premier argument est superieur au deuxieme argument, afficher_aide_nombre_incoherent
 	if (borne_inferieure_longueur > borne_superieure_longueur || Compare2TableauxDigit(borne_inferieure, borne_superieure, borne_superieure_longueur) == 1)
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 		borne_superieure, 
 		borne_inferieure_longueur, 
 		borne_superieure_longueur,
-		&cachePuissanceDigit, 
+		cachePuissanceDigit, 
 		cachePuissance10);
 	
 	Ordonnanceur *ordonnanceur = Ordonnanceur_Init(1, fabrique);
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
 	
 	Ordonnanceur_Detruire(ordonnanceur);
 	DetruireFabriqueTacheCombinaisonEstNombreArmstrong(fabrique);
-	DetruireCachePuissanceDigit(&cachePuissanceDigit);
+	DetruireCachePuissanceDigit(cachePuissanceDigit);
 	DetruireCachePuissance10(cachePuissance10);
 	
 	printf("T: Temps total : %lld\n", time_end(time_zero));
