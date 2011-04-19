@@ -11,7 +11,7 @@ PATH_TESTS=../tests
 
 Production: clean init Smallbrain
 
-Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestFabriqueTacheCombinaisonEstNombreArmstrong
+Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestFabriqueTacheCombinaisonEstNombreArmstrong TestProcs
 
 Smallbrain: timer.o mathematique.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o ordonnanceur.o main.o 
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
@@ -39,7 +39,10 @@ TestPuissance10: timer.o mathematique.o puissance10.o testPuissance10.o
 
 TestPuissanceDigit: timer.o mathematique.o puissanceDigit.o testPuissanceDigit.o
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
-	
+
+TestProcs: timer.o hardware.o testProcesseurs.o
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
+
 main.o: $(PATH_APP)/main.c
 	$(CC) $(CFLAG) -c $<
 	
@@ -94,6 +97,12 @@ mathematique.o: $(PATH_APP)/mathematique.c $(PATH_APP)/mathematique.h
 timer.o: $(PATH_APP)/timer.c $(PATH_APP)/timer.h
 	$(CC) $(CFLAG) -c $<
 	
+hardware.o: $(PATH_APP)/hardware.c $(PATH_APP)/hardware.h
+	$(CC) $(CFLAG) -c $<
+
+testProcesseurs.o: $(PATH_TESTS)/testProcesseurs.c
+	$(CC) $(CFLAG) -c $<
+
 clean:
 	-rm *.o
 	-rm -R ../build/*
