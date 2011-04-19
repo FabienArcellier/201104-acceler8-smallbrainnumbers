@@ -19,7 +19,8 @@ void testProcesseurs()
   test_time= time_start();
 	
 	// Tests
-	printf("Nb : processeurs : %d\n",ObtenirNombreProcesseurs());;	
+	printf("Nb : processeurs : %d\n",ObtenirNombreProcesseurs());
+	printf("Nb : threads : %d\n",ObtenirNombreThreads());
 	printf("T: %lld\n", time_end(test_time));
 	puts("L: Fin du test testProcesseurs");
 	puts("");
