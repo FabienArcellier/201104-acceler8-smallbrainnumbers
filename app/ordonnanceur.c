@@ -16,7 +16,7 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 {
   int reste_des_taches = 1;
  long long i;
-  #pragma omp parallel for 
+  #pragma omp parallel for num_threads(80)
   for(i=0;i<20000000LLU;i++)
   {
     //printf("D: Nombre de Thread : %d\n",omp_get_num_threads());
