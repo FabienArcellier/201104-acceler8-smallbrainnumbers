@@ -19,20 +19,22 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
   int nb_combinaison_max;
   int nombre_proc = ObtenirNombreProcesseurs();
   nb_combinaison_max = nombreCombinaisonsDunRange(ordonnanceur->fabrique->ordre_initiale, ordonnanceur->fabrique->ordre_finale);  
-  #pragma omp parallel for num_threads(nombre_proc*4)
+  #pragma omp parallel for private(reste_des_taches) num_threads(nombre_proc*2)
   for(i=0;i<nb_combinaison_max;i++)
   {
     //printf("D: Nombre de Thread : %d\n",omp_get_num_threads());
-	  TacheCombinaisonEstNombreArmstrong *tache = NULL;
-	  #pragma omp critical
+	  if(reste_des_taches ==1)
 	  {
-	  reste_des_taches = FabriqueTacheCombinaisonEstNombreArmstrong_ObtenirTacheSuivante(ordonnanceur -> fabrique, &tache);
-	  }
-	  if (reste_des_taches == 1)
-	  {
-		  TacheCombinaisonEstNombreArmstrong_Executer(tache);
-		  TacheCombinaisonEstNombreArmstrong_Detruire(tache);
-	  }
+	    TacheCombinaisonEstNombreArmstrong *tache = NULL;
+	    #pragma omp critical
+	    {
+	    reste_des_taches = FabriqueTacheCombinaisonEstNombreArmstrong_ObtenirTacheSuivante(ordonnanceur -> fabrique, &tache);
+	    }
+	    if (reste_des_taches == 1)
+	    {
+		    TacheCombinaisonEstNombreArmstrong_Executer(tache);
+		    TacheCombinaisonEstNombreArmstrong_Detruire(tache);
+	    }
   } 	
 }
 
