@@ -19,7 +19,7 @@ int main(void)
 
 void testCalculArmstrong()
 {
-	char Combinaison[19] = {3,2,8,9,5,8,2,9,8,4,4,4,3,1,8,7,0,3,2};
+	char Combinaison[19] = {4,4,9,8,1,2,8,7,9,1,1,6,4,4,2,4,8,6,9};
 	CachePuissanceDigit *cachePuissanceDigitExposant19;
 	cachePuissanceDigitExposant19 = InitCachePuissanceDigit(0, 19);
 	
@@ -31,7 +31,7 @@ void testCalculArmstrong()
 	test_time = time_start();
 	
 	puts("L: Debut du test");
-	assert(CalculNombreArmstrong(Combinaison,19, cachePuissanceDigitExposant19) == 3289582984443187032LLU);
+	assert(CalculNombreArmstrong(Combinaison,19, cachePuissanceDigitExposant19) == 4498128791164624869ULL);
 	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,19,cachePuissanceDigitExposant19),19, cachePuissance10Exposant) == TRUE);
 	printf("%lld us\n",time_end(test_time));
 	puts("L: Fin du test");

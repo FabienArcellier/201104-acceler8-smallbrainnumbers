@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 	
 	// Initialiser le cache des puissances de 10
 	CachePuissance10 *cachePuissance10;
-	cachePuissance10 = InitCachePuissance10(borne_superieure_longueur);
+	cachePuissance10 = InitCachePuissance10(borne_superieure_longueur + 1);
 	
 	// Initialiser de le cache des puissances_digit
 	CachePuissanceDigit *cachePuissanceDigit;

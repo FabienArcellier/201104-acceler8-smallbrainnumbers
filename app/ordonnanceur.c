@@ -30,6 +30,7 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
   }
   combinaison[0] = 1;
 
+	printf("D: nb_combinaison_max : %lld\n", nb_combinaison_max);
   for (i = 0; i < nb_combinaison_max - 2; i++)
   {
     int retour = IncrementerTableauxDigitCombinaisonUnique(combinaison, ordre_finale);
@@ -44,30 +45,33 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
   }
   
   // Execution du traitement parallèle pour trouver les nombres d'armstrong
+	#pragma omp parallel for num_threads(nombre_proc*2)
   for (i = 0; i < nb_combinaison_max; i++)
   {
+		char *combinaison_for = (char *) malloc(sizeof(char) * ordre_finale);
+		memcpy(combinaison_for, &(permutations[i * ordre_finale]), sizeof(char) * ordre_finale);
+		
     int j = 0;
-    int ordre_min = GetOrdreMinimumCombinaison(&(permutations[i * ordre_finale]), ordre_finale);
+    int ordre_min = GetOrdreMinimumCombinaison(combinaison_for, ordre_finale);
+		// printf("D: ordre_finale : %d\n", ordre_finale);
     for (j = ordre_min; j <= ordre_finale; j++)
     {
-      long long valeurArmstrong = CalculNombreArmstrong(&(permutations[i * ordre_finale]), j,  ordonnanceur -> fabrique -> cachePuissanceDigit);
-			// printf("D: valeurArmstrong %lld < %lld\n", valeurArmstrong, GetPuissance10(ordonnanceur -> fabrique -> cachePuissance10, j));
-			// printf("D: j : %d\n", j);
-      if (j == 0 ||
-				Puissance10_EstOverflow(ordonnanceur -> fabrique -> cachePuissance10, j) == 1 ||
-				valeurArmstrong >= GetPuissance10(ordonnanceur -> fabrique -> cachePuissance10, j) ||
-				valeurArmstrong < GetPuissance10(ordonnanceur -> fabrique -> cachePuissance10, j - 1) ||
-				valeurArmstrong > ordonnanceur -> fabrique -> valeur_finale ||
-        valeurArmstrong < ordonnanceur -> fabrique -> valeur_initiale)
-      {
-        continue;
-      }
-      
-      if (EstUnNombreArmstrong(&(permutations[i * ordre_finale]), valeurArmstrong, j, ordonnanceur -> fabrique -> cachePuissance10))
+			// printf("D: ordre : %d\n", j);
+      long long valeurArmstrong = CalculNombreArmstrong(combinaison_for, j,  ordonnanceur -> fabrique -> cachePuissanceDigit);
+			
+      if (j != 0 &&
+				(Puissance10_EstOverflow(ordonnanceur -> fabrique -> cachePuissance10, j) == 1 
+					|| valeurArmstrong <= GetPuissance10(ordonnanceur -> fabrique -> cachePuissance10, j)) &&
+				valeurArmstrong >= GetPuissance10(ordonnanceur -> fabrique -> cachePuissance10, j - 1) &&
+				valeurArmstrong <= ordonnanceur -> fabrique -> valeur_finale &&
+        valeurArmstrong >= ordonnanceur -> fabrique -> valeur_initiale &&
+        EstUnNombreArmstrong(combinaison_for, valeurArmstrong, j, ordonnanceur -> fabrique -> cachePuissance10))
       {
         printf("NA: %lld\n", valeurArmstrong);
       }
     }
+    
+    free(combinaison_for);
   }
 }
 

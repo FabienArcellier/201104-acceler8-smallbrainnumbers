@@ -73,7 +73,7 @@ long long inline GetPuissance10(CachePuissance10 *cache, unsigned char exposant)
 int inline Puissance10_EstOverflow(CachePuissance10 *cache, unsigned char exposant)
 {
 	//Traitement
-	return exposant > cache -> borne_superieure || exposant > PUISSANCE10_EXPOSANT_LIMIT;	
+	return (exposant > cache -> borne_superieure || exposant >= PUISSANCE10_EXPOSANT_LIMIT);	
 }
 
 /*! \brief Destructeur du cache
