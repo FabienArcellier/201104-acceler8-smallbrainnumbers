@@ -12,6 +12,7 @@ long long CalculNombreArmstrong(char *Combinaison, int size,CachePuissanceDigit 
   long long ResCalcul = 0;
   for(i=0;i<size;i++)
   {
+		// printf("D: Combinaison[i] = %d\n", Combinaison[i]);
     ResCalcul += GetPuissanceDigit(cache,Combinaison[i],size);
   }
   return ResCalcul;
@@ -30,7 +31,10 @@ bool EstUnNombreArmstrong(char *Combinaison,long long NbTeste, int size, CachePu
 	{
 		Tache_en_cours = InitialiserTacheArmstrong(size,cache_puissance_10);
 		init_comparedigit(Tache_en_cours -> Test_variable, size);
+		// printf("VARA\n");
+		// printf("D: Size : %d\n", size);
 		ConvertirNombreVersTableauDigit(Tache_en_cours->Combinatoire, NbTeste, size);
+		// printf("VARB\n");
 		for(i=0;i < size && (Armstrong == TRUE );i++)
 		{
 			for(j=0;(j < size) && (test == FALSE);j++)

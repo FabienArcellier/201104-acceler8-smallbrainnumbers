@@ -31,12 +31,12 @@ int main(int argc, char *argv[])
 	
 	if (code1 == 1 || code2 == 1)
 	{
-		afficher_aide_format_nombre_incorrecte()
+		afficher_aide_format_nombre_incorrecte();
 		return 2;
 	}
 	
-	borne_inferieure_longueur = strlen(argv[1]);
-	borne_superieure_longueur = strlen(argv[2]);
+	int borne_inferieure_longueur = strlen(argv[1]);
+	int borne_superieure_longueur = strlen(argv[2]);
 	
 	printf("T: Recuperation des arguments : %lld\n", time_end(time_zero));
 	

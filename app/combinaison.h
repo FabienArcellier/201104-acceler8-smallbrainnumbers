@@ -32,7 +32,7 @@ Retourne un code :
 
 longueur est un pointeur de sortie qui correspond a l'ordre du tableau convertit
 */
-int ConvertirTextVersTableauDigit(char * TableauDigit, char * texte, int *longueur);
+int ConvertirTexteVersTableauDigit(char * TableauDigit, char * texte);
 
 /*! \brief Compare 2 tableaux de digit de longueur n
 

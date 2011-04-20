@@ -17,7 +17,7 @@ void ConvertirNombreVersTableauDigit(char * TableauDigit, long long nombre, int 
   
   // Traitement
   int i = 0;
-  
+  // printf("D: nombre : %lld\n", nombre);
   for(i = 0; nombre != 0; i++, nombre /= 10)
   {
     TableauDigit[i] = nombre % 10;
@@ -28,6 +28,7 @@ void ConvertirNombreVersTableauDigit(char * TableauDigit, long long nombre, int 
   }
   
   // Post conditions
+  // printf("D: i : %d, longueur : %d", i, longueur);
   assert(i == longueur);
   
   return;
@@ -66,7 +67,7 @@ longueur est un pointeur de sortie qui correspond a l'ordre du tableau convertit
 */
 int ConvertirTexteVersTableauDigit(char * TableauDigit, char * texte)
 {
-	*longueur = strlen(texte);
+	int longueur = strlen(texte);
 	int i = 0;
 	int code = 0;
 	// On vient permuter les donnees et on retire le \0 (3,2,1,\0 devient 1,2,3)
@@ -78,7 +79,7 @@ int ConvertirTexteVersTableauDigit(char * TableauDigit, char * texte)
 			break;
 		}
 		
-		char stockage_tmp = argv[i][j] - '0';
+		char stockage_tmp = texte[i] - '0';
 		TableauDigit[i] = texte[longueur - i - 1] - '0';
 		TableauDigit[longueur - i - 1] = stockage_tmp;
 	}
@@ -168,12 +169,12 @@ int IncrementerTableauxDigitCombinaisonUnique(char *TableauDigit, char borne_sup
     profondeur++;
   }
   
-  for(i = 1;TableauDigit[borne_superieure - 1] < 10 && i <= profondeur; i++)
+  for(i = 1; TableauDigit[borne_superieure - 1] < 10 && i <= profondeur; i++)
   {
   	TableauDigit[profondeur - i] = TableauDigit[profondeur];
   }
   
-  if (TableauDigit[borne_superieure - 1] > 9)
+  if (TableauDigit[0] > 9)
  	{
  		fin_tableau = 1;
  	}
@@ -191,7 +192,7 @@ int GetOrdreMinimumCombinaison(char *combinaison, int longueur)
 	int ordre_minimum = 0;
 	for(i = 0; i < longueur; i++)
 	{
-		if (combinaison[longueur - i] != 0)
+		if (combinaison[longueur - i - 1] != 0)
 		{
 			ordre_minimum = longueur - i;
 			break;

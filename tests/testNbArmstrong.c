@@ -23,13 +23,16 @@ void testCalculArmstrong()
 	CachePuissanceDigit *cachePuissanceDigitExposant19;
 	cachePuissanceDigitExposant19 = InitCachePuissanceDigit(0, 19);
 	
+	CachePuissance10 * cachePuissance10Exposant;
+  cachePuissance10Exposant = InitCachePuissance10(19);
+	
 	// Tests
 	long long test_time;
 	test_time = time_start();
 	
 	puts("L: Debut du test");
 	assert(CalculNombreArmstrong(Combinaison,19, cachePuissanceDigitExposant19) == 3289582984443187032LLU);
-	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,19,cachePuissanceDigitExposant19),19) == TRUE);
+	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,19,cachePuissanceDigitExposant19),19, cachePuissance10Exposant) == TRUE);
 	printf("%lld us\n",time_end(test_time));
 	puts("L: Fin du test");
 	puts("");
@@ -41,6 +44,9 @@ void testCalculArmstrong23()
 	CachePuissanceDigit *cachePuissanceDigitExposant19;
 	cachePuissanceDigitExposant19 = InitCachePuissanceDigit(0, 19);
 	
+	CachePuissance10 * cachePuissance10Exposant;
+  cachePuissance10Exposant = InitCachePuissance10(19);
+	
 	// Tests
 	long long test_time;
 	test_time = time_start();
@@ -49,7 +55,7 @@ void testCalculArmstrong23()
 	
 	assert(CalculNombreArmstrong(Combinaison,2, cachePuissanceDigitExposant19) == 13);
 	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,2,cachePuissanceDigitExposant19),
-	2) == FALSE);
+	2, cachePuissance10Exposant) == FALSE);
 	
 	printf("%lld us\n",time_end(test_time));
 	puts("L: Fin du test testCalculArmstrong23");
@@ -62,6 +68,10 @@ void testCalculArmstrong4150()
 	CachePuissanceDigit *cachePuissanceDigitExposant19;
 	cachePuissanceDigitExposant19 = InitCachePuissanceDigit(0, 19);
 	
+	CachePuissance10 * cachePuissance10Exposant;
+  cachePuissance10Exposant = InitCachePuissance10(19);
+	
+	
 	// Tests
 	long long test_time;
 	test_time = time_start();
@@ -70,7 +80,7 @@ void testCalculArmstrong4150()
 	
 	assert(CalculNombreArmstrong(Combinaison,5, cachePuissanceDigitExposant19) == 4150);
 	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,5,cachePuissanceDigitExposant19),
-	5) == FALSE);
+	5, cachePuissance10Exposant) == FALSE);
 	
 	printf("%lld us\n",time_end(test_time));
 	puts("L: Fin du test testCalculArmstrong4150");
