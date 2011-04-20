@@ -28,7 +28,6 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
   {
     combinaison[i] = 0;
   }
-  combinaison[0] = 1;
 
 	printf("D: nb_combinaison_max : %lld\n", nb_combinaison_max);
   for (i = 0; i < nb_combinaison_max - 2; i++)
@@ -59,8 +58,7 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 			// printf("D: ordre : %d\n", j);
       long long valeurArmstrong = CalculNombreArmstrong(combinaison_for, j,  ordonnanceur -> fabrique -> cachePuissanceDigit);
 			
-      if (j != 0 &&
-				(Puissance10_EstOverflow(ordonnanceur -> fabrique -> cachePuissance10, j) == 1 
+      if ((Puissance10_EstOverflow(ordonnanceur -> fabrique -> cachePuissance10, j) == 1 
 					|| valeurArmstrong <= GetPuissance10(ordonnanceur -> fabrique -> cachePuissance10, j)) &&
 				valeurArmstrong >= GetPuissance10(ordonnanceur -> fabrique -> cachePuissance10, j - 1) &&
 				valeurArmstrong <= ordonnanceur -> fabrique -> valeur_finale &&
