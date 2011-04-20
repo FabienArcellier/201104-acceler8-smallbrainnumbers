@@ -3,7 +3,7 @@
 */
 #include "combinaison.h"
 
-/* \brief Convertir un nombre en tableau de digit de longueur n
+/*! \brief Convertir un nombre en tableau de digit de longueur n
 
 Convertit le nombre 371 en [1,7,3] si [longueur = 3]
 Le nombre de poids fort est à la fin du tableau.
@@ -33,7 +33,7 @@ void ConvertirNombreVersTableauDigit(char * TableauDigit, long long nombre, int 
   return;
 }
 
-/* \brief Convertir un tableau de digit de longueur n en nombre
+/*! \brief Convertir un tableau de digit de longueur n en nombre
 
 TODO : Parallélisable mais peu intéressant dans un premier temps
 */
@@ -54,7 +54,39 @@ long long ConvertirTableauDigitVersNombre(char * TableauDigit, int borne_superie
   return result;
 }
 
-/* \brief Compare 2 tableaux de digit de longueur n
+/*! \brief Convertit un texte (argument en ligne de commande en Combinaison)
+
+Par exemple, 3,2,1,\0 devient 1,2,3
+
+Retourne un code :
+- 0 : succès de l'operation
+- 1 : le format des nombres en entrée est incorrect
+
+longueur est un pointeur de sortie qui correspond a l'ordre du tableau convertit
+*/
+int ConvertirTexteVersTableauDigit(char * TableauDigit, char * texte)
+{
+	*longueur = strlen(texte);
+	int i = 0;
+	int code = 0;
+	// On vient permuter les donnees et on retire le \0 (3,2,1,\0 devient 1,2,3)
+	for (i = 0; i < (longueur / 2 + longueur % 2); i++)
+	{
+		if (texte[i] < '0' || texte[i] > '9')
+		{
+			code = 1;
+			break;
+		}
+		
+		char stockage_tmp = argv[i][j] - '0';
+		TableauDigit[i] = texte[longueur - i - 1] - '0';
+		TableauDigit[longueur - i - 1] = stockage_tmp;
+	}
+	
+	return code;
+}
+
+/*! \brief Compare 2 tableaux de digit de longueur n
 
 Retourne 1 si TableauDigit1 > à TableauDigit2, 0 si TableauDigit1 = TableauDigit2, sinon -1
 */
@@ -85,7 +117,7 @@ int Compare2TableauxDigit(char * TableauDigit1, char * TableauDigit2, char borne
   return resultat_comparaison;
 }
 
-/* \brief Incremente le tableau de 1
+/*! \brief Incremente le tableau de 1
 
 Retourne 1 si c'est la fin du tableau
 */
@@ -114,7 +146,7 @@ int IncrementerTableauxDigit(char *TableauDigit, char borne_superieure)
   return fin_tableau;
 }
 
-/* \brief Incremente le tableau vers la prochaine combinaison unique
+/*! \brief Incremente le tableau vers la prochaine combinaison unique
 
 Définition d'une combinaison unique :
 tab[0] >= tab[1], tab[1] >= tab[2], ..., tab[n-1] >= tab[n]
@@ -147,6 +179,26 @@ int IncrementerTableauxDigitCombinaisonUnique(char *TableauDigit, char borne_sup
  	}
   
   return fin_tableau;
+}
+
+/*! \brief Retourne l'ordre minimum d'une permutation passée en argument
+	Par exemple : 0,0,1,2,3 a un ordre minimum de 3. le nombre minimum que l'on peut former
+		a 3 chiffres.
+*/
+int GetOrdreMinimumCombinaison(char *combinaison, int longueur)
+{
+	int i = 0;
+	int ordre_minimum = 0;
+	for(i = 0; i < longueur; i++)
+	{
+		if (combinaison[longueur - i] != 0)
+		{
+			ordre_minimum = longueur - i;
+			break;
+		}
+	}
+	
+	return ordre_minimum;
 }
 
 /*! \brief Calcule du nombre de combinaison à calculer pour un nombre de digit donné (objectif => choix entre itératif et en combinaison unique pour ordre de valeur min et ordre valeur max)

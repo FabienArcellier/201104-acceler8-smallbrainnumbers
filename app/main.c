@@ -11,34 +11,12 @@ int main(int argc, char *argv[])
 {
 	// omp_set_num_threads(4);
 	long long time_zero = time_start();
-	
 	int i = 0;
 	
 	if (argc != 3)
 	{
 		afficher_aide_longueur_argument_incorrect();
-		return 3;
-	}
-	
-	int borne_longueur[2];
-	borne_longueur[0] = strlen(argv[1]);
-	borne_longueur[1] = strlen(argv[2]);
-	
-	// Formater les bornes pour qu'elles aient le format d'une combinaison (inverser le contenu du tableau)
-	for (i = 1; i < 3; i++)
-	{
-		int j = 0;
-		for (j = 0; j < (borne_longueur[i - 1]) / 2 + (borne_longueur[i - 1]) % 2; j++)
-		{
-			//printf("D : argv[%d][%d], %d\n", i, j, argv[i][j]);
-			
-			char stockage_tmp = argv[i][j] - '0';
-			argv[i][j] = argv[i][borne_longueur[i - 1] - j - 1] - '0';
-			argv[i][borne_longueur[i - 1] - j - 1] = stockage_tmp;
-			
-			//printf("D : argv[%d][%d], %d\n", i, j, argv[i][j]);
-			//printf("D : argv[%d][%d], %d\n", i, borne_longueur[i - 1] - j - 1, argv[i][borne_longueur[i - 1] - j - 1]);
-		}
+		return 1;
 	}
 	
 	char borne_inferieure[20], borne_superieure[20];
@@ -48,10 +26,17 @@ int main(int argc, char *argv[])
 		borne_superieure[i] = 0;
 	}
 	
-	int borne_inferieure_longueur = borne_longueur[0], borne_superieure_longueur = borne_longueur[1];
+	int code1 = ConvertirTexteVersTableauDigit(borne_inferieure, argv[1]);
+	int code2 = ConvertirTexteVersTableauDigit(borne_superieure, argv[2]);
 	
-	memcpy(borne_inferieure, argv[1], borne_inferieure_longueur);
-	memcpy(borne_superieure, argv[2], borne_superieure_longueur);
+	if (code1 == 1 || code2 == 1)
+	{
+		afficher_aide_format_nombre_incorrecte()
+		return 2;
+	}
+	
+	borne_inferieure_longueur = strlen(argv[1]);
+	borne_superieure_longueur = strlen(argv[2]);
 	
 	printf("T: Recuperation des arguments : %lld\n", time_end(time_zero));
 	
@@ -67,8 +52,8 @@ int main(int argc, char *argv[])
 	if (borne_inferieure_longueur > borne_superieure_longueur || Compare2TableauxDigit(borne_inferieure, borne_superieure, borne_superieure_longueur) == 1)
 	{
 		afficher_aide_nombre_incoherent(
-			ConvertirTableauDigitVersNombre(borne_inferieure, borne_inferieure_longueur, cachePuissance10), 
-			ConvertirTableauDigitVersNombre(borne_superieure, borne_superieure_longueur, cachePuissance10));
+		ConvertirTableauDigitVersNombre(borne_inferieure, borne_inferieure_longueur, cachePuissance10), 
+		ConvertirTableauDigitVersNombre(borne_superieure, borne_superieure_longueur, cachePuissance10));
 		return 4;
 	}
 	
@@ -116,9 +101,9 @@ void afficher_aide()
 	puts("");
 	puts("Arguments:");
 	puts("	borne_inferieure : Nombre entier ou l'on commence la recherche ");
-	puts("		compris entre [1;9223372036854779999]");
+	puts("		compris entre [1;9223372036854775807]");
 	puts("	borne_superieure : Nombre entier ou l'on termine la recherche");
-	puts("		compris entre [1;9223372036854779999]");
+	puts("		compris entre [1;9223372036854775807]");
 	puts("");
 	puts("Remarques");
 	puts("	- borne_inferieure doit etre inferieur ou egal a borne_superieure");
@@ -154,7 +139,7 @@ void afficher_aide_longueur_argument_incorrect()
 {
 	puts("");
 	puts("ERREUR :");
-	puts("	Vous devez avoir 3 arguments");
+	puts("	Vous devez avoir 2 arguments");
 	puts("");
 	afficher_aide();
 }

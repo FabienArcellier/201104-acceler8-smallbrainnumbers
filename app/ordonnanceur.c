@@ -39,7 +39,7 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
   for (i = 0; i < nb_combinaison_max; i++)
   {
     int j = 0;
-    // int ordre_min = GetOrdreDepartCombinaison(permutation[i]);
+    int ordre_min = GetOrdreDepartCombinaison(permutation[i]);
     for (j = ordre_min; j <= ordre_finale; j++)
     {
       long long valeurArmstrong = CalculNombreArmstrong(permutation[i], j);

@@ -10,6 +10,8 @@ void TestCompare2TableauxDigit();
 void TestIncrementerTableauxDigit();
 void TestIncrementerTableauxDigitCombinaisonUnique();
 void testNombreCombinaison();
+void TestConvertirTextVersTableauDigit();
+void TestGetOrdreMinimumCombinaison();
 
 int main(void)
 {
@@ -19,6 +21,8 @@ int main(void)
   TestIncrementerTableauxDigit();
   TestIncrementerTableauxDigitCombinaisonUnique();
   testNombreCombinaison();
+  TestConvertirTextVersTableauDigit();
+  TestGetOrdreMinimumCombinaison();
   
   return 0;
 }
@@ -156,5 +160,47 @@ void testNombreCombinaison()
 	
 	printf("T: %lld\n", time_end(test_time));
 	puts("L: Fin du test testNombreCombinaison");
+	puts("");
+}
+
+void TestConvertirTextVersTableauDigit()
+{
+	puts("L: Debut du test TestConvertirTextVersTableauDigit");
+	long long test_time;
+	test_time= time_start();
+  
+	char *texte = "371";
+	char combinaison[20];
+	int i = 0;
+	
+	for (i = 0; i < 20)
+	{
+		combinaison[i] = 0;
+	}
+	
+	int code = ConvertirTextVersTableauDigit(combinaison, texte);
+	assert(code == 0);
+	assert(combinaison[0] == 1);
+	assert(combinaison[1] == 7);
+	assert(combinaison[2] == 3);
+	assert(combinaison[3] == 0);
+	
+	printf("T: %lld\n", time_end(test_time));
+	puts("L: Fin du test TestConvertirTextVersTableauDigit");
+	puts("");
+}
+
+void TestGetOrdreMinimumCombinaison()
+{
+	puts("L: Debut du test TestGetOrdreMinimumCombinaison");
+	long long test_time;
+	test_time= time_start();
+	
+	char combinaison[4] = {1,2,0,0}
+	int ordre_minimum = GetOrdreMinimumCombinaison(combinaison, 4)
+	assert(ordre_minimum == 2);
+	
+	printf("T: %lld\n", time_end(test_time));
+	puts("L: Fin du test TestGetOrdreMinimumCombinaison");
 	puts("");
 }
