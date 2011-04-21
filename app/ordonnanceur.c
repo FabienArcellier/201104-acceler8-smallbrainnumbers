@@ -19,6 +19,7 @@ Ordonnanceur *Ordonnanceur_Init(char * combinaison_borne_inferieure,
 	ordonnanceur -> nombre_chiffre_borne_superieure = nombre_chiffre_borne_superieure;
 	ordonnanceur -> cachePuissanceDigit = cachePuissanceDigit;
 	ordonnanceur -> cachePuissance10 = cachePuissance10;
+	return ordonnanceur;
 }
 
 /*! \brief Demande a l'ordonnanceur de commencer le dispatch des taches
