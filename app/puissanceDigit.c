@@ -65,7 +65,6 @@ long long inline GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char dig
   // Pré conditions
   assert(exposant >= cache -> borne_inferieure);
   assert(exposant <= cache -> borne_superieure);
-  assert(digit >= 0);
   assert(digit <= 9);
 
   // Post conditions

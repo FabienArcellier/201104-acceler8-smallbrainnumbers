@@ -4,7 +4,6 @@
 #include "combinaison.h"
 #include "puissanceDigit.h"
 #include "puissance10.h"
-#include "fabriqueTacheCombinaisonEstNombreArmstrong.h"
 #include "ordonnanceur.h"
 
 

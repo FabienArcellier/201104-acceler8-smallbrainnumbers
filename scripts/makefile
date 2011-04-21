@@ -1,6 +1,7 @@
+LD_LIBRARY_PATH=/opt/mpfr/lib:/opt/gmp/lib:/opt/mpc/lib
 CC=gcc
-CFLAG=-Wall -lm -O3 -fopenmp
-#CFLAG=-Wall -lm -O3 -DNDEBUG=1 -fopenmp
+#CFLAG=-Wall -lm -O3 -fopenmp 
+CFLAG=-Wall -lm -O3 -DNDEBUG=1 -fopenmp
 LDFLAG=-Wall -lm -fopenmp
 
 CPARALLEL= -pthread -ftree-parallelize-loops=40
@@ -11,18 +12,12 @@ PATH_TESTS=../tests
 
 Production: clean init Smallbrain
 
-Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestFabriqueTacheCombinaisonEstNombreArmstrong TestProcs
+Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestProcs
 
-Smallbrain: timer.o mathematique.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o ordonnanceur.o main.o hardware.o
+Smallbrain: timer.o mathematique.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o ordonnanceur.o main.o hardware.o
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 TestCalculArmstrong: timer.o mathematique.o puissanceDigit.o combinaison.o puissance10.o CalculArmstrong.o testNbArmstrong.o
-	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
-
-TestFabriqueTacheCombinaisonEstNombreArmstrong: timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o fabriqueTacheCombinaisonEstNombreArmstrong.o testFabriqueTacheCombinaisonEstNombreArmstrong.o
-	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
-	
-TestTacheCombinaisonEstNombreArmstrong: timer.o combinaison.o mathematique.o puissance10.o puissanceDigit.o CalculArmstrong.o tacheCombinaisonEstNombreArmstrong.o testTacheCombinaisonEstNombreArmstrong.o
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 SpikeCompterPermutationUnique: timer.o mathematique.o puissance10.o combinaison.o spikeCompterPermutationUnique.o
@@ -45,19 +40,7 @@ TestProcs: timer.o hardware.o testProcesseurs.o
 
 main.o: $(PATH_APP)/main.c
 	$(CC) $(CFLAG) -c $<
-	
-testFabriqueTacheCombinaisonEstNombreArmstrong.o: $(PATH_TESTS)/testFabriqueTacheCombinaisonEstNombreArmstrong.c
-	$(CC) $(CFLAG) -c $<
 
-fabriqueTacheCombinaisonEstNombreArmstrong.o: $(PATH_APP)/fabriqueTacheCombinaisonEstNombreArmstrong.c $(PATH_APP)/fabriqueTacheCombinaisonEstNombreArmstrong.h
-	$(CC) $(CFLAG) -c $<
-
-testTacheCombinaisonEstNombreArmstrong.o: $(PATH_TESTS)/testTacheCombinaisonEstNombreArmstrong.c
-	$(CC) $(CFLAG) -c $<
-	
-tacheCombinaisonEstNombreArmstrong.o: $(PATH_APP)/tacheCombinaisonEstNombreArmstrong.c $(PATH_APP)/tacheCombinaisonEstNombreArmstrong.h
-	$(CC) $(CFLAG) -c $<
-	
 testNbArmstrong.o:  $(PATH_TESTS)/testNbArmstrong.c
 	$(CC) $(CFLAG) -c $<
 
@@ -106,6 +89,7 @@ testProcesseurs.o: $(PATH_TESTS)/testProcesseurs.c
 clean:
 	-rm *.o
 	-rm -R ../build/*
+	-cp Exec.sh ../build/
 	
 init:
 	-mkdir ../build

@@ -1,8 +1,11 @@
 #include <assert.h>
-#include "fabriqueTacheCombinaisonEstNombreArmstrong.h"
 #include <omp.h>
 #include "hardware.h"
+#include "puissanceDigit.h"
+#include "puissance10.h"
 #include "combinaison.h"
+#include "CalculArmstrong.h"
+
 typedef struct ordonnanceur
 {
 	int nombre_processeurs;

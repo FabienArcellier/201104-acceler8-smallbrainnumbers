@@ -59,11 +59,13 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 	}
 	
 	// Execution du traitement parallèle pour trouver les nombres d'armstrong
-	int j = 0, nombre_chiffre_minimum = 0;
-	long long valeurArmstrong = 0, combinaison_valeur_min = 0;
-	#pragma omp parallel for num_threads(ordonnanceur -> nombre_processeurs)
+
+	//#pragma omp parallel for num_threads((ordonnanceur -> nombre_processeurs)*2) schedule(static)
+	#pragma omp parallel for num_threads(80) schedule(static)
 	for (i = 0; i < nb_combinaison_max; i++)
 	{
+			int j = 0, nombre_chiffre_minimum = 0;
+			long long valeurArmstrong = 0, combinaison_valeur_min = 0;
 		//combinaison_for = (char *) malloc(sizeof(char) * nombre_chiffre_borne_superieure);
 		//memcpy(combinaison_for, , sizeof(char) * nombre_chiffre_borne_superieure);
 		
@@ -88,7 +90,10 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 				valeurArmstrong >= ordonnanceur -> borne_inferieure &&
 				EstUnNombreArmstrong(&(permutations[i * nombre_chiffre_borne_superieure]), valeurArmstrong, j, ordonnanceur -> cachePuissance10))
 			{
+				#pragma omp critical
+				{
 				printf("NA: %lld\n", valeurArmstrong);
+				}
 			}
 		}
 		
