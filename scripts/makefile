@@ -1,8 +1,20 @@
 LD_LIBRARY_PATH=/opt/mpfr/lib:/opt/gmp/lib:/opt/mpc/lib
-CC=gcc
-#CFLAG=-Wall -lm -O3 -fopenmp 
+
+GCC_VERSION=4.5.1
+PREFIX=/opt/gcc/${GCC_VERSION}/bin
+CC=${PREFIX}/gcc
+#CFLAG=-Wall -lm -O3 -fopenmp
 CFLAG=-Wall -lm -O3 -DNDEBUG=1 -fopenmp
 LDFLAG=-Wall -lm -fopenmp
+
+# CC=gcc
+# CFLAG=-Wall -lm -O3 -fopenmp
+# CFLAG=-Wall -lm -O3 -DNDEBUG=1 -fopenmp
+# LDFLAG=-Wall -lm -fopenmp
+
+# CC=icc
+# CFLAG=-Werror-all -O3 -DNDEBUG=1 -openmp -axSSE2 -parallel
+# LDFLAG=-Werror-all -openmp -axSSE2 -parallel
 
 CPARALLEL= -pthread -ftree-parallelize-loops=40
 PATH_BUILD=../build

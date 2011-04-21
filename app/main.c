@@ -38,8 +38,6 @@ int main(int argc, char *argv[])
 	int borne_inferieure_longueur = strlen(argv[1]);
 	int borne_superieure_longueur = strlen(argv[2]);
 	
-	printf("T: Recuperation des arguments : %lld\n", time_end(time_zero));
-	
 	// printf("D: borne_superieure_longueur %d\n", borne_superieure_longueur);
 	
 	// Initialiser le cache des puissances de 10
@@ -59,8 +57,6 @@ int main(int argc, char *argv[])
 		return 4;
 	}
 	
-	printf("T: Initialisation des caches : %lld\n", time_end(time_zero));
-	
 	//printf("D: Borne inferieure : %lld\n", ConvertirTableauDigitVersNombre(borne_inferieure, borne_inferieure_longueur, &cachePuissance10));
 	//printf("D: Borne superieure : %lld\n", ConvertirTableauDigitVersNombre(borne_superieure, borne_superieure_longueur, &cachePuissance10));
 	
@@ -73,14 +69,12 @@ int main(int argc, char *argv[])
 		cachePuissanceDigit);
 	
 	Ordonnanceur_Start(ordonnanceur);
-	Ordonnanceur_AttendreFin(ordonnanceur);
 	
 	Ordonnanceur_Detruire(ordonnanceur);
 	DetruireCachePuissanceDigit(cachePuissanceDigit);
 	DetruireCachePuissance10(cachePuissance10);
 	
 	printf("T: Temps total : %lld\n", time_end(time_zero));
-	
 	return 0;
 }
 
