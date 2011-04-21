@@ -32,8 +32,6 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 	int nombre_chiffre_borne_superieure = ordonnanceur -> nombre_chiffre_borne_superieure;
 	long long borne_inferieure = ordonnanceur -> borne_inferieure;
 	long long borne_superieure = ordonnanceur -> borne_superieure;
-	CachePuissance10 * cachePuissance10 = ordonnanceur -> cachePuissance10;
-	CachePuissanceDigit * cachePuissanceDigit = ordonnanceur -> cachePuissanceDigit;
 	
 	long long i = 0, nb_combinaison_max = 0;
 	nb_combinaison_max = nombreCombinaisonsDunNombreDigit(nombre_chiffre_borne_superieure);
@@ -64,14 +62,14 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 	char *combinaison_for;
 	int j = 0, nombre_chiffre_minimum;
 	long long valeurArmstrong = 0, combinaison_valeur_min = 0;
-	#pragma omp parallel for num_threads(80) private(combinaison_for, nombre_chiffre_borne_superieure, j, nombre_chiffre_minimum, valeurArmstrong,\
-	combinaison_valeur_min, cachePuissance10, cachePuissanceDigit, borne_superieure, borne_inferieure)
+	#pragma omp parallel for num_threads(ordonnanceur -> nombre_processeurs) private(combinaison_for, nombre_chiffre_borne_superieure, j, nombre_chiffre_minimum, valeurArmstrong,\
+	combinaison_valeur_min, ordonnanceur -> cachePuissance10, ordonnanceur -> cachePuissanceDigit, borne_superieure, borne_inferieure)
 	for (i = 0; i < nb_combinaison_max; i++)
 	{
 		combinaison_for = (char *) malloc(sizeof(char) * nombre_chiffre_borne_superieure);
 		memcpy(combinaison_for, &(permutations[i * nombre_chiffre_borne_superieure]), sizeof(char) * nombre_chiffre_borne_superieure);
 		
-// 		printf("D: combinaison_for : %lld \n", ConvertirTableauDigitVersNombre(combinaison_for, nombre_chiffre_borne_superieure, cachePuissance10));
+// 		printf("D: combinaison_for : %lld \n", ConvertirTableauDigitVersNombre(combinaison_for, nombre_chiffre_borne_superieure, ordonnanceur -> cachePuissance10));
 // 		printf("D: borne_inferieure : %d\n", borne_inferieure);
 // 		printf("D: borne_superieure : %d\n", borne_superieure);
 // 		puts("");
@@ -80,19 +78,19 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 		// printf("D: ordre_finale : %d\n", ordre_finale);
 		for (j = nombre_chiffre_minimum; j <= nombre_chiffre_borne_superieure; j++)
 		{
-			valeurArmstrong = CalculNombreArmstrong(combinaison_for, j, cachePuissanceDigit);
+			valeurArmstrong = CalculNombreArmstrong(combinaison_for, j, ordonnanceur -> cachePuissanceDigit);
 // 			printf("D: ordre : %d\n", j);
 // 			printf("D: valeurArmstrong : %lld\n", valeurArmstrong);
-// 			printf("D : condition overflow : %d\n", Puissance10_EstOverflow(cachePuissance10, j) == 1);
+// 			printf("D : condition overflow : %d\n", Puissance10_EstOverflow(ordonnanceur -> cachePuissance10, j) == 1);
 			
-			long long combinaison_valeur_min = ConvertirTableauDigitVersNombre(combinaison_for, nombre_chiffre_borne_superieure, cachePuissance10);
+			long long combinaison_valeur_min = ConvertirTableauDigitVersNombre(combinaison_for, nombre_chiffre_borne_superieure, ordonnanceur -> cachePuissance10);
 			
 			if (j != 0 &&
-				(Puissance10_EstOverflow(cachePuissance10, j) == 1 || valeurArmstrong < GetPuissance10(cachePuissance10, j)) &&
-				valeurArmstrong >= GetPuissance10(cachePuissance10, j - 1) &&
+				(Puissance10_EstOverflow(ordonnanceur -> cachePuissance10, j) == 1 || valeurArmstrong < GetPuissance10(ordonnanceur -> cachePuissance10, j)) &&
+				valeurArmstrong >= GetPuissance10(ordonnanceur -> cachePuissance10, j - 1) &&
 				valeurArmstrong <= borne_superieure &&
 				valeurArmstrong >= borne_inferieure &&
-				EstUnNombreArmstrong(combinaison_for, valeurArmstrong, j, cachePuissance10))
+				EstUnNombreArmstrong(combinaison_for, valeurArmstrong, j, ordonnanceur -> cachePuissance10))
 			{
 				printf("NA: %lld\n", valeurArmstrong);
 			}
