@@ -1,6 +1,6 @@
 CC=gcc
-#CFLAG=-Wall -lm -O3 -fopenmp
-CFLAG=-Wall -lm -O3 -DNDEBUG=1 -fopenmp
+FLAG=-Wall -lm -O3 -fopenmp
+#CFLAG=-Wall -lm -O3 -DNDEBUG=1 -fopenmp
 LDFLAG=-Wall -lm -fopenmp
 
 CPARALLEL= -pthread -ftree-parallelize-loops=40

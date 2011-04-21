@@ -40,15 +40,17 @@ int main(int argc, char *argv[])
 	
 	printf("T: Recuperation des arguments : %lld\n", time_end(time_zero));
 	
+	// printf("D: borne_superieure_longueur %d\n", borne_superieure_longueur);
+	
 	// Initialiser le cache des puissances de 10
 	CachePuissance10 *cachePuissance10;
-	cachePuissance10 = InitCachePuissance10(borne_superieure_longueur + 1);
+	cachePuissance10 = InitCachePuissance10(borne_superieure_longueur);
 	
 	// Initialiser de le cache des puissances_digit
 	CachePuissanceDigit *cachePuissanceDigit;
 	cachePuissanceDigit = InitCachePuissanceDigit(borne_inferieure_longueur, borne_superieure_longueur);
 	
-		// Si le premier argument est superieur au deuxieme argument, afficher_aide_nombre_incoherent
+	// Si le premier argument est superieur au deuxieme argument, afficher_aide_nombre_incoherent
 	if (borne_inferieure_longueur > borne_superieure_longueur || Compare2TableauxDigit(borne_inferieure, borne_superieure, borne_superieure_longueur) == 1)
 	{
 		afficher_aide_nombre_incoherent(
@@ -62,21 +64,18 @@ int main(int argc, char *argv[])
 	//printf("D: Borne inferieure : %lld\n", ConvertirTableauDigitVersNombre(borne_inferieure, borne_inferieure_longueur, &cachePuissance10));
 	//printf("D: Borne superieure : %lld\n", ConvertirTableauDigitVersNombre(borne_superieure, borne_superieure_longueur, &cachePuissance10));
 	
-	FabriqueTacheCombinaisonEstNombreArmstrong *fabrique;
-	fabrique = InitialiserFabriqueTacheCombinaisonEstNombreArmstrong(
-		borne_inferieure, 
-		borne_superieure, 
-		borne_inferieure_longueur, 
+	Ordonnanceur *ordonnanceur = Ordonnanceur_Init(
+		borne_inferieure,
+		borne_superieure,
+		borne_inferieure_longueur,
 		borne_superieure_longueur,
-		cachePuissanceDigit, 
-		cachePuissance10);
+		cachePuissance10,
+		cachePuissanceDigit);
 	
-	Ordonnanceur *ordonnanceur = Ordonnanceur_Init(1, fabrique);
 	Ordonnanceur_Start(ordonnanceur);
 	Ordonnanceur_AttendreFin(ordonnanceur);
 	
 	Ordonnanceur_Detruire(ordonnanceur);
-	DetruireFabriqueTacheCombinaisonEstNombreArmstrong(fabrique);
 	DetruireCachePuissanceDigit(cachePuissanceDigit);
 	DetruireCachePuissance10(cachePuissance10);
 	

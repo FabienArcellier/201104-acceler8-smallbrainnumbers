@@ -49,7 +49,6 @@ CachePuissance10 * CloneCachePuissance10(CachePuissance10 *cache)
 long long inline GetPuissance10(CachePuissance10 *cache, unsigned char exposant)
 {
   //Pre condition
-  // printf("D: exposant %d\n", exposant);
   assert(cache -> borne_superieure >= exposant);
   
 	long long result = 0;

@@ -55,6 +55,34 @@ long long ConvertirTableauDigitVersNombre(char * TableauDigit, int borne_superie
   return result;
 }
 
+/*! \brief Calculer la valeur minimum d'une combinaison
+ */
+long long inline ObtenirValeurMinimumCombinaison(char * TableauDigit, int borne_superieure, CachePuissance10 *cache) 
+{
+	return ConvertirTableauDigitVersNombre(TableauDigit, borne_superieure, cache);
+}
+
+/*! \brief Calculer la valeur maximum d'une combinaison
+ */
+long long ObtenirValeurMaximumCombinaison(char * TableauDigit, int borne_superieure, CachePuissance10 *cache)
+{
+	// Traitement
+  int i = 0;
+  long long result = 0;
+	int nombre_zero;
+	for(nombre_zero = 0; nombre_zero < borne_superieure && TableauDigit[nombre_zero] == 0; nombre_zero++);
+  for(; i < borne_superieure; i++)
+  {
+    result = result + TableauDigit[borne_superieure - 1 - i] * GetPuissance10(cache, borne_superieure - 1 - i + nombre_zero);
+  }
+  
+  // Post conditions
+  assert(result >= 0);
+  //assert(result < pow_long(10,borne_superieure));
+  
+  return result;
+}
+
 /*! \brief Convertit un texte (argument en ligne de commande en Combinaison)
 
 Par exemple, 3,2,1,\0 devient 1,2,3

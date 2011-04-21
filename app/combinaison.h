@@ -34,6 +34,14 @@ longueur est un pointeur de sortie qui correspond a l'ordre du tableau convertit
 */
 int ConvertirTexteVersTableauDigit(char * TableauDigit, char * texte);
 
+/*! \brief Calculer la valeur minimum d'une combinaison
+ */
+long long inline ObtenirValeurMinimumCombinaison(char * TableauDigit, int borne_superieure, CachePuissance10 *cache);
+
+/*! \brief Calculer la valeur maximum d'une combinaison
+ */
+long long ObtenirValeurMaximumCombinaison(char * TableauDigit, int borne_superieure, CachePuissance10 *cache);
+
 /*! \brief Compare 2 tableaux de digit de longueur n
 
 Retourne 1 si TableauDigit1 > à TableauDigit2, 0 si TableauDigit1 = TableauDigit2, sinon -1
