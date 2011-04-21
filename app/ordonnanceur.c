@@ -59,44 +59,40 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 	}
 	
 	// Execution du traitement parallèle pour trouver les nombres d'armstrong
-	char *combinaison_for;
-	int j = 0, nombre_chiffre_minimum;
+	int j = 0, nombre_chiffre_minimum = 0;
 	long long valeurArmstrong = 0, combinaison_valeur_min = 0;
-	#pragma omp parallel for num_threads(ordonnanceur -> nombre_processeurs) private(combinaison_for, nombre_chiffre_borne_superieure, j, nombre_chiffre_minimum, valeurArmstrong,\
-	combinaison_valeur_min, ordonnanceur -> cachePuissance10, ordonnanceur -> cachePuissanceDigit, borne_superieure, borne_inferieure)
+	#pragma omp parallel for num_threads(ordonnanceur -> nombre_processeurs)
 	for (i = 0; i < nb_combinaison_max; i++)
 	{
-		combinaison_for = (char *) malloc(sizeof(char) * nombre_chiffre_borne_superieure);
-		memcpy(combinaison_for, &(permutations[i * nombre_chiffre_borne_superieure]), sizeof(char) * nombre_chiffre_borne_superieure);
+		//combinaison_for = (char *) malloc(sizeof(char) * nombre_chiffre_borne_superieure);
+		//memcpy(combinaison_for, , sizeof(char) * nombre_chiffre_borne_superieure);
 		
 // 		printf("D: combinaison_for : %lld \n", ConvertirTableauDigitVersNombre(combinaison_for, nombre_chiffre_borne_superieure, ordonnanceur -> cachePuissance10));
 // 		printf("D: borne_inferieure : %d\n", borne_inferieure);
 // 		printf("D: borne_superieure : %d\n", borne_superieure);
 // 		puts("");
 		
-		nombre_chiffre_minimum = GetOrdreMinimumCombinaison(combinaison_for, nombre_chiffre_borne_superieure);
+		nombre_chiffre_minimum = GetOrdreMinimumCombinaison(&(permutations[i * nombre_chiffre_borne_superieure]), nombre_chiffre_borne_superieure);
 		// printf("D: ordre_finale : %d\n", ordre_finale);
 		for (j = nombre_chiffre_minimum; j <= nombre_chiffre_borne_superieure; j++)
 		{
-			valeurArmstrong = CalculNombreArmstrong(combinaison_for, j, ordonnanceur -> cachePuissanceDigit);
-// 			printf("D: ordre : %d\n", j);
-// 			printf("D: valeurArmstrong : %lld\n", valeurArmstrong);
-// 			printf("D : condition overflow : %d\n", Puissance10_EstOverflow(ordonnanceur -> cachePuissance10, j) == 1);
-			
-			long long combinaison_valeur_min = ConvertirTableauDigitVersNombre(combinaison_for, nombre_chiffre_borne_superieure, ordonnanceur -> cachePuissance10);
+			valeurArmstrong = CalculNombreArmstrong(&(permutations[i * nombre_chiffre_borne_superieure]), j, ordonnanceur -> cachePuissanceDigit);
+ 			// printf("D: ordre : %d\n", j);
+ 			// printf("D: valeurArmstrong : %lld\n", valeurArmstrong);
+			// printf("D : condition overflow : %d\n", Puissance10_EstOverflow(ordonnanceur -> cachePuissance10, j) == 1);
 			
 			if (j != 0 &&
 				(Puissance10_EstOverflow(ordonnanceur -> cachePuissance10, j) == 1 || valeurArmstrong < GetPuissance10(ordonnanceur -> cachePuissance10, j)) &&
 				valeurArmstrong >= GetPuissance10(ordonnanceur -> cachePuissance10, j - 1) &&
-				valeurArmstrong <= borne_superieure &&
-				valeurArmstrong >= borne_inferieure &&
-				EstUnNombreArmstrong(combinaison_for, valeurArmstrong, j, ordonnanceur -> cachePuissance10))
+				valeurArmstrong <= ordonnanceur -> borne_superieure &&
+				valeurArmstrong >= ordonnanceur -> borne_inferieure &&
+				EstUnNombreArmstrong(&(permutations[i * nombre_chiffre_borne_superieure]), valeurArmstrong, j, ordonnanceur -> cachePuissance10))
 			{
 				printf("NA: %lld\n", valeurArmstrong);
 			}
 		}
 		
-		free(combinaison_for);
+		//free(combinaison_for);
 	}
 }
 
