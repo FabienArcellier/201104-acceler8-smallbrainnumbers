@@ -13,8 +13,8 @@ char *CalculNombreArmstrong(char *Combinaison, int size,CachePuissanceDigit *cac
 	char* ResultatArmstrong = (char*) malloc (sizeof(char*)*size);
 	for(i=0;i<size;i++)
 	{
-		// printf("D: Combinaison[i] = %d\n", Combinaison[i]);
-		ResCalcul = GetPuissanceDigit(cache,Combinaison[i],size);
+		printf("D: Combinaison[i] = %d\n", Combinaison[i]);
+		GetPuissanceDigit(cache,&ResCalcul,Combinaison[i],size);
 		ResultatArmstrong = addition_tableaux(ResCalcul,ResultatArmstrong,size);		
 	}
 	free(ResCalcul);

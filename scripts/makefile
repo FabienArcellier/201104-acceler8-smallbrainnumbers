@@ -24,7 +24,7 @@ PATH_TESTS=../tests
 
 Production: clean init Smallbrain
 
-Tests: clean init TestPuissance10 TestPuissanceDigit TestTacheCombinaisonEstNombreArmstrong TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestProcs
+Tests: clean init TestPuissance10 TestPuissanceDigit TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestProcs
 
 Smallbrain: timer.o mathematique.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o ordonnanceur.o main.o hardware.o
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^

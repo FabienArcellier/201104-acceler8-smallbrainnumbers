@@ -28,10 +28,14 @@ void testCalculArmstrong()
 	
 	// Tests
 	long long test_time;
+	int i;
 	test_time = time_start();
-	
+	char* test = (char*) malloc (sizeof(char)*19);
 	puts("L: Debut du test");
-	assert(CalculNombreArmstrong(Combinaison,19, cachePuissanceDigitExposant19) == 4498128791164624869ULL);
+	test = CalculNombreArmstrong(Combinaison,19, cachePuissanceDigitExposant19); //4498128791164624869ULL);
+	for(i=0;i<19;i++)
+		printf("%d",test[i]);
+	printf("\n");
 	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,19,cachePuissanceDigitExposant19),19, cachePuissance10Exposant) == TRUE);
 	printf("%lld us\n",time_end(test_time));
 	puts("L: Fin du test");
