@@ -77,4 +77,6 @@ int nombreCombinaisonsDunNombreDigit(int size);
 */
 int nombreCombinaisonsDunRange(int ordre_initial,int ordre_final);
 
+char * addition_tableaux(char* combinaison1, char* combinaison2, int size);
+
 #endif

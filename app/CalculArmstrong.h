@@ -28,11 +28,11 @@ typedef struct tache_nombre_armstrong
 
 /*! \brief Calcule le nombre (potentiellement d'Armstrong) à l'aide d'une combinaison fournie en paramètre et retourne le nombre calculé
 */
-long long CalculNombreArmstrong(char *Combinaison,int size,CachePuissanceDigit *cache);
+char *CalculNombreArmstrong(char *Combinaison, int size,CachePuissanceDigit *cache);
 
 /* \brief Retourne vrai ou faux selon que le nombre est d'Armstrong ou pas
 */
-bool EstUnNombreArmstrong(char *Combinaison,long long NbTeste, int size,CachePuissance10 *cache_puissance_10);
+bool EstUnNombreArmstrong(char *Combinaison,char *Combinaison_Armstrong, int size, CachePuissance10 *cache_puissance_10);
 
 
 /* \brief Initialise le tableau de test pour la vérification d'Armstrong
@@ -48,12 +48,5 @@ bool used_comparedigit(char *Test_variable,int j,int size);
 */
 void add_comparedigit(char *Test_variable,int j);
 
-/* \brief Instancie un nouvel objet Tache_Nombre_Armstrong
-*/
-Tache_Nombre_Armstrong * InitialiserTacheArmstrong(int size,CachePuissance10 *cache_puissance_10);
-
-/* \brief Libere la mémoire d'un objet Tache_Nombre_Armstrong
-*/
-void DetruireTacheNombreArmstrong(Tache_Nombre_Armstrong * TacheCombinaison);
 
 #endif

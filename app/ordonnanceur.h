@@ -34,3 +34,6 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur);
 /*! \brief Detruit une instance de l'ordonnanceur
  */
 void inline Ordonnanceur_Detruire(Ordonnanceur *ordonnanceur);
+
+
+void affichage_Armstrong(char* Combinaison, size);

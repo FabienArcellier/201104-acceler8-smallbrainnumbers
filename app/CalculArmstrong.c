@@ -6,44 +6,40 @@
 
 /*! \brief Calcule le nombre d'Armstrong d'une combinaison à l'aide du cache des puissance
 */
-long long CalculNombreArmstrong(char *Combinaison, int size,CachePuissanceDigit *cache)
+char *CalculNombreArmstrong(char *Combinaison, int size,CachePuissanceDigit *cache)
 {
 	int i;
-	long long ResCalcul = 0;
+	char* ResCalcul = (char*) malloc (sizeof(char*)*size);
+	char* ResultatArmstrong = (char*) malloc (sizeof(char*)*size);
 	for(i=0;i<size;i++)
 	{
 		// printf("D: Combinaison[i] = %d\n", Combinaison[i]);
-		ResCalcul += GetPuissanceDigit(cache,Combinaison[i],size);
+		ResCalcul = GetPuissanceDigit(cache,Combinaison[i],size);
+		ResultatArmstrong = addition_tableaux(ResCalcul,ResultatArmstrong,size);		
 	}
-	return ResCalcul;
+	return ResultatArmstrong;
 }
 
 /*! \brief Vérifie si le nombre trouvé est un nombre d'Armstrong ou non. Mise en tableau du Nombre à tester puis recherche de l'intersection entre les deux.
 */
-bool EstUnNombreArmstrong(char *Combinaison,long long NbTeste, int size, CachePuissance10 *cache_puissance_10)
+bool EstUnNombreArmstrong(char *Combinaison,char *Combinaison_Armstrong, int size, CachePuissance10 *cache_puissance_10)
 {
 	bool test = FALSE;
 	bool Armstrong = TRUE;
 	int i = 0;
 	int j = 0;
-	Tache_Nombre_Armstrong * Tache_en_cours;
+	char *Test_variable=(char *)malloc (sizeof(char)*size);
 	if(NbTeste >= GetPuissance10(cache_puissance_10, size-1))
 	{
-		Tache_en_cours = InitialiserTacheArmstrong(size, cache_puissance_10);
-		init_comparedigit(Tache_en_cours -> Test_variable, size);
-		//printf("VARA\n");
-		// printf("D: Size : %d\n", size);
-		ConvertirNombreVersTableauDigit(Tache_en_cours->Combinatoire, NbTeste, size);
-		// printf("VARB\n");
 		for(i=0;i < size && (Armstrong == TRUE );i++)
 		{
 			for(j=0;(j < size) && (test == FALSE);j++)
 			{
-				if((Combinaison[i] == Tache_en_cours -> Combinatoire[j]) &&
-				(used_comparedigit(Tache_en_cours->Test_variable, j,size) == FALSE))
+				if((Combinaison[i] == Combinaison_Armstrong[j]) &&
+				(used_comparedigit(Test_variable, j,size) == FALSE))
 				{
 					test = TRUE;
-					add_comparedigit(Tache_en_cours -> Test_variable, j);
+					add_comparedigit(Test_variable, j);
 					break;
 				}
 			}
@@ -55,7 +51,6 @@ bool EstUnNombreArmstrong(char *Combinaison,long long NbTeste, int size, CachePu
 		
 			test = FALSE;
 		}
-		DetruireTacheNombreArmstrong(Tache_en_cours);
 	}
 	
 	else
@@ -105,29 +100,4 @@ void add_comparedigit(char *Test_Variable, int j)
 	}
 	
 	Test_Variable[i] = j;
-}
-
-
-/* \brief Instancie un nouvel objet Tache_Nombre_Armstrong
-*/
-Tache_Nombre_Armstrong * InitialiserTacheArmstrong(int size,CachePuissance10 *cache_puissance_10)
-{
-	
-	// Traitement
-	Tache_Nombre_Armstrong * fabrique;
-	fabrique = (Tache_Nombre_Armstrong *) malloc(sizeof(Tache_Nombre_Armstrong));
-	fabrique -> Combinatoire = (char *)malloc (sizeof(char)*size);
-	fabrique -> Test_variable = (char *)malloc (sizeof(char)*size);
-	fabrique -> cache_puissance_10 = cache_puissance_10;
-
-	return(fabrique);
-}
-
-/* \brief Libere la mémoire d'un objet Tache_Nombre_Armstrong
-*/
-void DetruireTacheNombreArmstrong(Tache_Nombre_Armstrong * TacheCombinaison)
-{
-	free(TacheCombinaison -> Combinatoire);
-	free(TacheCombinaison -> Test_variable);
-	free(TacheCombinaison);
 }
