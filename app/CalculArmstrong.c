@@ -33,7 +33,8 @@ bool EstUnNombreArmstrong(char *Combinaison,char *Combinaison_Armstrong, int siz
 	bool Armstrong = TRUE;
 	int i = 0;
 	int j = 0;
-	char *Test_variable=(char *) malloc (sizeof(char)*size);
+	char * Test_variable = (char *) malloc (sizeof(char)*size);
+	init_comparedigit(Test_variable,size);
 	if(Combinaison_Armstrong[size-1]!=0)
 	{
 		for(i=0;i < size && (Armstrong == TRUE );i++)
