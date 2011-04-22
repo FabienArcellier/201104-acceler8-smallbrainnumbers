@@ -36,4 +36,4 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur);
 void inline Ordonnanceur_Detruire(Ordonnanceur *ordonnanceur);
 
 
-void affichage_Armstrong(char* Combinaison, size);
+void affichage_Armstrong(char* Combinaison,int size);

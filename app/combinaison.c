@@ -357,3 +357,4 @@ char * addition_tableaux(char* combinaison1, char* combinaison2, int size)
 	}
 	return addition;
 }
+

@@ -88,7 +88,7 @@ void inline Ordonnanceur_Detruire(Ordonnanceur *ordonnanceur)
 }
 
 
-void affichage_Armstrong(char* Combinaison, size)
+void affichage_Armstrong(char* Combinaison,int size)
 {
 	int i;
 	for(i=0;i<size;i++)
@@ -96,3 +96,4 @@ void affichage_Armstrong(char* Combinaison, size)
 		printf("%c",Combinaison[i]);
 	}
 	printf("\n");
+}

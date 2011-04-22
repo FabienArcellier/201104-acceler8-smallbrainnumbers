@@ -1,8 +1,8 @@
-LD_LIBRARY_PATH=/opt/mpfr/lib:/opt/gmp/lib:/opt/mpc/lib
+#LD_LIBRARY_PATH=/opt/mpfr/lib:/opt/gmp/lib:/opt/mpc/lib
 
-GCC_VERSION=4.5.1
-PREFIX=/opt/gcc/${GCC_VERSION}/bin
-CC=${PREFIX}/gcc
+#GCC_VERSION=4.5.1
+#PREFIX=/opt/gcc/${GCC_VERSION}/bin
+CC=gcc
 #CFLAG=-Wall -lm -O3 -fopenmp
 CFLAG=-Wall -lm -O3 -DNDEBUG=1 -fopenmp
 LDFLAG=-Wall -lm -fopenmp

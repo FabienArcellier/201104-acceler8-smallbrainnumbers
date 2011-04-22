@@ -17,6 +17,7 @@ char *CalculNombreArmstrong(char *Combinaison, int size,CachePuissanceDigit *cac
 		ResCalcul = GetPuissanceDigit(cache,Combinaison[i],size);
 		ResultatArmstrong = addition_tableaux(ResCalcul,ResultatArmstrong,size);		
 	}
+	free(ResCalcul);
 	return ResultatArmstrong;
 }
 
@@ -29,7 +30,7 @@ bool EstUnNombreArmstrong(char *Combinaison,char *Combinaison_Armstrong, int siz
 	int i = 0;
 	int j = 0;
 	char *Test_variable=(char *)malloc (sizeof(char)*size);
-	if(NbTeste >= GetPuissance10(cache_puissance_10, size-1))
+	if(Combinaison_Armstrong[size-1]!=0)
 	{
 		for(i=0;i < size && (Armstrong == TRUE );i++)
 		{

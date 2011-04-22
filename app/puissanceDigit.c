@@ -60,7 +60,7 @@ CachePuissanceDigit * CloneCachePuissanceDigit(CachePuissanceDigit *cache)
 
 /*! \brief Renvoie la puissance tirée du cache d'un chiffre entre 0 et 9
 */
-long long inline GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, unsigned char exposant)
+char * GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, unsigned char exposant)
 {
   // Pré conditions
   assert(exposant >= cache -> borne_inferieure);
