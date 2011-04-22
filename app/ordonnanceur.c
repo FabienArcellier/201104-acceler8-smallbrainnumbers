@@ -13,8 +13,10 @@ Ordonnanceur *Ordonnanceur_Init(char * combinaison_borne_inferieure,
 	Ordonnanceur *ordonnanceur = (Ordonnanceur *) malloc(sizeof(Ordonnanceur));
 	
 	ordonnanceur -> nombre_processeurs = ObtenirNombreProcesseurs();
-	ordonnanceur -> borne_inferieure = ConvertirTableauDigitVersNombre(combinaison_borne_inferieure, nombre_chiffre_borne_inferieure, cachePuissance10);
-	ordonnanceur -> borne_superieure = ConvertirTableauDigitVersNombre(combinaison_borne_superieure, nombre_chiffre_borne_superieure, cachePuissance10);
+	ordonnanceur -> borne_inferieure = (char*) malloc(sizeof(char)*nombre_chiffre_borne_inferieure);
+	memcpy(ordonnanceur -> borne_inferieure,combinaison_borne_inferieure,sizeof(char)*nombre_chiffre_borne_inferieure);
+	ordonnanceur -> borne_superieure = (char*) malloc(sizeof(char)*nombre_chiffre_borne_inferieure); 
+	memcpy(ordonnanceur -> borne_superieure,combinaison_borne_superieure,sizeof(char)*nombre_chiffre_borne_superieure);	
 	ordonnanceur -> nombre_chiffre_borne_inferieure = nombre_chiffre_borne_inferieure;
 	ordonnanceur -> nombre_chiffre_borne_superieure = nombre_chiffre_borne_superieure;
 	ordonnanceur -> cachePuissanceDigit = cachePuissanceDigit;
@@ -51,7 +53,7 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 	for (i = 0; i < nb_combinaison_max; i++)
 	{
 		int j = 0, nombre_chiffre_minimum = 0;
-		long long valeurArmstrong = 0;
+		char* valeurArmstrong = (char *) malloc (sizeof(char)*(ordonnanceur->nombre_chiffre_borne_superieure));
 		
 // 		printf("D: combinaison_for : %lld \n", ConvertirTableauDigitVersNombre(combinaison_for, ordonnanceur -> nombre_chiffre_borne_superieure, ordonnanceur -> cachePuissance10));
 // 		printf("D: borne_inferieure : %d\n", borne_inferieure);
@@ -68,13 +70,14 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 			// printf("D : condition overflow : %d\n", Puissance10_EstOverflow(ordonnanceur -> cachePuissance10, j) == 1);
 			
 			if (j != 0 &&
-				(Puissance10_EstOverflow(ordonnanceur -> cachePuissance10, j) == 1 || valeurArmstrong < GetPuissance10(ordonnanceur -> cachePuissance10, j)) &&
-				valeurArmstrong >= GetPuissance10(ordonnanceur -> cachePuissance10, j - 1) &&
-				valeurArmstrong <= ordonnanceur -> borne_superieure &&
-				valeurArmstrong >= ordonnanceur -> borne_inferieure &&
+				(Puissance10_EstOverflow(ordonnanceur -> cachePuissance10, j) == 1 || 
+				valeurArmstrong[j]==0)&&
+				valeurArmstrong[j-1] > 0 &&
+				Compare2TableauxDigit(valeurArmstrong,ordonnanceur->borne_superieure,ordonnanceur -> nombre_chiffre_borne_superieure)== -1&&
+				Compare2TableauxDigit(valeurArmstrong,ordonnanceur->borne_inferieure,j)== 1 &&
 				EstUnNombreArmstrong(&(permutations[i * ordonnanceur -> nombre_chiffre_borne_superieure]), valeurArmstrong, j, ordonnanceur -> cachePuissance10))
 			{
-				printf("NA: %lld\n", valeurArmstrong);
+				affichage_Armstrong(valeurArmstrong,j);
 			}
 		}
 	}
@@ -93,7 +96,7 @@ void affichage_Armstrong(char* Combinaison,int size)
 	int i;
 	for(i=0;i<size;i++)
 	{
-		printf("%c",Combinaison[i]);
+		printf("%d",Combinaison[i]);
 	}
 	printf("\n");
 }

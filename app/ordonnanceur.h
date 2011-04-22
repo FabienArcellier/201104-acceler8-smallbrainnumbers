@@ -9,8 +9,8 @@
 typedef struct ordonnanceur
 {
 	int nombre_processeurs;
-	long long borne_inferieure;
-	long long borne_superieure;
+	char* borne_inferieure;
+	char* borne_superieure;
 	int nombre_chiffre_borne_inferieure;
 	int nombre_chiffre_borne_superieure;
 	CachePuissanceDigit *cachePuissanceDigit;
