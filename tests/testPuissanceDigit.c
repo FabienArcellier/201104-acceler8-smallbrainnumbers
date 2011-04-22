@@ -10,7 +10,7 @@ void testPuissanceDigitClone();
 int main(void)
 {
 	testPuissanceDigitExposant5();
-	// testPuissanceDigitClone();
+	testPuissanceDigitClone();
 	return 0;
 }
 
@@ -26,16 +26,20 @@ void testPuissanceDigitExposant5()
 	// Tests
 	// printf("D: GetPuissanceDigit(&cachePuissanceDigitExposant5, 4, 3) = %ld\n",
 	//	GetPuissanceDigit(&cachePuissanceDigitExposant5, 4, 3));
-	char * puissance1 = GetPuissanceDigit(cachePuissanceDigitExposant5, 4, 3);
+	char *puissance1 = (char *) malloc(sizeof(char) * 20);	
+	GetPuissanceDigit(cachePuissanceDigitExposant5, &puissance1, 4, 3);
 	assert( puissance1[0] == 4);
 	assert( puissance1[1] == 6);
-	assert( puissance1[3] == 0);
+	assert( puissance1[2] == 0);
 	
+	GetPuissanceDigit(cachePuissanceDigitExposant5, &puissance1, 0, 3);
+	assert( puissance1[0] == 0);
+	assert( puissance1[1] == 0);
 	
-	/*assert(GetPuissanceDigit(cachePuissanceDigitExposant5, 0, 3) == 0);
-	assert(GetPuissanceDigit(cachePuissanceDigitExposant5, 0, 5) == 0);
-	printf("D: 9^19 : %lld\n",GetPuissanceDigit(cachePuissanceDigitExposant5, 9, 19));
-	assert(GetPuissanceDigit(cachePuissanceDigitExposant5, 9, 19) == 1350851717672992089LLU);*/
+	GetPuissanceDigit(cachePuissanceDigitExposant5, &puissance1, 9, 19); // 1350851717672992089LLU
+	// printf("D: 9^19 : %lld\n",GetPuissanceDigit(cachePuissanceDigitExposant5, 9, 19));
+	assert(puissance1[0] == 9 );
+	assert(puissance1[18] == 1);
 	
 	DetruireCachePuissanceDigit(cachePuissanceDigitExposant5);
 	
@@ -58,10 +62,23 @@ void testPuissanceDigitClone()
   
   // Tests
   assert(cloneCache -> cache != cachePuissanceDigitExposant5 -> cache);
-  assert(GetPuissanceDigit(cachePuissanceDigitExposant5, 4, 3) == 64);
-  assert(GetPuissanceDigit(cachePuissanceDigitExposant5, 0, 3) == 0);
-  assert(GetPuissanceDigit(cachePuissanceDigitExposant5, 0, 5) == 0);
-  
+	
+	char *puissance1 = (char *) malloc(sizeof(char) * 20);
+
+	GetPuissanceDigit(cloneCache, &puissance1, 4, 3);
+	assert( puissance1[0] == 4);
+	assert( puissance1[1] == 6);
+	assert( puissance1[2] == 0);
+	
+	GetPuissanceDigit(cloneCache, &puissance1, 0, 3);
+	assert( puissance1[0] == 0);
+	assert( puissance1[1] == 0);
+	
+	GetPuissanceDigit(cloneCache, &puissance1, 9, 19); // 1350851717672992089LLU
+	// printf("D: 9^19 : %lld\n",GetPuissanceDigit(cachePuissanceDigitExposant5, 9, 19));
+	assert(puissance1[0] == 9 );
+	assert(puissance1[18] == 1);
+	
   DetruireCachePuissanceDigit(cloneCache);
   DetruireCachePuissanceDigit(cachePuissanceDigitExposant5);
   

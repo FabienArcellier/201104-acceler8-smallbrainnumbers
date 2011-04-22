@@ -33,7 +33,7 @@ CachePuissanceDigit * InitCachePuissanceDigit(unsigned char borne_inferieure,
 		int k = 0;
 		for(k = 0; k < borne_superieure; k++)
 		{
-			(cache -> cache)[i * 10 * borne_superieure + j * borne_superieure + k];
+			(cache -> cache)[i * 10 * borne_superieure + j * borne_superieure + k] = 1;
 		}
     }
   }
@@ -57,15 +57,15 @@ CachePuissanceDigit * CloneCachePuissanceDigit(CachePuissanceDigit *cache)
   CachePuissanceDigit * cache_clone = (CachePuissanceDigit *) malloc(sizeof(CachePuissanceDigit));
   cache_clone -> borne_inferieure = cache -> borne_inferieure;
   cache_clone -> borne_superieure = cache -> borne_superieure;
-  cache_clone -> cache = (long long*) malloc(sizeof(long long) * 10 * (cache -> borne_superieure + 1));
-  memcpy(cache_clone -> cache, cache -> cache, sizeof(long long) * 10 *(cache -> borne_superieure + 1));
+  cache_clone -> cache = (char *) malloc(sizeof(char) * cache -> borne_superieure * 10 * (cache -> borne_superieure + 1));
+  memcpy(cache_clone -> cache, cache -> cache, sizeof(char) * cache -> borne_superieure * 10 *(cache -> borne_superieure + 1));
   
   return cache_clone;
 }
 
 /*! \brief Renvoie la puissance tirée du cache d'un chiffre entre 0 et 9
 */
-char * GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, unsigned char exposant)
+void GetPuissanceDigit(CachePuissanceDigit *cache, char **combinaison, unsigned char digit, unsigned char exposant)
 {
   // Pré conditions
   assert(exposant >= cache -> borne_inferieure);
@@ -73,10 +73,12 @@ char * GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, unsign
   assert(digit <= 9);
 
   // Post conditions
-  assert((cache -> cache)[exposant * 10 * cache -> borne_superieure + digit * cache -> borne_superieure] > 0 || digit == 0);
+  // assert((cache -> cache)[exposant * 10 * cache -> borne_superieure + digit * cache -> borne_superieure] > 0 || digit == 0);
 
   // Traitement
-  return (cache -> cache)[exposant * 10 * cache -> borne_superieure + digit * cache -> borne_superieure];
+  *combinaison = (cache -> cache + exposant * 10 * cache -> borne_superieure + digit * cache -> borne_superieure);
+	
+	return;
 }
 
 /*!  \brief Detruit l'objet cache

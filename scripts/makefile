@@ -3,8 +3,8 @@
 #GCC_VERSION=4.5.1
 #PREFIX=/opt/gcc/${GCC_VERSION}/bin
 CC=gcc
-#CFLAG=-Wall -lm -O3 -fopenmp
-CFLAG=-Wall -lm -O3 -DNDEBUG=1 -fopenmp
+CFLAG=-Wall -lm -O3 -fopenmp
+#CFLAG=-Wall -lm -O3 -DNDEBUG=1 -fopenmp
 LDFLAG=-Wall -lm -fopenmp
 
 # CC=gcc
@@ -44,7 +44,7 @@ TestCombinaison: timer.o mathematique.o puissance10.o combinaison.o testCombinai
 TestPuissance10: timer.o mathematique.o puissance10.o testPuissance10.o
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
-TestPuissanceDigit: timer.o mathematique.o puissanceDigit.o testPuissanceDigit.o
+TestPuissanceDigit: timer.o puissance10.o combinaison.o mathematique.o puissanceDigit.o testPuissanceDigit.o
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 TestProcs: timer.o hardware.o testProcesseurs.o
