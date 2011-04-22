@@ -12,14 +12,14 @@ void testCalculArmstrong4150();
 int main(void)
 {
 	testCalculArmstrong();
-	testCalculArmstrong23();
-  testCalculArmstrong4150();
+	//testCalculArmstrong23();
+  //testCalculArmstrong4150();
 	return 0;
 }
 
 void testCalculArmstrong()
 {
-	char Combinaison[19] = {4,4,9,8,1,2,8,7,9,1,1,6,4,4,2,4,8,6,9};
+	char Combinaison[19] = {4,4,9,8,1,2,8,7,9,1,1,6,4,6,2,4,8,6,9};
 	CachePuissanceDigit *cachePuissanceDigitExposant19;
 	cachePuissanceDigitExposant19 = InitCachePuissanceDigit(0, 19);
 	
