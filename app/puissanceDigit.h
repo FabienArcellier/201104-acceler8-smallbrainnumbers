@@ -19,7 +19,7 @@ typedef struct cache_puissance_digit
 {
   char borne_inferieure;
   char borne_superieure;
-  long long *cache;
+  char *cache;
 } CachePuissanceDigit;
 
 /*! \brief Initialise un cache pour les puissances des chiffres de 1 à 9

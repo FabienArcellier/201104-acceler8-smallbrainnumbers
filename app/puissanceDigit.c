@@ -22,23 +22,28 @@ CachePuissanceDigit * InitCachePuissanceDigit(unsigned char borne_inferieure,
   CachePuissanceDigit * cache = (CachePuissanceDigit *) malloc(sizeof(CachePuissanceDigit));
   cache -> borne_inferieure = borne_inferieure;
   cache -> borne_superieure = borne_superieure;
-  cache -> cache = (long long*) malloc(sizeof(long long) * 10 * (borne_superieure + 1));
+  cache -> cache = (char *) malloc(sizeof(char) * borne_superieure * 10 * (borne_superieure + 1));
 
   int i = 0;
-  int j = 0;
   for(i = 0; i < borne_inferieure; i++)
   {
+	int j = 0;
     for(j = 0; j < 10;j++)
     {
-      (cache -> cache)[i * 10 + j] = 0;
+		int k = 0;
+		for(k = 0; k < borne_superieure; k++)
+		{
+			(cache -> cache)[i * 10 * borne_superieure + j * borne_superieure + k];
+		}
     }
   }
 
   for(i = borne_inferieure; i <= borne_superieure; i++)
   {
+	int j = 0;
     for(j = 0; j < 10;j++)
     {
-      cache -> cache[i * 10 + j] = pow_long(j, i);
+		ConvertirNombreVersTableauDigit(&((cache -> cache)[i * 10 * borne_superieure + j * borne_superieure]), pow_long(j, i), borne_superieure);
     }
   }
 
@@ -68,10 +73,10 @@ char * GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, unsign
   assert(digit <= 9);
 
   // Post conditions
-  assert((cache -> cache)[exposant * 10 + digit] > 0 || digit == 0);
+  assert((cache -> cache)[exposant * 10 * cache -> borne_superieure + digit * cache -> borne_superieure] > 0 || digit == 0);
 
   // Traitement
-  return (cache -> cache)[exposant * 10 + digit];
+  return (cache -> cache)[exposant * 10 * cache -> borne_superieure + digit * cache -> borne_superieure];
 }
 
 /*!  \brief Detruit l'objet cache
@@ -79,4 +84,5 @@ char * GetPuissanceDigit(CachePuissanceDigit *cache, unsigned char digit, unsign
 void DetruireCachePuissanceDigit(CachePuissanceDigit *cache)
 {
   free(cache -> cache);
+  free(cache);
 }
