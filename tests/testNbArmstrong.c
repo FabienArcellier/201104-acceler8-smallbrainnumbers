@@ -36,7 +36,7 @@ void testCalculArmstrong()
 	for(i=0;i<19;i++)
 		printf("%d",test[i]);
 	printf("\n");
-	assert(EstUnNombreArmstrong(Combinaison,CalculNombreArmstrong(Combinaison,19,cachePuissanceDigitExposant19),19, cachePuissance10Exposant) == TRUE);
+	assert(EstUnNombreArmstrong(Combinaison,test,19, cachePuissance10Exposant) == TRUE);
 	printf("%lld us\n",time_end(test_time));
 	puts("L: Fin du test");
 	puts("");

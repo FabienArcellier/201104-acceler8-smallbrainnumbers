@@ -348,11 +348,11 @@ char * addition_tableaux(char* combinaison1, char* combinaison2, int size)
 	char *addition = (char*) malloc(sizeof(char*)*size);
 	for(i=0;i<size;i++)
 	{
-		addition[i]=combinaison1[i]+combinaison2[i];
+		addition[i]+=combinaison1[i]+combinaison2[i];
 		if(addition[i]>=10)
 		{
 			addition[i]=addition[i]-10;
-			addition[i-1]+=1;
+			addition[i+1]+=1;
 		}
 	}
 	return addition;

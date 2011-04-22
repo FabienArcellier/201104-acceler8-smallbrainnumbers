@@ -20,8 +20,8 @@ void testCombinaison()
   test_time = time_start();
 	
 	// Tests
-	char test[4]={9,0,2,6};
-	char test2[4]={0,6,8,9};
+	char test[4]={9,0,9,9};
+	char test2[4]={0,6,9,9};
 	char *test3;
 	test3=(char*) malloc(sizeof(char)*4);
 	test3=addition_tableaux(test,test2,4);

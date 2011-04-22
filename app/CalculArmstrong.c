@@ -9,11 +9,11 @@
 char *CalculNombreArmstrong(char *Combinaison, int size,CachePuissanceDigit *cache)
 {
 	int i;
-	char* ResCalcul = (char*) malloc (sizeof(char*)*size);
+	char* ResCalcul;
 	char* ResultatArmstrong = (char*) malloc (sizeof(char*)*size);
 	for(i=0;i<size;i++)
 	{
-		ResultatArmstrong[i] =0;
+		ResultatArmstrong[i] = 0;
 	}
 	for(i=0;i<size;i++)
 	{
@@ -22,7 +22,6 @@ char *CalculNombreArmstrong(char *Combinaison, int size,CachePuissanceDigit *cac
 		ResultatArmstrong = addition_tableaux(ResCalcul,ResultatArmstrong,size);
 				
 	}
-	//free(ResCalcul);
 	return ResultatArmstrong;
 }
 
@@ -34,7 +33,7 @@ bool EstUnNombreArmstrong(char *Combinaison,char *Combinaison_Armstrong, int siz
 	bool Armstrong = TRUE;
 	int i = 0;
 	int j = 0;
-	char *Test_variable=(char *)malloc (sizeof(char)*size);
+	char *Test_variable=(char *) malloc (sizeof(char)*size);
 	if(Combinaison_Armstrong[size-1]!=0)
 	{
 		for(i=0;i < size && (Armstrong == TRUE );i++)
