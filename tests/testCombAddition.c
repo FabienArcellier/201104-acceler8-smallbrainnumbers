@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "../app/combinaison.h"
 #include "../app/ordonnanceur.h"
+#include "../app/timer.h"
 
 /* Liste des prototypes*/
 void testCombinaison();

@@ -24,7 +24,7 @@ PATH_TESTS=../tests
 
 Production: clean init Smallbrain
 
-Tests: clean init TestPuissance10 TestPuissanceDigit TestCombinaison TestMathematique TestCalculArmstrong SpikeCompterPermutationUnique TestProcs
+Tests: clean init TestPuissance10 TestPuissanceDigit TestCombinaison TestMathematique TestCalculArmstrong TestCombAddition SpikeCompterPermutationUnique TestProcs
 
 Smallbrain: timer.o mathematique.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o ordonnanceur.o main.o hardware.o
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
@@ -48,6 +48,9 @@ TestPuissanceDigit: timer.o puissance10.o combinaison.o mathematique.o puissance
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 TestProcs: timer.o hardware.o testProcesseurs.o
+	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
+
+TestCombAddition: timer.o mathematique.o puissance10.o puissanceDigit.o combinaison.o CalculArmstrong.o ordonnanceur.o hardware.o testCombAddition.o
 	$(CC) $(LDFLAG) -o $(PATH_BUILD)/$@ $^
 
 main.o: $(PATH_APP)/main.c
@@ -96,6 +99,9 @@ hardware.o: $(PATH_APP)/hardware.c $(PATH_APP)/hardware.h
 	$(CC) $(CFLAG) -c $<
 
 testProcesseurs.o: $(PATH_TESTS)/testProcesseurs.c
+	$(CC) $(CFLAG) -c $<
+
+testCombAddition.o:$(PATH_TESTS)/testCombAddition.c
 	$(CC) $(CFLAG) -c $<
 
 clean:
