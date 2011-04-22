@@ -80,7 +80,9 @@ void Ordonnanceur_Start(Ordonnanceur *ordonnanceur)
 				affichage_Armstrong(valeurArmstrong,j);
 			}
 		}
+		free(valeurArmstrong);
 	}
+	
 }
 
 /*! \brief Detruit une instance de l'ordonnanceur
