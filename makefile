@@ -5,7 +5,7 @@ PREFIX=/opt/gcc/${GCC_VERSION}/bin
 CC=${PREFIX}/gcc
 CFLAG=-Wall -lm -O3 -DNDEBUG=1 -fopenmp
 LDFLAG=-Wall -lm -fopenmp
-PATH_BUILD=./
+PATH_BUILD=./build
 PATH_APP=./app
 
 
