@@ -352,7 +352,7 @@ char * addition_tableaux(char* combinaison1, char* combinaison2, int size)
 		if(addition[i]>=10)
 		{
 			addition[i]=addition[i]-10;
-			addition[i+1]=addition[i+1]+1;
+			addition[i+1]=1;
 		}
 	}
 	return addition;
